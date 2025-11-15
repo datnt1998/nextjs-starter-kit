@@ -51,7 +51,7 @@ export function RecentActivity({ activities, isLoading }: RecentActivityProps) {
       <div className="space-y-4">
         {activities.map((activity) => (
           <div key={activity.id} className="flex gap-4">
-            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/20 flex items-center justify-center">
+            <div className="shrink-0 w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/20 flex items-center justify-center">
               <span className="text-sm font-medium text-primary-600 dark:text-primary-400">
                 {activity.user[0].toUpperCase()}
               </span>

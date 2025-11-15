@@ -115,7 +115,7 @@ export const ModalHeader = ({ children, className }: ModalHeaderProps) => {
   return (
     <div
       className={cn(
-        "flex items-start justify-between p-6 border-b border-neutral-200",
+        "flex items-start justify-between p-6 border-b border-neutral-200 dark:border-neutral-800",
         className
       )}
     >
@@ -136,7 +136,7 @@ export const ModalFooter = ({ children, className }: ModalFooterProps) => {
   return (
     <div
       className={cn(
-        "flex items-center justify-end gap-3 p-6 border-t border-neutral-200",
+        "flex items-center justify-end gap-3 p-6 border-t border-neutral-200 dark:border-neutral-800",
         className
       )}
     >
@@ -148,7 +148,10 @@ export const ModalFooter = ({ children, className }: ModalFooterProps) => {
 export const ModalTitle = ({ children, className }: ModalTitleProps) => {
   return (
     <Dialog.Title
-      className={cn("text-lg font-semibold text-neutral-900", className)}
+      className={cn(
+        "text-lg font-semibold text-neutral-900 dark:text-neutral-100",
+        className
+      )}
     >
       {children}
     </Dialog.Title>
@@ -161,7 +164,10 @@ export const ModalDescription = ({
 }: ModalDescriptionProps) => {
   return (
     <Dialog.Description
-      className={cn("text-sm text-neutral-600 mt-1", className)}
+      className={cn(
+        "text-sm text-neutral-600 dark:text-neutral-400 mt-1",
+        className
+      )}
     >
       {children}
     </Dialog.Description>
@@ -176,7 +182,7 @@ export const ModalClose = ({
   return (
     <Dialog.Close
       className={cn(
-        "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100",
+        "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white dark:ring-offset-neutral-900 transition-opacity hover:opacity-100 text-neutral-900 dark:text-neutral-100",
         "focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2",
         "disabled:pointer-events-none",
         className

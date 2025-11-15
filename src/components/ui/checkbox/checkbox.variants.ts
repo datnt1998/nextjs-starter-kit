@@ -16,14 +16,14 @@ export const checkboxRootVariants = cva(
 );
 
 export const checkboxIndicatorVariants = cva(
-  "inline-flex items-center justify-center rounded border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-500",
+  "inline-flex items-center justify-center rounded border-2 transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-primary-500 bg-white dark:bg-neutral-900",
   {
     variants: {
       variant: {
         default:
-          "border-neutral-300 data-[checked]:bg-primary-600 data-[checked]:border-primary-600 data-[indeterminate]:bg-primary-600 data-[indeterminate]:border-primary-600 hover:border-primary-400",
+          "border-neutral-300 dark:border-neutral-700 data-[checked]:bg-primary-600 data-[checked]:border-primary-600 dark:data-[checked]:bg-primary-500 dark:data-[checked]:border-primary-500 data-[indeterminate]:bg-primary-600 data-[indeterminate]:border-primary-600 dark:data-[indeterminate]:bg-primary-500 dark:data-[indeterminate]:border-primary-500 hover:border-primary-400",
         error:
-          "border-error-500 data-[checked]:bg-error-600 data-[checked]:border-error-600 data-[indeterminate]:bg-error-600 data-[indeterminate]:border-error-600 hover:border-error-400",
+          "border-error-500 dark:border-error-600 data-[checked]:bg-error-600 data-[checked]:border-error-600 dark:data-[checked]:bg-error-500 dark:data-[checked]:border-error-500 data-[indeterminate]:bg-error-600 data-[indeterminate]:border-error-600 dark:data-[indeterminate]:bg-error-500 dark:data-[indeterminate]:border-error-500 hover:border-error-400",
       },
       size: {
         sm: "h-4 w-4",
@@ -43,35 +43,41 @@ export const checkboxIndicatorVariants = cva(
   }
 );
 
-export const checkboxLabelVariants = cva("text-neutral-900 select-none", {
-  variants: {
-    size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
+export const checkboxLabelVariants = cva(
+  "text-neutral-900 dark:text-neutral-100 select-none",
+  {
+    variants: {
+      size: {
+        sm: "text-sm",
+        md: "text-base",
+        lg: "text-lg",
+      },
+      disabled: {
+        true: "cursor-not-allowed",
+        false: "cursor-pointer",
+      },
     },
-    disabled: {
-      true: "cursor-not-allowed",
-      false: "cursor-pointer",
+    defaultVariants: {
+      size: "md",
+      disabled: false,
     },
-  },
-  defaultVariants: {
-    size: "md",
-    disabled: false,
-  },
-});
+  }
+);
 
-export const checkboxDescriptionVariants = cva("text-neutral-600 select-none", {
-  variants: {
-    size: {
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-base",
+export const checkboxDescriptionVariants = cva(
+  "text-neutral-600 dark:text-neutral-400 select-none",
+  {
+    variants: {
+      size: {
+        sm: "text-xs",
+        md: "text-sm",
+        lg: "text-base",
+      },
     },
-  },
-  defaultVariants: {
-    size: "md",
-  },
-});
+    defaultVariants: {
+      size: "md",
+    },
+  }
+);
 
 export type CheckboxVariants = VariantProps<typeof checkboxIndicatorVariants>;

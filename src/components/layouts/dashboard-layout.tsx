@@ -20,7 +20,6 @@ const navigation = [
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
   const { user, signOut } = useAuth();
 
   const handleSignOut = async () => {

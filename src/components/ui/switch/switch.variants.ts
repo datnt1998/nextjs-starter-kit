@@ -6,11 +6,11 @@ export const switchRootVariants = cva(
     variants: {
       variant: {
         primary:
-          "bg-neutral-300 data-checked:bg-primary-600 hover:bg-neutral-400 data-checked:hover:bg-primary-700",
+          "bg-neutral-300 dark:bg-neutral-700 data-checked:bg-primary-600 dark:data-checked:bg-primary-500 hover:bg-neutral-400 dark:hover:bg-neutral-600 data-checked:hover:bg-primary-700 dark:data-checked:hover:bg-primary-600",
         success:
-          "bg-neutral-300 data-checked:bg-success-600 hover:bg-neutral-400 data-checked:hover:bg-success-700",
+          "bg-neutral-300 dark:bg-neutral-700 data-checked:bg-success-600 dark:data-checked:bg-success-500 hover:bg-neutral-400 dark:hover:bg-neutral-600 data-checked:hover:bg-success-700 dark:data-checked:hover:bg-success-600",
         danger:
-          "bg-neutral-300 data-checked:bg-error-600 hover:bg-neutral-400 data-checked:hover:bg-error-700",
+          "bg-neutral-300 dark:bg-neutral-700 data-checked:bg-error-600 dark:data-checked:bg-error-500 hover:bg-neutral-400 dark:hover:bg-neutral-600 data-checked:hover:bg-error-700 dark:data-checked:hover:bg-error-600",
       },
       size: {
         sm: "h-5 w-9",
@@ -66,35 +66,41 @@ export const switchWrapperVariants = cva(
   }
 );
 
-export const switchLabelVariants = cva("text-neutral-900 select-none", {
-  variants: {
-    size: {
-      sm: "text-sm",
-      md: "text-base",
-      lg: "text-lg",
+export const switchLabelVariants = cva(
+  "text-neutral-900 dark:text-neutral-100 select-none",
+  {
+    variants: {
+      size: {
+        sm: "text-sm",
+        md: "text-base",
+        lg: "text-lg",
+      },
+      disabled: {
+        true: "cursor-not-allowed",
+        false: "cursor-pointer",
+      },
     },
-    disabled: {
-      true: "cursor-not-allowed",
-      false: "cursor-pointer",
+    defaultVariants: {
+      size: "md",
+      disabled: false,
     },
-  },
-  defaultVariants: {
-    size: "md",
-    disabled: false,
-  },
-});
+  }
+);
 
-export const switchDescriptionVariants = cva("text-neutral-600 select-none", {
-  variants: {
-    size: {
-      sm: "text-xs",
-      md: "text-sm",
-      lg: "text-base",
+export const switchDescriptionVariants = cva(
+  "text-neutral-600 dark:text-neutral-400 select-none",
+  {
+    variants: {
+      size: {
+        sm: "text-xs",
+        md: "text-sm",
+        lg: "text-base",
+      },
     },
-  },
-  defaultVariants: {
-    size: "md",
-  },
-});
+    defaultVariants: {
+      size: "md",
+    },
+  }
+);
 
 export type SwitchVariants = VariantProps<typeof switchRootVariants>;

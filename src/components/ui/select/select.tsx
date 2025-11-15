@@ -168,13 +168,16 @@ export const Select = ({
         <label
           htmlFor={selectId}
           className={cn(
-            "text-sm font-medium text-neutral-900",
+            "text-sm font-medium text-neutral-900 dark:text-neutral-100",
             disabled && "opacity-50"
           )}
         >
           {label}
           {required && (
-            <span className="ml-1 text-error-600" aria-label="required">
+            <span
+              className="ml-1 text-error-600 dark:text-error-500"
+              aria-label="required"
+            >
               *
             </span>
           )}
@@ -214,27 +217,27 @@ export const Select = ({
           <BaseSelect.Positioner sideOffset={4}>
             <BaseSelect.Popup
               className={cn(
-                "z-50 min-w-32 overflow-hidden rounded-md border border-neutral-200 bg-white shadow-lg",
+                "z-50 min-w-32 overflow-hidden rounded-md border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 shadow-lg",
                 "data-[state=open]:animate-in data-[state=closed]:animate-out",
                 "data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0",
                 "data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95"
               )}
             >
               {searchable && (
-                <div className="p-2 border-b border-neutral-200">
+                <div className="p-2 border-b border-neutral-200 dark:border-neutral-800">
                   <input
                     type="text"
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full px-3 py-2 text-sm border border-neutral-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
+                    className="w-full px-3 py-2 text-sm border border-neutral-300 dark:border-neutral-700 bg-white dark:bg-neutral-900 text-neutral-900 dark:text-neutral-100 rounded-md focus:outline-none focus:ring-2 focus:ring-primary-500"
                     onClick={(e) => e.stopPropagation()}
                   />
                 </div>
               )}
               <div className="max-h-[300px] overflow-y-auto p-1">
                 {filteredOptions.length === 0 ? (
-                  <div className="py-6 text-center text-sm text-neutral-500">
+                  <div className="py-6 text-center text-sm text-neutral-500 dark:text-neutral-400">
                     No options found
                   </div>
                 ) : (
@@ -250,13 +253,14 @@ export const Select = ({
                         disabled={option.disabled}
                         className={cn(
                           "relative flex items-center w-full px-3 py-2 text-sm rounded-sm cursor-pointer select-none",
-                          "hover:bg-neutral-100 focus:bg-neutral-100 focus:outline-none",
+                          "hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:bg-neutral-100 dark:focus:bg-neutral-800 focus:outline-none",
                           "data-disabled:pointer-events-none data-disabled:opacity-50",
-                          isSelected && "bg-primary-50 text-primary-900"
+                          isSelected &&
+                            "bg-primary-50 dark:bg-primary-950 text-primary-900 dark:text-primary-100"
                         )}
                       >
                         {multiple && (
-                          <span className="mr-2 flex h-4 w-4 items-center justify-center rounded border border-neutral-300">
+                          <span className="mr-2 flex h-4 w-4 items-center justify-center rounded border border-neutral-300 dark:border-neutral-700">
                             {isSelected && <CheckIcon />}
                           </span>
                         )}
@@ -281,7 +285,10 @@ export const Select = ({
       {helperText && !hasError && (
         <p
           id={helperTextId}
-          className={cn("text-sm text-neutral-600", disabled && "opacity-50")}
+          className={cn(
+            "text-sm text-neutral-600 dark:text-neutral-400",
+            disabled && "opacity-50"
+          )}
         >
           {helperText}
         </p>
@@ -289,7 +296,7 @@ export const Select = ({
       {hasError && (
         <p
           id={errorId}
-          className="text-sm text-error-600"
+          className="text-sm text-error-600 dark:text-error-500"
           role="alert"
           aria-live="polite"
         >

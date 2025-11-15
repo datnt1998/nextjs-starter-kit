@@ -3,9 +3,10 @@ import { cva, type VariantProps } from "class-variance-authority";
 export const tabsListVariants = cva("flex", {
   variants: {
     variant: {
-      underline: "border-b border-neutral-200",
-      pills: "gap-1 p-1 bg-neutral-100 rounded-lg",
-      bordered: "gap-1 p-1 border border-neutral-200 rounded-lg bg-white",
+      underline: "border-b border-neutral-200 dark:border-neutral-800",
+      pills: "gap-1 p-1 bg-neutral-100 dark:bg-neutral-900 rounded-lg",
+      bordered:
+        "gap-1 p-1 border border-neutral-200 dark:border-neutral-800 rounded-lg bg-white dark:bg-neutral-900",
     },
     orientation: {
       horizontal: "flex-row",
@@ -30,11 +31,11 @@ export const tabVariants = cva(
     variants: {
       variant: {
         underline:
-          "border-b-2 border-transparent data-selected:border-primary-600 data-selected:text-primary-600 hover:text-primary-600 text-neutral-600",
+          "border-b-2 border-transparent data-selected:border-primary-600 dark:data-selected:border-primary-500 data-selected:text-primary-600 dark:data-selected:text-primary-400 hover:text-primary-600 dark:hover:text-primary-400 text-neutral-600 dark:text-neutral-400",
         pills:
-          "rounded-md data-selected:bg-white data-selected:shadow-sm data-selected:text-primary-600 hover:bg-white/50 text-neutral-600",
+          "rounded-md data-selected:bg-white dark:data-selected:bg-neutral-800 data-selected:shadow-sm data-selected:text-primary-600 dark:data-selected:text-primary-400 hover:bg-white/50 dark:hover:bg-neutral-800/50 text-neutral-600 dark:text-neutral-400",
         bordered:
-          "rounded-md border border-transparent data-selected:border-primary-600 data-selected:bg-primary-50 data-selected:text-primary-600 hover:bg-neutral-50 text-neutral-600",
+          "rounded-md border border-transparent data-selected:border-primary-600 dark:data-selected:border-primary-500 data-selected:bg-primary-50 dark:data-selected:bg-primary-950 data-selected:text-primary-600 dark:data-selected:text-primary-400 hover:bg-neutral-50 dark:hover:bg-neutral-900 text-neutral-600 dark:text-neutral-400",
       },
       size: {
         sm: "px-3 py-1.5 text-sm",

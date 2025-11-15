@@ -5,7 +5,7 @@ export const accordionRootVariants = cva("w-full", {
     variant: {
       default: "space-y-2",
       bordered:
-        "border border-neutral-200 rounded-lg divide-y divide-neutral-200",
+        "border border-neutral-200 dark:border-neutral-800 rounded-lg divide-y divide-neutral-200 dark:divide-neutral-800",
       separated: "space-y-2",
     },
   },
@@ -19,7 +19,8 @@ export const accordionItemVariants = cva("", {
     variant: {
       default: "",
       bordered: "",
-      separated: "border border-neutral-200 rounded-lg overflow-hidden",
+      separated:
+        "border border-neutral-200 dark:border-neutral-800 rounded-lg overflow-hidden",
     },
   },
   defaultVariants: {
@@ -28,11 +29,12 @@ export const accordionItemVariants = cva("", {
 });
 
 export const accordionTriggerVariants = cva(
-  "flex w-full items-center justify-between py-4 px-4 text-left font-medium transition-all hover:bg-neutral-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "flex w-full items-center justify-between py-4 px-4 text-left font-medium transition-all hover:bg-neutral-50 dark:hover:bg-neutral-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
-        default: "border-b border-neutral-200 data-panel-open:border-b-0",
+        default:
+          "border-b border-neutral-200 dark:border-neutral-800 data-panel-open:border-b-0",
         bordered: "",
         separated: "",
       },
@@ -48,7 +50,7 @@ export const accordionPanelVariants = cva(
   {
     variants: {
       variant: {
-        default: "border-b border-neutral-200",
+        default: "border-b border-neutral-200 dark:border-neutral-800",
         bordered: "",
         separated: "",
       },

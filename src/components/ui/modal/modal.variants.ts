@@ -1,7 +1,7 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const modalContentVariants = cva(
-  "relative bg-white rounded-lg shadow-xl flex flex-col max-h-[90vh]",
+  "relative bg-white dark:bg-neutral-900 rounded-lg shadow-xl flex flex-col max-h-[90vh]",
   {
     variants: {
       size: {

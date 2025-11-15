@@ -9,7 +9,7 @@ export const sliderRootVariants = cva(
 );
 
 export const sliderTrackVariants = cva(
-  "relative w-full grow overflow-hidden rounded-full bg-neutral-200",
+  "relative w-full grow overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-800",
   {
     variants: {
       size: {
@@ -24,13 +24,16 @@ export const sliderTrackVariants = cva(
   }
 );
 
-export const sliderIndicatorVariants = cva("absolute h-full bg-primary-600", {
-  variants: {},
-  defaultVariants: {},
-});
+export const sliderIndicatorVariants = cva(
+  "absolute h-full bg-primary-600 dark:bg-primary-500",
+  {
+    variants: {},
+    defaultVariants: {},
+  }
+);
 
 export const sliderThumbVariants = cva(
-  "block rounded-full border-2 border-primary-600 bg-white ring-offset-white transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "block rounded-full border-2 border-primary-600 dark:border-primary-500 bg-white dark:bg-neutral-900 ring-offset-white dark:ring-offset-neutral-900 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       size: {

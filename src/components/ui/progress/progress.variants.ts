@@ -6,7 +6,7 @@ export const progressRootVariants = cva("relative w-full", {
 });
 
 export const progressTrackVariants = cva(
-  "relative overflow-hidden rounded-full bg-neutral-200",
+  "relative overflow-hidden rounded-full bg-neutral-200 dark:bg-neutral-800",
   {
     variants: {
       size: {
@@ -26,10 +26,10 @@ export const progressIndicatorVariants = cva(
   {
     variants: {
       variant: {
-        default: "bg-primary-600",
-        success: "bg-success-600",
-        warning: "bg-warning-600",
-        error: "bg-error-600",
+        default: "bg-primary-600 dark:bg-primary-500",
+        success: "bg-success-600 dark:bg-success-500",
+        warning: "bg-warning-600 dark:bg-warning-500",
+        error: "bg-error-600 dark:bg-error-500",
       },
     },
     defaultVariants: {
