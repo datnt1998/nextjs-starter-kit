@@ -4,6 +4,9 @@
 @import "../styles/themes/default.css";
 @import "../styles/themes/dark.css";
 
+/* Configure dark mode variant */
+@variant dark (&:is(.dark *));
+
 /* Configure Tailwind v4 theme - reference CSS variables directly */
 @theme {
   /* Primary colors */
@@ -99,13 +102,19 @@
   }
 
   html {
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-feature-settings: "rlig" 1, "calt" 1;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    font-feature-settings:
+      "rlig" 1,
+      "calt" 1;
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 }

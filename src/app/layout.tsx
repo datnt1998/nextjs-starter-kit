@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
+      <body>
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -28,14 +28,14 @@ export default function RootLayout({
                   const resolvedTheme = theme === 'system' ? systemTheme : theme;
                   if (resolvedTheme === 'dark') {
                     document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
                   }
                 } catch (e) {}
               })();
             `,
           }}
         />
-      </head>
-      <body>
         <NuqsAdapter>
           <QueryProvider>
             <ThemeProvider defaultTheme="system">{children}</ThemeProvider>

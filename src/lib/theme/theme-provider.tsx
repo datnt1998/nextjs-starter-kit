@@ -89,11 +89,6 @@ export function ThemeProvider({
     [storageKey]
   );
 
-  // Prevent flash of unstyled content
-  if (!mounted) {
-    return null;
-  }
-
   return (
     <ThemeContext.Provider
       value={{

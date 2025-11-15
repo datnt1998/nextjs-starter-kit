@@ -99,7 +99,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           {/* User section */}
           <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
             <div className="flex items-center gap-3 mb-3">
-              <div className="flex-shrink-0 w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/20 flex items-center justify-center">
+              <div className="shrink-0 w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/20 flex items-center justify-center">
                 <span className="text-sm font-medium text-primary-600 dark:text-primary-400">
                   {user?.email?.[0].toUpperCase() || "U"}
                 </span>
@@ -154,7 +154,9 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </header>
 
         {/* Page content */}
-        <main className="p-4 sm:p-6 lg:p-8">{children}</main>
+        <main className="min-h-screen p-4 sm:p-6 lg:p-8 bg-neutral-50 dark:bg-neutral-950">
+          {children}
+        </main>
       </div>
     </div>
   );
