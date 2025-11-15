@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import type { Decorator } from "@storybook/react";
 import { ThemeProvider } from "../src/lib/theme/theme-provider";
 
-export const withTheme: Decorator = (Story, context) => {
+export const withTheme: Decorator = (Story) => {
   const [theme, setTheme] = useState<"light" | "dark">("light");
 
   useEffect(() => {
