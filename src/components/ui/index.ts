@@ -159,5 +159,9 @@ export type {
   SidebarContentProps,
 } from "./sidebar";
 
+// Toast
+export { ToastProvider, useToast } from "./toast";
+export type { ToastData, ToastProviderProps, ToastVariants } from "./toast";
+
 // Theme Toggle (existing)
 export { ThemeToggle } from "./theme-toggle";
