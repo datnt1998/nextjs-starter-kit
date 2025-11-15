@@ -16,7 +16,7 @@ import { DataTableWithFilters } from "@/components/ui/table/data-table-with-filt
 import { DataTableFacetedFilter } from "@/components/ui/table/data-table-faceted-filter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Modal } from "@/components/ui/modal";
+import { Dialog } from "@/components/ui/dialog";
 import {
   IconShield,
   IconUser,
@@ -325,8 +325,8 @@ export default function UsersTablePage() {
         />
       </div>
 
-      {/* Create Modal */}
-      <Modal
+      {/* Create Dialog */}
+      <Dialog
         open={isCreateModalOpen}
         onOpenChange={setIsCreateModalOpen}
         size="md"
@@ -390,10 +390,14 @@ export default function UsersTablePage() {
             </Button>
           </div>
         </div>
-      </Modal>
+      </Dialog>
 
-      {/* Edit Modal */}
-      <Modal open={isEditModalOpen} onOpenChange={setIsEditModalOpen} size="md">
+      {/* Edit Dialog */}
+      <Dialog
+        open={isEditModalOpen}
+        onOpenChange={setIsEditModalOpen}
+        size="md"
+      >
         <div className="p-6">
           <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-6">
             Edit User
@@ -450,10 +454,10 @@ export default function UsersTablePage() {
             </Button>
           </div>
         </div>
-      </Modal>
+      </Dialog>
 
-      {/* Delete Modal */}
-      <Modal
+      {/* Delete Dialog */}
+      <Dialog
         open={isDeleteModalOpen}
         onOpenChange={setIsDeleteModalOpen}
         size="sm"
@@ -482,7 +486,7 @@ export default function UsersTablePage() {
             </Button>
           </div>
         </div>
-      </Modal>
+      </Dialog>
     </DashboardLayout>
   );
 }

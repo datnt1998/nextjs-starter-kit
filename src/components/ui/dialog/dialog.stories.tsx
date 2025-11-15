@@ -1,108 +1,114 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { useState } from "react";
 import {
-  Modal,
-  ModalHeader,
-  ModalTitle,
-  ModalDescription,
-  ModalBody,
-  ModalFooter,
-} from "./modal";
+  Dialog,
+  DialogHeader,
+  DialogTitle,
+  DialogDescription,
+  DialogBody,
+  DialogFooter,
+  DialogTrigger,
+  DialogClose,
+} from "./dialog";
 import { Button } from "../button";
 
-const meta: Meta<typeof Modal> = {
-  title: "UI/Modal",
-  component: Modal,
+const meta: Meta<typeof Dialog> = {
+  title: "UI/Dialog",
+  component: Dialog,
   tags: ["autodocs"],
   argTypes: {
     size: {
       control: "select",
-      options: ["sm", "md", "lg", "xl", "full"],
-      description: "The size of the modal",
+      options: ["sm", "md", "lg", "xl", "2xl", "full"],
+      description: "The size of the dialog",
     },
     open: {
       control: "boolean",
-      description: "Controls whether the modal is open",
+      description: "Controls whether the dialog is open",
     },
   },
 };
 
 export default meta;
-type Story = StoryObj<typeof Modal>;
+type Story = StoryObj<typeof Dialog>;
 
-const ModalWrapper = ({
+const DialogWrapper = ({
   size = "md",
   children,
 }: {
-  size?: "sm" | "md" | "lg" | "xl" | "full";
+  size?: "sm" | "md" | "lg" | "xl" | "2xl" | "full";
   children?: React.ReactNode;
 }) => {
   const [open, setOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={() => setOpen(true)}>Open Modal</Button>
-      <Modal open={open} onOpenChange={setOpen} size={size}>
+      <Button onClick={() => setOpen(true)}>Open Dialog</Button>
+      <Dialog open={open} onOpenChange={setOpen} size={size}>
         {children || (
           <>
-            <ModalHeader>
-              <ModalTitle>Modal Title</ModalTitle>
-              <ModalDescription>
-                This is a modal description explaining what this modal is for.
-              </ModalDescription>
-            </ModalHeader>
-            <ModalBody>
+            <DialogHeader>
+              <DialogTitle>Dialog Title</DialogTitle>
+              <DialogDescription>
+                This is a dialog description explaining what this dialog is for.
+              </DialogDescription>
+            </DialogHeader>
+            <DialogBody>
               <p>
-                This is the modal body content. You can put any content here.
+                This is the dialog body content. You can put any content here.
               </p>
-            </ModalBody>
-            <ModalFooter>
+            </DialogBody>
+            <DialogFooter>
               <Button variant="outline" onClick={() => setOpen(false)}>
                 Cancel
               </Button>
               <Button onClick={() => setOpen(false)}>Confirm</Button>
-            </ModalFooter>
+            </DialogFooter>
           </>
         )}
-      </Modal>
+      </Dialog>
     </>
   );
 };
 
 export const Default: Story = {
-  render: () => <ModalWrapper />,
+  render: () => <DialogWrapper />,
 };
 
 export const Small: Story = {
-  render: () => <ModalWrapper size="sm" />,
+  render: () => <DialogWrapper size="sm" />,
 };
 
 export const Medium: Story = {
-  render: () => <ModalWrapper size="md" />,
+  render: () => <DialogWrapper size="md" />,
 };
 
 export const Large: Story = {
-  render: () => <ModalWrapper size="lg" />,
+  render: () => <DialogWrapper size="lg" />,
 };
 
 export const ExtraLarge: Story = {
-  render: () => <ModalWrapper size="xl" />,
+  render: () => <DialogWrapper size="xl" />,
+};
+
+export const ExtraLarge2xl: Story = {
+  render: () => <DialogWrapper size="2xl" />,
 };
 
 export const FullScreen: Story = {
-  render: () => <ModalWrapper size="full" />,
+  render: () => <DialogWrapper size="full" />,
 };
 
 export const WithForm: Story = {
   render: () => (
-    <ModalWrapper>
-      <ModalHeader>
-        <ModalTitle>Create Account</ModalTitle>
-        <ModalDescription>
+    <DialogWrapper>
+      <DialogHeader>
+        <DialogTitle>Create Account</DialogTitle>
+        <DialogDescription>
           Fill in your details to create a new account.
-        </ModalDescription>
-      </ModalHeader>
-      <ModalBody>
+        </DialogDescription>
+      </DialogHeader>
+      <DialogBody>
         <form className="flex flex-col gap-4">
           <div>
             <label className="block text-sm font-medium mb-1">Name</label>
@@ -129,43 +135,43 @@ export const WithForm: Story = {
             />
           </div>
         </form>
-      </ModalBody>
-      <ModalFooter>
+      </DialogBody>
+      <DialogFooter>
         <Button variant="outline">Cancel</Button>
         <Button>Create Account</Button>
-      </ModalFooter>
-    </ModalWrapper>
+      </DialogFooter>
+    </DialogWrapper>
   ),
 };
 
 export const ConfirmationDialog: Story = {
   render: () => (
-    <ModalWrapper size="sm">
-      <ModalHeader>
-        <ModalTitle>Delete Account</ModalTitle>
-        <ModalDescription>
+    <DialogWrapper size="sm">
+      <DialogHeader>
+        <DialogTitle>Delete Account</DialogTitle>
+        <DialogDescription>
           Are you sure you want to delete your account? This action cannot be
           undone.
-        </ModalDescription>
-      </ModalHeader>
-      <ModalFooter>
+        </DialogDescription>
+      </DialogHeader>
+      <DialogFooter>
         <Button variant="outline">Cancel</Button>
         <Button variant="danger">Delete</Button>
-      </ModalFooter>
-    </ModalWrapper>
+      </DialogFooter>
+    </DialogWrapper>
   ),
 };
 
 export const LongContent: Story = {
   render: () => (
-    <ModalWrapper>
-      <ModalHeader>
-        <ModalTitle>Terms and Conditions</ModalTitle>
-        <ModalDescription>
+    <DialogWrapper>
+      <DialogHeader>
+        <DialogTitle>Terms and Conditions</DialogTitle>
+        <DialogDescription>
           Please read and accept our terms and conditions.
-        </ModalDescription>
-      </ModalHeader>
-      <ModalBody>
+        </DialogDescription>
+      </DialogHeader>
+      <DialogBody>
         <div className="space-y-4">
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do
@@ -192,11 +198,51 @@ export const LongContent: Story = {
             nisi ut aliquip ex ea commodo consequat.
           </p>
         </div>
-      </ModalBody>
-      <ModalFooter>
+      </DialogBody>
+      <DialogFooter>
         <Button variant="outline">Decline</Button>
         <Button>Accept</Button>
-      </ModalFooter>
-    </ModalWrapper>
+      </DialogFooter>
+    </DialogWrapper>
+  ),
+};
+
+export const WithCloseButton: Story = {
+  render: () => (
+    <DialogWrapper>
+      <DialogClose />
+      <DialogHeader>
+        <DialogTitle>Notification Settings</DialogTitle>
+        <DialogDescription>
+          Manage how you receive notifications.
+        </DialogDescription>
+      </DialogHeader>
+      <DialogBody>
+        <div className="space-y-4">
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">Email Notifications</p>
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                Receive notifications via email
+              </p>
+            </div>
+            <input type="checkbox" defaultChecked />
+          </div>
+          <div className="flex items-center justify-between">
+            <div>
+              <p className="font-medium">Push Notifications</p>
+              <p className="text-sm text-neutral-600 dark:text-neutral-400">
+                Receive push notifications on your device
+              </p>
+            </div>
+            <input type="checkbox" />
+          </div>
+        </div>
+      </DialogBody>
+      <DialogFooter>
+        <Button variant="outline">Cancel</Button>
+        <Button>Save Changes</Button>
+      </DialogFooter>
+    </DialogWrapper>
   ),
 };

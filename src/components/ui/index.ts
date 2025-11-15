@@ -23,27 +23,29 @@ export type {
   RadioGroupOrientation,
 } from "./radio-group";
 
-// Modal
+// Dialog
 export {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-  ModalTitle,
-  ModalDescription,
-  ModalClose,
-  modalContentVariants,
-} from "./modal";
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogFooter,
+  DialogTitle,
+  DialogDescription,
+  DialogClose,
+  DialogTrigger,
+  dialogContentVariants,
+} from "./dialog";
 export type {
-  ModalProps,
-  ModalHeaderProps,
-  ModalBodyProps,
-  ModalFooterProps,
-  ModalTitleProps,
-  ModalDescriptionProps,
-  ModalCloseProps,
-  ModalContentVariants,
-} from "./modal";
+  DialogProps,
+  DialogHeaderProps,
+  DialogBodyProps,
+  DialogFooterProps,
+  DialogTitleProps,
+  DialogDescriptionProps,
+  DialogCloseProps,
+  DialogTriggerProps,
+  DialogContentVariants,
+} from "./dialog";
 
 // Select
 export { Select, selectTriggerVariants } from "./select";

@@ -3,12 +3,12 @@
 import { useUIStore } from "@/stores";
 import { Button } from "@/components/ui/button";
 import {
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalTitle,
-  ModalClose,
-} from "@/components/ui/modal";
+  Dialog,
+  DialogHeader,
+  DialogBody,
+  DialogTitle,
+  DialogClose,
+} from "@/components/ui/dialog";
 
 /**
  * Demo page showcasing UI store functionality
@@ -207,82 +207,83 @@ export default function UIStoreDemoPage() {
           </div>
         </section>
 
-        {/* Example Modals */}
+        {/* Example Dialogs */}
         {isModalOpen("modal-1") && (
-          <Modal
+          <Dialog
             open={true}
             onOpenChange={(open) => !open && closeModal()}
             size="md"
           >
-            <ModalHeader>
-              <ModalTitle>Modal 1</ModalTitle>
-            </ModalHeader>
-            <ModalBody>
+            <DialogHeader>
+              <DialogTitle>Dialog 1</DialogTitle>
+            </DialogHeader>
+            <DialogBody>
               <div className="space-y-4">
                 <p className="text-neutral-600 dark:text-neutral-400">
-                  This is Modal 1. You can open more modals on top of this one.
+                  This is Dialog 1. You can open more dialogs on top of this
+                  one.
                 </p>
                 <div className="flex gap-2">
                   <Button
                     onClick={() => openModal("modal-2")}
                     variant="primary"
                   >
-                    Open Modal 2
+                    Open Dialog 2
                   </Button>
                   <Button onClick={closeModal} variant="outline">
                     Close
                   </Button>
                 </div>
               </div>
-            </ModalBody>
-            <ModalClose />
-          </Modal>
+            </DialogBody>
+            <DialogClose />
+          </Dialog>
         )}
 
         {isModalOpen("modal-2") && (
-          <Modal
+          <Dialog
             open={true}
             onOpenChange={(open) => !open && closeModal()}
             size="md"
           >
-            <ModalHeader>
-              <ModalTitle>Modal 2</ModalTitle>
-            </ModalHeader>
-            <ModalBody>
+            <DialogHeader>
+              <DialogTitle>Dialog 2</DialogTitle>
+            </DialogHeader>
+            <DialogBody>
               <div className="space-y-4">
                 <p className="text-neutral-600 dark:text-neutral-400">
-                  This is Modal 2. Notice how it appears on top of Modal 1.
+                  This is Dialog 2. Notice how it appears on top of Dialog 1.
                 </p>
                 <div className="flex gap-2">
                   <Button
                     onClick={() => openModal("modal-3")}
                     variant="primary"
                   >
-                    Open Modal 3
+                    Open Dialog 3
                   </Button>
                   <Button onClick={closeModal} variant="outline">
                     Close
                   </Button>
                 </div>
               </div>
-            </ModalBody>
-            <ModalClose />
-          </Modal>
+            </DialogBody>
+            <DialogClose />
+          </Dialog>
         )}
 
         {isModalOpen("modal-3") && (
-          <Modal
+          <Dialog
             open={true}
             onOpenChange={(open) => !open && closeModal()}
             size="md"
           >
-            <ModalHeader>
-              <ModalTitle>Modal 3</ModalTitle>
-            </ModalHeader>
-            <ModalBody>
+            <DialogHeader>
+              <DialogTitle>Dialog 3</DialogTitle>
+            </DialogHeader>
+            <DialogBody>
               <div className="space-y-4">
                 <p className="text-neutral-600 dark:text-neutral-400">
-                  This is Modal 3. This is the topmost modal in the stack.
+                  This is Dialog 3. This is the topmost dialog in the stack.
                 </p>
                 <div className="flex gap-2">
                   <Button onClick={closeModal} variant="primary">
@@ -293,9 +294,9 @@ export default function UIStoreDemoPage() {
                   </Button>
                 </div>
               </div>
-            </ModalBody>
-            <ModalClose />
-          </Modal>
+            </DialogBody>
+            <DialogClose />
+          </Dialog>
         )}
       </div>
     </div>

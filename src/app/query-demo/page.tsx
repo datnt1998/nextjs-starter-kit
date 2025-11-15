@@ -10,7 +10,7 @@ import {
 } from "@/hooks/use-users";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Modal } from "@/components/ui/modal";
+import { Dialog } from "@/components/ui/dialog";
 
 export default function QueryDemoPage() {
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
@@ -182,8 +182,8 @@ export default function QueryDemoPage() {
         )}
       </div>
 
-      {/* Create Modal */}
-      <Modal open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
+      {/* Create Dialog */}
+      <Dialog open={isCreateModalOpen} onOpenChange={setIsCreateModalOpen}>
         <div className="p-6">
           <h2 className="text-2xl font-bold text-neutral-900 mb-4">
             Create User
@@ -240,10 +240,10 @@ export default function QueryDemoPage() {
             </div>
           </form>
         </div>
-      </Modal>
+      </Dialog>
 
-      {/* Edit Modal */}
-      <Modal open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
+      {/* Edit Dialog */}
+      <Dialog open={isEditModalOpen} onOpenChange={setIsEditModalOpen}>
         <div className="p-6">
           <h2 className="text-2xl font-bold text-neutral-900 mb-4">
             Edit User
@@ -300,7 +300,7 @@ export default function QueryDemoPage() {
             </div>
           </form>
         </div>
-      </Modal>
+      </Dialog>
     </div>
   );
 }
