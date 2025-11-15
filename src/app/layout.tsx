@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { ThemeProvider } from "@/lib/theme/theme-provider";
 import { QueryProvider } from "@/lib/query";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export const metadata: Metadata = {
   title: "NextJS Starter Kit",
@@ -35,9 +36,11 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <QueryProvider>
-          <ThemeProvider defaultTheme="system">{children}</ThemeProvider>
-        </QueryProvider>
+        <NuqsAdapter>
+          <QueryProvider>
+            <ThemeProvider defaultTheme="system">{children}</ThemeProvider>
+          </QueryProvider>
+        </NuqsAdapter>
       </body>
     </html>
   );
