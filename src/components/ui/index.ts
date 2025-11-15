@@ -144,5 +144,20 @@ export type { ComboboxProps, ComboboxOption } from "./combobox";
 export { Autocomplete } from "./autocomplete";
 export type { AutocompleteProps, AutocompleteOption } from "./autocomplete";
 
+// Sidebar
+export {
+  Sidebar,
+  SidebarBackdrop,
+  SidebarTrigger,
+  SidebarContent,
+} from "./sidebar";
+export type {
+  SidebarProps,
+  SidebarNavItem,
+  SidebarBackdropProps,
+  SidebarTriggerProps,
+  SidebarContentProps,
+} from "./sidebar";
+
 // Theme Toggle (existing)
 export { ThemeToggle } from "./theme-toggle";
