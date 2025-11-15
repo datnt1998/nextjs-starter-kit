@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import { useAuth } from "@/hooks/use-auth";
@@ -20,11 +20,14 @@ const navigation = [
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const pathname = usePathname();
+  const router = useRouter();
   const { user, signOut } = useAuth();
 
   const handleSignOut = async () => {
     try {
       await signOut();
+      // Force hard redirect to login page
+      window.location.href = "/login";
     } catch (error) {
       console.error("Failed to sign out:", error);
     }
