@@ -16,21 +16,77 @@ async function fetchUsers(): Promise<User[]> {
   // Simulate API call
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
-  // Mock data
+  // Mock data with various roles
   return [
     {
       id: "1",
       name: "John Doe",
       email: "john@example.com",
       role: "Admin",
-      createdAt: new Date().toISOString(),
+      createdAt: new Date(2024, 0, 15).toISOString(),
     },
     {
       id: "2",
       name: "Jane Smith",
       email: "jane@example.com",
       role: "User",
-      createdAt: new Date().toISOString(),
+      createdAt: new Date(2024, 1, 20).toISOString(),
+    },
+    {
+      id: "3",
+      name: "Bob Johnson",
+      email: "bob@example.com",
+      role: "Manager",
+      createdAt: new Date(2024, 2, 10).toISOString(),
+    },
+    {
+      id: "4",
+      name: "Alice Williams",
+      email: "alice@example.com",
+      role: "User",
+      createdAt: new Date(2024, 0, 25).toISOString(),
+    },
+    {
+      id: "5",
+      name: "Charlie Brown",
+      email: "charlie@example.com",
+      role: "Guest",
+      createdAt: new Date(2024, 3, 5).toISOString(),
+    },
+    {
+      id: "6",
+      name: "Diana Prince",
+      email: "diana@example.com",
+      role: "Admin",
+      createdAt: new Date(2024, 1, 14).toISOString(),
+    },
+    {
+      id: "7",
+      name: "Eve Davis",
+      email: "eve@example.com",
+      role: "User",
+      createdAt: new Date(2024, 2, 22).toISOString(),
+    },
+    {
+      id: "8",
+      name: "Frank Miller",
+      email: "frank@example.com",
+      role: "Manager",
+      createdAt: new Date(2024, 0, 30).toISOString(),
+    },
+    {
+      id: "9",
+      name: "Grace Lee",
+      email: "grace@example.com",
+      role: "User",
+      createdAt: new Date(2024, 3, 12).toISOString(),
+    },
+    {
+      id: "10",
+      name: "Henry Wilson",
+      email: "henry@example.com",
+      role: "Guest",
+      createdAt: new Date(2024, 1, 28).toISOString(),
     },
   ];
 }

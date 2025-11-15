@@ -27,87 +27,26 @@ import {
 import { DataTableToolbar } from "./data-table-toolbar";
 import { DataTablePagination } from "./data-table-pagination";
 
-/**
- * Props for the DataTable component.
- *
- * Generic type parameters:
- * - TData: The type of data objects in the table
- * - TValue: The type of cell values (usually inferred)
- */
-export interface DataTableProps<TData, TValue> {
-  /** Column definitions for the table (from TanStack Table) */
+export interface DataTableWithFiltersProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
-  /** Array of data objects to display in the table */
   data: TData[];
-  /** Key of the data object to use for search filtering */
   searchKey?: string;
-  /** Placeholder text for the search input */
   searchPlaceholder?: string;
-  /** Number of rows to display per page */
   pageSize?: number;
-  /** Available page size options for user selection */
   pageSizeOptions?: number[];
-  /** Enable column sorting functionality */
   enableSorting?: boolean;
-  /** Enable search/filter functionality */
   enableFiltering?: boolean;
-  /** Enable pagination controls */
   enablePagination?: boolean;
-  /** Enable page size selector */
   enablePageSizeSelector?: boolean;
-  /** Sync table state (page, sort, filters) with URL params using Nuqs */
   enableUrlState?: boolean;
-  /** Apply zebra striping to table rows for better readability */
   striped?: boolean;
-  /** Custom toolbar content (filters, actions, etc.) */
-  toolbarContent?: React.ReactNode;
+  renderFilters?: (table: any) => React.ReactNode;
 }
 
 /**
- * A powerful, feature-rich data table component built with TanStack Table.
- *
- * Provides sorting, filtering, pagination, and URL state synchronization out of the box.
- * The table state can be synchronized with URL parameters, making it shareable and
- * bookmarkable. Fully typed with TypeScript generics for type-safe column definitions.
- *
- * @component
- *
- * @example
- * // Basic usage
- * const columns: ColumnDef<User>[] = [
- *   { accessorKey: 'name', header: 'Name' },
- *   { accessorKey: 'email', header: 'Email' },
- * ];
- *
- * <DataTable columns={columns} data={users} />
- *
- * @example
- * // With search and custom page size
- * <DataTable
- *   columns={columns}
- *   data={users}
- *   searchKey="name"
- *   searchPlaceholder="Search by name..."
- *   pageSize={20}
- * />
- *
- * @example
- * // With faceted filters
- * <DataTable
- *   columns={columns}
- *   data={users}
- *   toolbarContent={
- *     <>
- *       <DataTableFacetedFilter
- *         column={table.getColumn("status")}
- *         title="Status"
- *         options={statusOptions}
- *       />
- *     </>
- *   }
- * />
+ * DataTable variant that exposes table instance for custom filters
  */
-export function DataTable<TData, TValue>({
+export function DataTableWithFilters<TData, TValue>({
   columns,
   data,
   searchKey,
@@ -120,10 +59,8 @@ export function DataTable<TData, TValue>({
   enablePageSizeSelector = true,
   enableUrlState = true,
   striped = false,
-  toolbarContent,
-}: DataTableProps<TData, TValue>) {
-  // Synchronize pagination state with URL parameters
-  // This allows users to share or bookmark specific pages
+  renderFilters,
+}: DataTableWithFiltersProps<TData, TValue>) {
   const [urlPage, setUrlPage] = useQueryState("page", {
     defaultValue: "1",
     parse: (value) => value,
@@ -152,7 +89,6 @@ export function DataTable<TData, TValue>({
     shallow: false,
   });
 
-  // Parse URL sort state
   const parseSortFromUrl = (sortString: string): SortingState => {
     if (!sortString) return [];
     const [id, desc] = sortString.split(":");
@@ -165,7 +101,6 @@ export function DataTable<TData, TValue>({
     return `${id}:${desc ? "desc" : "asc"}`;
   };
 
-  // Local state
   const [sorting, setSorting] = React.useState<SortingState>(
     enableUrlState ? parseSortFromUrl(urlSort || "") : []
   );
@@ -179,7 +114,6 @@ export function DataTable<TData, TValue>({
     enableUrlState ? parseInt(urlPageSize || String(pageSize)) : pageSize
   );
 
-  // Sync sorting with URL
   React.useEffect(() => {
     if (enableUrlState && enableSorting) {
       const sortString = serializeSortToUrl(sorting);
@@ -189,7 +123,6 @@ export function DataTable<TData, TValue>({
     }
   }, [sorting, enableUrlState, enableSorting]);
 
-  // Sync search with URL
   React.useEffect(() => {
     if (enableUrlState && enableFiltering && searchKey) {
       const searchValue =
@@ -200,7 +133,6 @@ export function DataTable<TData, TValue>({
     }
   }, [columnFilters, enableUrlState, enableFiltering, searchKey]);
 
-  // Initialize search from URL
   React.useEffect(() => {
     if (enableUrlState && urlSearch && searchKey) {
       setColumnFilters([{ id: searchKey, value: urlSearch }]);
@@ -244,7 +176,6 @@ export function DataTable<TData, TValue>({
     },
   });
 
-  // Handle page change
   const handlePageChange = (newPage: number) => {
     if (enableUrlState) {
       setUrlPage(String(newPage + 1));
@@ -252,21 +183,19 @@ export function DataTable<TData, TValue>({
     table.setPageIndex(newPage);
   };
 
-  // Handle page size change
   const handlePageSizeChange = (newPageSize: number) => {
     setCurrentPageSize(newPageSize);
     table.setPageSize(newPageSize);
     if (enableUrlState) {
       setUrlPageSize(String(newPageSize));
-      setUrlPage("1"); // Reset to first page
+      setUrlPage("1");
     }
     table.setPageIndex(0);
   };
 
   return (
     <div className="w-full space-y-4">
-      {/* Toolbar with Search and Filters */}
-      {(enableFiltering && searchKey) || toolbarContent ? (
+      {(enableFiltering && searchKey) || renderFilters ? (
         <DataTableToolbar
           searchValue={
             (table.getColumn(searchKey || "")?.getFilterValue() as string) ?? ""
@@ -278,11 +207,10 @@ export function DataTable<TData, TValue>({
           }
           searchPlaceholder={searchPlaceholder}
         >
-          {toolbarContent}
+          {renderFilters?.(table)}
         </DataTableToolbar>
       ) : null}
 
-      {/* Table */}
       <div className="rounded-md border border-neutral-200 dark:border-neutral-700">
         <Table>
           <TableHeader>
@@ -335,7 +263,6 @@ export function DataTable<TData, TValue>({
         </Table>
       </div>
 
-      {/* Pagination */}
       {enablePagination && (
         <DataTablePagination
           pageIndex={table.getState().pagination?.pageIndex || 0}

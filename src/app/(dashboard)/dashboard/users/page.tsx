@@ -11,10 +11,18 @@
 import { useState, useMemo } from "react";
 import { type ColumnDef } from "@tanstack/react-table";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
-import { DataTable } from "@/components/ui/table/data-table";
+import { DataTableColumnHeader } from "@/components/ui/table";
+import { DataTableWithFilters } from "@/components/ui/table/data-table-with-filters";
+import { DataTableFacetedFilter } from "@/components/ui/table/data-table-faceted-filter";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Modal } from "@/components/ui/modal";
+import {
+  IconShield,
+  IconUser,
+  IconUsers,
+  IconUserCog,
+} from "@tabler/icons-react";
 import {
   useUsers,
   useCreateUser,
@@ -41,12 +49,22 @@ export default function UsersTablePage() {
   const updateMutation = useUpdateUser();
   const deleteMutation = useDeleteUser();
 
+  // Role filter options
+  const roleOptions = [
+    { value: "Admin", label: "Admin", icon: IconShield },
+    { value: "Manager", label: "Manager", icon: IconUserCog },
+    { value: "User", label: "User", icon: IconUser },
+    { value: "Guest", label: "Guest", icon: IconUsers },
+  ];
+
   // Define columns
   const columns = useMemo<ColumnDef<User>[]>(
     () => [
       {
         accessorKey: "name",
-        header: "Name",
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Name" />
+        ),
         cell: ({ getValue }) => (
           <div className="font-medium text-neutral-900 dark:text-neutral-50">
             {getValue() as string}
@@ -55,7 +73,9 @@ export default function UsersTablePage() {
       },
       {
         accessorKey: "email",
-        header: "Email",
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Email" />
+        ),
         cell: ({ getValue }) => (
           <div className="text-neutral-600 dark:text-neutral-400">
             {getValue() as string}
@@ -64,16 +84,58 @@ export default function UsersTablePage() {
       },
       {
         accessorKey: "role",
-        header: "Role",
-        cell: ({ getValue }) => (
-          <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-primary-100 text-primary-800 dark:bg-primary-900/20 dark:text-primary-400">
-            {getValue() as string}
-          </span>
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Role" />
         ),
+        cell: ({ getValue }) => {
+          const role = getValue() as string;
+          const roleConfig: Record<
+            string,
+            { className: string; icon: React.ComponentType<any> }
+          > = {
+            Admin: {
+              className:
+                "bg-purple-100 text-purple-800 dark:bg-purple-900/20 dark:text-purple-400",
+              icon: IconShield,
+            },
+            Manager: {
+              className:
+                "bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400",
+              icon: IconUserCog,
+            },
+            User: {
+              className:
+                "bg-green-100 text-green-800 dark:bg-green-900/20 dark:text-green-400",
+              icon: IconUser,
+            },
+            Guest: {
+              className:
+                "bg-gray-100 text-gray-800 dark:bg-gray-900/20 dark:text-gray-400",
+              icon: IconUsers,
+            },
+          };
+
+          const config = roleConfig[role] || roleConfig.User;
+          const Icon = config.icon;
+
+          return (
+            <span
+              className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full text-xs font-medium ${config.className}`}
+            >
+              <Icon size={14} />
+              {role}
+            </span>
+          );
+        },
+        filterFn: (row, id, value) => {
+          return value.includes(row.getValue(id));
+        },
       },
       {
         accessorKey: "createdAt",
-        header: "Created",
+        header: ({ column }) => (
+          <DataTableColumnHeader column={column} title="Created" />
+        ),
         cell: ({ getValue }) => (
           <div className="text-sm text-neutral-600 dark:text-neutral-400">
             {new Date(getValue() as string).toLocaleDateString()}
@@ -243,7 +305,7 @@ export default function UsersTablePage() {
         </div>
 
         {/* Table with built-in search, sorting, filtering, and pagination */}
-        <DataTable
+        <DataTableWithFilters
           columns={columns}
           data={users}
           searchKey="name"
@@ -253,6 +315,13 @@ export default function UsersTablePage() {
           enablePagination={true}
           enableUrlState={true}
           striped={true}
+          renderFilters={(table) => (
+            <DataTableFacetedFilter
+              column={table.getColumn("role")}
+              title="Role"
+              options={roleOptions}
+            />
+          )}
         />
       </div>
 
