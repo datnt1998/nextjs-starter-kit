@@ -22,6 +22,14 @@ export interface BadgeProps
    * Callback when the remove button is clicked
    */
   onRemove?: () => void;
+  /**
+   * Icon to display in the badge
+   */
+  icon?: React.ReactNode;
+  /**
+   * Position of the icon relative to the text
+   */
+  iconPosition?: "left" | "right";
 }
 
 const RemoveIcon = () => (
@@ -73,41 +81,76 @@ export const Badge = React.forwardRef<HTMLSpanElement, BadgeProps>(
       className,
       variant,
       size,
+      gradient,
+      outlineColor,
       dot = false,
       removable = false,
       onRemove,
+      icon,
+      iconPosition = "left",
       children,
       ...props
     },
     ref
   ) => {
+    const iconSizeClass = cn(
+      size === "xs" && "h-3 w-3",
+      size === "sm" && "h-3 w-3",
+      size === "md" && "h-3.5 w-3.5",
+      size === "lg" && "h-4 w-4"
+    );
+
     return (
       <span
         ref={ref}
-        className={cn(badgeVariants({ variant, size, dot }), className)}
+        className={cn(
+          badgeVariants({ variant, size, gradient, outlineColor, dot }),
+          className
+        )}
         {...props}
       >
         {dot && (
           <span
             className={cn(
-              "mr-1 h-1.5 w-1.5 rounded-full",
+              "h-1.5 w-1.5 rounded-full",
               variant === "primary" && "bg-primary-600",
               variant === "secondary" && "bg-secondary-600",
               variant === "success" && "bg-success-600",
               variant === "warning" && "bg-warning-600",
               variant === "error" && "bg-error-600",
-              (variant === "default" || variant === "outline") &&
+              variant === "info" && "bg-blue-600",
+              variant === "accent" && "bg-accent-600",
+              variant === "gradient" && "bg-white",
+              (variant === "default" ||
+                variant === "outlined" ||
+                variant === "neutral") &&
                 "bg-neutral-600"
             )}
             aria-hidden="true"
           />
         )}
+        {icon && iconPosition === "left" && (
+          <span
+            className={cn("inline-flex shrink-0", iconSizeClass)}
+            aria-hidden="true"
+          >
+            {icon}
+          </span>
+        )}
         {children}
+        {icon && iconPosition === "right" && (
+          <span
+            className={cn("inline-flex shrink-0", iconSizeClass)}
+            aria-hidden="true"
+          >
+            {icon}
+          </span>
+        )}
         {removable && (
           <button
             type="button"
             onClick={onRemove}
-            className="ml-1 inline-flex items-center justify-center rounded-full hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-current focus:ring-offset-1"
+            className="inline-flex items-center justify-center rounded-full hover:bg-black/10 focus:outline-none focus:ring-2 focus:ring-current focus:ring-offset-1"
             aria-label="Remove"
           >
             <RemoveIcon />

@@ -5,7 +5,9 @@ import { Dialog as BaseDialog } from "@base-ui-components/react/dialog";
 import { cn } from "@/lib/utils";
 import {
   dialogContentVariants,
+  dialogHeaderVariants,
   type DialogContentVariants,
+  type DialogHeaderVariants,
 } from "./dialog.variants";
 
 export interface DialogProps extends DialogContentVariants {
@@ -25,11 +27,26 @@ export interface DialogProps extends DialogContentVariants {
    * Additional className for the dialog content
    */
   className?: string;
+  /**
+   * Shadow elevation for the dialog
+   */
+  shadow?: "md" | "lg" | "xl" | "2xl";
 }
 
-export interface DialogHeaderProps {
+export interface DialogHeaderProps extends DialogHeaderVariants {
   children: React.ReactNode;
   className?: string;
+  /**
+   * Custom gradient colors from the gradient system
+   * Provide an object with 'from' and 'to' colors (and optionally 'via')
+   * Example: { from: 'rgb(59, 130, 246)', to: 'rgb(147, 51, 234)' }
+   */
+  customGradient?: {
+    from: string;
+    to: string;
+    via?: string;
+    angle?: number;
+  };
 }
 
 export interface DialogBodyProps {
@@ -86,6 +103,7 @@ export const Dialog = ({
   onOpenChange,
   children,
   size,
+  shadow,
   className,
 }: DialogProps) => {
   return (
@@ -94,7 +112,7 @@ export const Dialog = ({
         <BaseDialog.Backdrop
           className={cn(
             "fixed inset-0 min-h-dvh bg-black/50 dark:bg-black/70 z-50",
-            "transition-all duration-200",
+            "transition-all duration-300 ease-in-out",
             "data-ending-style:opacity-0 data-starting-style:opacity-0",
             "supports-[-webkit-touch-callout:none]:absolute"
           )}
@@ -103,14 +121,14 @@ export const Dialog = ({
           className={cn(
             "fixed top-1/2 left-1/2 z-50",
             "-translate-x-1/2 -translate-y-1/2",
-            "transition-all duration-200",
-            "data-ending-style:scale-90 data-ending-style:opacity-0",
-            "data-starting-style:scale-90 data-starting-style:opacity-0"
+            "transition-all duration-300 ease-in-out",
+            "data-ending-style:scale-95 data-ending-style:opacity-0",
+            "data-starting-style:scale-95 data-starting-style:opacity-0"
           )}
         >
           <div
             className={cn(
-              dialogContentVariants({ size }),
+              dialogContentVariants({ size, shadow }),
               "max-w-[calc(100vw-2rem)]",
               className
             )}
@@ -123,13 +141,27 @@ export const Dialog = ({
   );
 };
 
-export const DialogHeader = ({ children, className }: DialogHeaderProps) => {
+export const DialogHeader = ({
+  children,
+  className,
+  gradient = "none",
+  customGradient,
+}: DialogHeaderProps) => {
+  // Build custom gradient style if provided
+  const customGradientStyle = customGradient
+    ? {
+        background: customGradient.via
+          ? `linear-gradient(${customGradient.angle || 135}deg, ${customGradient.from}, ${customGradient.via}, ${customGradient.to})`
+          : `linear-gradient(${customGradient.angle || 135}deg, ${customGradient.from}, ${customGradient.to})`,
+        color: "white",
+        borderColor: "transparent",
+      }
+    : undefined;
+
   return (
     <div
-      className={cn(
-        "flex items-start justify-between p-6 border-b border-neutral-200 dark:border-neutral-800",
-        className
-      )}
+      className={cn(dialogHeaderVariants({ gradient }), className)}
+      style={customGradientStyle}
     >
       <div className="flex-1">{children}</div>
     </div>
@@ -162,6 +194,8 @@ export const DialogTitle = ({ children, className }: DialogTitleProps) => {
     <BaseDialog.Title
       className={cn(
         "text-lg font-semibold text-neutral-900 dark:text-neutral-100",
+        // Support for gradient headers - white text
+        "[.bg-gradient-to-r_&]:text-white",
         className
       )}
     >
@@ -178,6 +212,8 @@ export const DialogDescription = ({
     <BaseDialog.Description
       className={cn(
         "text-sm text-neutral-600 dark:text-neutral-400 mt-1",
+        // Support for gradient headers - white text with slight transparency
+        "[.bg-gradient-to-r_&]:text-white/90",
         className
       )}
     >
@@ -194,13 +230,17 @@ export const DialogClose = ({
   return (
     <BaseDialog.Close
       className={cn(
-        "absolute right-4 top-4 p-1 rounded-md",
+        "absolute right-4 top-4 p-1 rounded-md z-10",
         "text-neutral-500 dark:text-neutral-400",
         "hover:text-neutral-900 dark:hover:text-neutral-100",
         "hover:bg-neutral-100 dark:hover:bg-neutral-800",
+        // Support for gradient headers - white text and hover state
+        "[.bg-gradient-to-r_&]:text-white/80 [.bg-gradient-to-r_&]:hover:text-white",
+        "[.bg-gradient-to-r_&]:hover:bg-white/20",
         "transition-colors",
         "focus-visible:outline-2 focus-visible:-outline-offset-1",
         "focus-visible:outline-primary-600 dark:focus-visible:outline-primary-500",
+        "[.bg-gradient-to-r_&]:focus-visible:outline-white",
         "disabled:pointer-events-none disabled:opacity-50",
         className
       )}

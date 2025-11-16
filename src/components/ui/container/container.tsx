@@ -18,13 +18,19 @@ export interface ContainerProps
    * @default "div"
    */
   as?: "div" | "section" | "article" | "main" | "aside" | "header" | "footer";
+  /**
+   * Automatically adjust text color for better contrast on gradient backgrounds.
+   * @default true
+   */
+  autoContrast?: boolean;
 }
 
 /**
  * A responsive container component for layout management.
  *
  * Provides consistent max-width constraints and horizontal padding
- * across different screen sizes. Supports multiple size variants
+ * across different screen sizes. Supports multiple size variants,
+ * background options including gradients and glass effects,
  * and can be rendered as different semantic HTML elements.
  *
  * @component
@@ -41,6 +47,18 @@ export interface ContainerProps
  * <Container size="2xl">Wide content</Container>
  *
  * @example
+ * // With gradient background
+ * <Container background="gradient" gradient="primary" rounded="xl">
+ *   <h1>Gradient Container</h1>
+ * </Container>
+ *
+ * @example
+ * // Glass effect
+ * <Container background="glass" rounded="2xl">
+ *   <p>Glass morphism effect</p>
+ * </Container>
+ *
+ * @example
  * // As semantic element
  * <Container as="main" size="lg">
  *   <h1>Main Content</h1>
@@ -54,14 +72,38 @@ export interface ContainerProps
  */
 export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
   (
-    { className, size, padding, centered, as: Component = "div", ...props },
+    {
+      className,
+      size,
+      padding,
+      centered,
+      background,
+      gradient,
+      rounded,
+      autoContrast = true,
+      as: Component = "div",
+      ...props
+    },
     ref
   ) => {
+    // Determine if we need to adjust text color for contrast
+    const needsContrastAdjustment =
+      autoContrast && background === "gradient" && gradient !== "none";
+
     return (
       <Component
         ref={ref}
         className={cn(
-          containerVariants({ size, padding, centered }),
+          containerVariants({
+            size,
+            padding,
+            centered,
+            background,
+            gradient,
+            rounded,
+          }),
+          // Apply text color adjustment for gradient backgrounds
+          needsContrastAdjustment && "text-foreground",
           className
         )}
         {...props}

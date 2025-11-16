@@ -88,14 +88,79 @@
   --color-border: rgb(39 39 42);
   --color-ring: rgb(56 189 248);
 
-  /* Shadows (adjusted for dark mode) */
-  --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --shadow-base: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.4), 0 2px 4px -2px rgb(0 0 0 / 0.4);
-  --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.4),
-    0 4px 6px -4px rgb(0 0 0 / 0.4);
-  --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.4),
-    0 8px 10px -6px rgb(0 0 0 / 0.4);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.5);
-  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.3);
+  /* Shadows - Increased opacity for dark mode visibility */
+  /* Base shadows with higher opacity for better visibility on dark backgrounds */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  --shadow-base:
+    0 2px 4px -1px rgb(0 0 0 / 0.4), 0 1px 3px -1px rgb(0 0 0 / 0.4);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+  --shadow-lg:
+    0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+  --shadow-xl:
+    0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+
+  /* Inner shadows for dark mode */
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.4);
+  --shadow-inner-lg: inset 0 4px 8px 0 rgb(0 0 0 / 0.5);
+
+  /* Colored shadows - Primary (adjusted for dark backgrounds) */
+  --shadow-primary-sm:
+    0 2px 4px -1px rgb(96 165 250 / 0.25), 0 1px 2px -1px rgb(96 165 250 / 0.15);
+  --shadow-primary-md:
+    0 4px 8px -2px rgb(96 165 250 / 0.3), 0 2px 4px -2px rgb(96 165 250 / 0.2);
+  --shadow-primary-lg:
+    0 12px 24px -4px rgb(96 165 250 / 0.35),
+    0 4px 8px -4px rgb(96 165 250 / 0.25);
+
+  /* Colored shadows - Success (adjusted for dark backgrounds) */
+  --shadow-success-sm:
+    0 2px 4px -1px rgb(74 222 128 / 0.25), 0 1px 2px -1px rgb(74 222 128 / 0.15);
+  --shadow-success-md:
+    0 4px 8px -2px rgb(74 222 128 / 0.3), 0 2px 4px -2px rgb(74 222 128 / 0.2);
+  --shadow-success-lg:
+    0 12px 24px -4px rgb(74 222 128 / 0.35),
+    0 4px 8px -4px rgb(74 222 128 / 0.25);
+
+  /* Colored shadows - Accent (adjusted for dark backgrounds) */
+  --shadow-accent-sm:
+    0 2px 4px -1px rgb(251 146 60 / 0.25), 0 1px 2px -1px rgb(251 146 60 / 0.15);
+  --shadow-accent-md:
+    0 4px 8px -2px rgb(251 146 60 / 0.3), 0 2px 4px -2px rgb(251 146 60 / 0.2);
+  --shadow-accent-lg:
+    0 12px 24px -4px rgb(251 146 60 / 0.35),
+    0 4px 8px -4px rgb(251 146 60 / 0.25);
+
+  /* Gradient System - Adjusted for dark mode with brighter colors */
+  /* Primary Gradient - Brighter Blue to Purple for dark backgrounds */
+  --gradient-primary-from: rgb(96 165 250); /* blue-400 */
+  --gradient-primary-via: rgb(129 140 248); /* indigo-400 */
+  --gradient-primary-to: rgb(168 85 247); /* purple-500 */
+  --gradient-primary-angle: 135deg;
+
+  /* Secondary Gradient - Brighter Purple to Pink */
+  --gradient-secondary-from: rgb(192 132 252); /* purple-400 */
+  --gradient-secondary-via: rgb(216 180 254); /* purple-300 */
+  --gradient-secondary-to: rgb(244 114 182); /* pink-400 */
+  --gradient-secondary-angle: 135deg;
+
+  /* Success Gradient - Brighter Green to Teal */
+  --gradient-success-from: rgb(74 222 128); /* green-400 */
+  --gradient-success-via: rgb(52 211 153); /* emerald-400 */
+  --gradient-success-to: rgb(45 212 191); /* teal-400 */
+  --gradient-success-angle: 135deg;
+
+  /* Accent Gradient - Brighter Orange to Red */
+  --gradient-accent-from: rgb(251 146 60); /* orange-400 */
+  --gradient-accent-via: rgb(253 186 116); /* orange-300 */
+  --gradient-accent-to: rgb(248 113 113); /* red-400 */
+  --gradient-accent-angle: 135deg;
+
+  /* Hero Gradient - Multi-stop vibrant gradient for dark mode */
+  --gradient-hero-from: rgb(96 165 250); /* blue-400 */
+  --gradient-hero-via-1: rgb(168 85 247); /* purple-500 */
+  --gradient-hero-via-2: rgb(244 114 182); /* pink-400 */
+  --gradient-hero-to: rgb(251 146 60); /* orange-400 */
+  --gradient-hero-angle: 135deg;
 }

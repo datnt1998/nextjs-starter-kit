@@ -16,11 +16,25 @@ import {
 } from "./card.variants";
 
 /**
+ * Context to share card variant with child components
+ */
+const CardContext = React.createContext<{
+  variant?: CardVariants["variant"];
+}>({});
+
+const useCardContext = () => React.useContext(CardContext);
+
+/**
  * Props for the Card component.
  */
 export interface CardProps
   extends React.HTMLAttributes<HTMLDivElement>,
-    CardVariants {}
+    CardVariants {
+  /**
+   * Optional icon to display in the card header
+   */
+  icon?: React.ReactNode;
+}
 
 /**
  * A flexible card container component with multiple variants.
@@ -50,15 +64,52 @@ export interface CardProps
  * <Card variant="elevated" padding="lg">
  *   <CardTitle>Featured Content</CardTitle>
  * </Card>
+ *
+ * @example
+ * // Gradient card with icon
+ * <Card variant="gradient" gradient="primary" icon={<Star />}>
+ *   <CardContent>Featured content</CardContent>
+ * </Card>
+ *
+ * @example
+ * // Interactive card with hover elevation
+ * <Card variant="interactive" shadow="md">
+ *   <CardContent>Click me!</CardContent>
+ * </Card>
  */
 export const Card = React.forwardRef<HTMLDivElement, CardProps>(
-  ({ className, variant, padding, ...props }, ref) => {
+  (
+    {
+      className,
+      variant,
+      padding,
+      gradient,
+      shadow,
+      shadowColor,
+      icon,
+      children,
+      ...props
+    },
+    ref
+  ) => {
     return (
-      <div
-        ref={ref}
-        className={cn(cardVariants({ variant, padding }), className)}
-        {...props}
-      />
+      <CardContext.Provider value={{ variant }}>
+        <div
+          ref={ref}
+          className={cn(
+            cardVariants({ variant, padding, gradient, shadow, shadowColor }),
+            className
+          )}
+          {...props}
+        >
+          {icon && (
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-background/10">
+              {icon}
+            </div>
+          )}
+          {children}
+        </div>
+      </CardContext.Provider>
     );
   }
 );
@@ -100,8 +151,15 @@ export interface CardTitleProps
  */
 export const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
   ({ className, ...props }, ref) => {
+    const { variant } = useCardContext();
+    const titleVariant = variant === "gradient" ? "gradient" : "default";
+
     return (
-      <h3 ref={ref} className={cn(cardTitleVariants(), className)} {...props} />
+      <h3
+        ref={ref}
+        className={cn(cardTitleVariants({ variant: titleVariant }), className)}
+        {...props}
+      />
     );
   }
 );
@@ -121,10 +179,16 @@ export const CardDescription = React.forwardRef<
   HTMLParagraphElement,
   CardDescriptionProps
 >(({ className, ...props }, ref) => {
+  const { variant } = useCardContext();
+  const descVariant = variant === "gradient" ? "gradient" : "default";
+
   return (
     <p
       ref={ref}
-      className={cn(cardDescriptionVariants(), className)}
+      className={cn(
+        cardDescriptionVariants({ variant: descVariant }),
+        className
+      )}
       {...props}
     />
   );

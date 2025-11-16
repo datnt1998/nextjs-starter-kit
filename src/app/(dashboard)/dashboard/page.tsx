@@ -19,6 +19,13 @@ import {
   useActivityData,
   useRecentActivity,
 } from "@/hooks/use-dashboard-stats";
+import {
+  IconUsers,
+  IconUserCheck,
+  IconCurrencyDollar,
+  IconTrendingUp,
+  IconAlertCircle,
+} from "@tabler/icons-react";
 
 export default function DashboardPage() {
   const router = useRouter();
@@ -71,19 +78,7 @@ export default function DashboardPage() {
         {statsError && (
           <div className="mb-8 bg-destructive/10 border border-destructive/20 rounded-lg p-4">
             <div className="flex items-center gap-3">
-              <svg
-                className="w-5 h-5 text-destructive"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
+              <IconAlertCircle className="w-5 h-5 text-destructive" />
               <div>
                 <h3 className="text-sm font-medium text-destructive">
                   Failed to load dashboard data
@@ -105,84 +100,35 @@ export default function DashboardPage() {
             value={stats?.totalUsers || 0}
             change={{ value: 12, trend: "up" }}
             isLoading={statsLoading}
-            icon={
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"
-                />
-              </svg>
-            }
+            gradient="primary"
+            featured={true}
+            icon={<IconUsers className="w-6 h-6" />}
           />
           <StatsCard
             title="Active Users"
             value={stats?.activeUsers || 0}
             change={{ value: 8, trend: "up" }}
             isLoading={statsLoading}
-            icon={
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            }
+            gradient="success"
+            featured={true}
+            icon={<IconUserCheck className="w-6 h-6" />}
           />
           <StatsCard
             title="Revenue"
-            value={`$${stats?.totalRevenue.toLocaleString() || 0}`}
+            value={`${stats?.totalRevenue.toLocaleString() || 0}`}
             change={{ value: 15, trend: "up" }}
             isLoading={statsLoading}
-            icon={
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                />
-              </svg>
-            }
+            gradient="accent"
+            featured={true}
+            icon={<IconCurrencyDollar className="w-6 h-6" />}
           />
           <StatsCard
             title="Growth Rate"
             value={`${stats?.growthRate || 0}%`}
             change={{ value: 3, trend: "down" }}
             isLoading={statsLoading}
-            icon={
-              <svg
-                className="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"
-                />
-              </svg>
-            }
+            featured={true}
+            icon={<IconTrendingUp className="w-6 h-6" />}
           />
         </div>
 

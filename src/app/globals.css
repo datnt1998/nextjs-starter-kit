@@ -87,6 +87,19 @@
   --color-error-900: var(--color-error-900);
   --color-error-950: var(--color-error-950);
 
+  /* Accent colors (Orange) */
+  --color-accent-50: #fff7ed;
+  --color-accent-100: #ffedd5;
+  --color-accent-200: #fed7aa;
+  --color-accent-300: #fdba74;
+  --color-accent-400: #fb923c;
+  --color-accent-500: #f97316;
+  --color-accent-600: #ea580c;
+  --color-accent-700: #c2410c;
+  --color-accent-800: #9a3412;
+  --color-accent-900: #7c2d12;
+  --color-accent-950: #431407;
+
   /* Semantic colors */
   --color-background: var(--color-background);
   --color-foreground: var(--color-foreground);
@@ -145,5 +158,480 @@
 
   .animate-accordion-up {
     animation: accordion-up 0.2s ease-out;
+  }
+
+  /* Shimmer animation for loading states */
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-shimmer {
+    animation: shimmer 2s infinite;
+  }
+
+  /* Celebration animation for achievement unlock */
+  @keyframes celebrate {
+    0% {
+      transform: scale(1);
+    }
+    25% {
+      transform: scale(1.05) rotate(2deg);
+    }
+    50% {
+      transform: scale(1.1) rotate(-2deg);
+    }
+    75% {
+      transform: scale(1.05) rotate(1deg);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  @keyframes sparkle {
+    0%,
+    100% {
+      opacity: 0;
+      transform: scale(0);
+    }
+    50% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  .animate-celebrate {
+    animation: celebrate 0.6s ease-out;
+  }
+
+  .animate-sparkle {
+    animation: sparkle 1s ease-out;
+  }
+
+  /* Modern Shadow System Utilities */
+  /* Base shadows */
+  .shadow-xs {
+    box-shadow: var(--shadow-xs);
+  }
+
+  .shadow-sm {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .shadow-base {
+    box-shadow: var(--shadow-base);
+  }
+
+  .shadow-md {
+    box-shadow: var(--shadow-md);
+  }
+
+  .shadow-lg {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .shadow-xl {
+    box-shadow: var(--shadow-xl);
+  }
+
+  .shadow-2xl {
+    box-shadow: var(--shadow-2xl);
+  }
+
+  /* Inner shadows */
+  .shadow-inner {
+    box-shadow: var(--shadow-inner);
+  }
+
+  .shadow-inner-lg {
+    box-shadow: var(--shadow-inner-lg);
+  }
+
+  /* Colored shadows - Primary */
+  .shadow-primary-sm {
+    box-shadow: var(--shadow-primary-sm);
+  }
+
+  .shadow-primary-md {
+    box-shadow: var(--shadow-primary-md);
+  }
+
+  .shadow-primary-lg {
+    box-shadow: var(--shadow-primary-lg);
+  }
+
+  /* Colored shadows - Success */
+  .shadow-success-sm {
+    box-shadow: var(--shadow-success-sm);
+  }
+
+  .shadow-success-md {
+    box-shadow: var(--shadow-success-md);
+  }
+
+  .shadow-success-lg {
+    box-shadow: var(--shadow-success-lg);
+  }
+
+  /* Colored shadows - Accent */
+  .shadow-accent-sm {
+    box-shadow: var(--shadow-accent-sm);
+  }
+
+  .shadow-accent-md {
+    box-shadow: var(--shadow-accent-md);
+  }
+
+  .shadow-accent-lg {
+    box-shadow: var(--shadow-accent-lg);
+  }
+
+  /* Hover shadow transitions - smooth elevation changes */
+  .hover-shadow-sm {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-shadow-sm:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .hover-shadow-md {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-shadow-md:hover {
+    box-shadow: var(--shadow-lg);
+  }
+
+  .hover-shadow-lg {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-shadow-lg:hover {
+    box-shadow: var(--shadow-xl);
+  }
+
+  .hover-shadow-xl {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-shadow-xl:hover {
+    box-shadow: var(--shadow-2xl);
+  }
+
+  /* Hover shadow with lift effect */
+  .hover-lift {
+    transition:
+      box-shadow 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  /* Hover shadow with colored variants */
+  .hover-shadow-primary {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-shadow-primary:hover {
+    box-shadow: var(--shadow-primary-lg);
+  }
+
+  .hover-shadow-success {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-shadow-success:hover {
+    box-shadow: var(--shadow-success-lg);
+  }
+
+  .hover-shadow-accent {
+    transition: box-shadow 0.3s ease;
+  }
+
+  .hover-shadow-accent:hover {
+    box-shadow: var(--shadow-accent-lg);
+  }
+
+  /* Gradient Background Utilities */
+  /* Primary Gradient */
+  .bg-gradient-primary {
+    background: linear-gradient(
+      var(--gradient-primary-angle),
+      var(--gradient-primary-from),
+      var(--gradient-primary-to)
+    );
+  }
+
+  .bg-gradient-primary-via {
+    background: linear-gradient(
+      var(--gradient-primary-angle),
+      var(--gradient-primary-from),
+      var(--gradient-primary-via),
+      var(--gradient-primary-to)
+    );
+  }
+
+  /* Secondary Gradient */
+  .bg-gradient-secondary {
+    background: linear-gradient(
+      var(--gradient-secondary-angle),
+      var(--gradient-secondary-from),
+      var(--gradient-secondary-to)
+    );
+  }
+
+  .bg-gradient-secondary-via {
+    background: linear-gradient(
+      var(--gradient-secondary-angle),
+      var(--gradient-secondary-from),
+      var(--gradient-secondary-via),
+      var(--gradient-secondary-to)
+    );
+  }
+
+  /* Success Gradient */
+  .bg-gradient-success {
+    background: linear-gradient(
+      var(--gradient-success-angle),
+      var(--gradient-success-from),
+      var(--gradient-success-to)
+    );
+  }
+
+  .bg-gradient-success-via {
+    background: linear-gradient(
+      var(--gradient-success-angle),
+      var(--gradient-success-from),
+      var(--gradient-success-via),
+      var(--gradient-success-to)
+    );
+  }
+
+  /* Accent Gradient */
+  .bg-gradient-accent {
+    background: linear-gradient(
+      var(--gradient-accent-angle),
+      var(--gradient-accent-from),
+      var(--gradient-accent-to)
+    );
+  }
+
+  .bg-gradient-accent-via {
+    background: linear-gradient(
+      var(--gradient-accent-angle),
+      var(--gradient-accent-from),
+      var(--gradient-accent-via),
+      var(--gradient-accent-to)
+    );
+  }
+
+  /* Hero Gradient - Multi-stop */
+  .bg-gradient-hero {
+    background: linear-gradient(
+      var(--gradient-hero-angle),
+      var(--gradient-hero-from),
+      var(--gradient-hero-via-1),
+      var(--gradient-hero-via-2),
+      var(--gradient-hero-to)
+    );
+  }
+
+  /* Gradient Text Utilities */
+  .text-gradient-primary {
+    background: linear-gradient(
+      var(--gradient-primary-angle),
+      var(--gradient-primary-from),
+      var(--gradient-primary-to)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-secondary {
+    background: linear-gradient(
+      var(--gradient-secondary-angle),
+      var(--gradient-secondary-from),
+      var(--gradient-secondary-to)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-success {
+    background: linear-gradient(
+      var(--gradient-success-angle),
+      var(--gradient-success-from),
+      var(--gradient-success-to)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-accent {
+    background: linear-gradient(
+      var(--gradient-accent-angle),
+      var(--gradient-accent-from),
+      var(--gradient-accent-to)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .text-gradient-hero {
+    background: linear-gradient(
+      var(--gradient-hero-angle),
+      var(--gradient-hero-from),
+      var(--gradient-hero-via-1),
+      var(--gradient-hero-via-2),
+      var(--gradient-hero-to)
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Gradient Hover Effects - Brightness and Saturation Changes */
+  /* Base gradient hover class with smooth transitions */
+  .gradient-hover {
+    transition:
+      filter 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  /* Brightness hover effect - increases brightness on hover */
+  .hover-gradient-brighten {
+    transition: filter 0.3s ease;
+  }
+
+  .hover-gradient-brighten:hover {
+    filter: brightness(1.1);
+  }
+
+  /* Stronger brightness effect */
+  .hover-gradient-brighten-lg {
+    transition: filter 0.3s ease;
+  }
+
+  .hover-gradient-brighten-lg:hover {
+    filter: brightness(1.15);
+  }
+
+  /* Saturation hover effect - increases color intensity */
+  .hover-gradient-saturate {
+    transition: filter 0.3s ease;
+  }
+
+  .hover-gradient-saturate:hover {
+    filter: saturate(1.2);
+  }
+
+  /* Combined brightness and saturation effect */
+  .hover-gradient-enhance {
+    transition: filter 0.3s ease;
+  }
+
+  .hover-gradient-enhance:hover {
+    filter: brightness(1.1) saturate(1.1);
+  }
+
+  /* Gradient hover with lift effect */
+  .hover-gradient-lift {
+    transition:
+      filter 0.3s ease,
+      transform 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .hover-gradient-lift:hover {
+    filter: brightness(1.1);
+    transform: translateY(-2px);
+  }
+
+  /* Gradient hover with scale effect */
+  .hover-gradient-scale {
+    transition:
+      filter 0.3s ease,
+      transform 0.3s ease;
+  }
+
+  .hover-gradient-scale:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+  }
+
+  /* Gradient hover with glow effect (adds colored shadow) */
+  .hover-gradient-glow-primary {
+    transition:
+      filter 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .hover-gradient-glow-primary:hover {
+    filter: brightness(1.1);
+    box-shadow: var(--shadow-primary-lg);
+  }
+
+  .hover-gradient-glow-success {
+    transition:
+      filter 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .hover-gradient-glow-success:hover {
+    filter: brightness(1.1);
+    box-shadow: var(--shadow-success-lg);
+  }
+
+  .hover-gradient-glow-accent {
+    transition:
+      filter 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .hover-gradient-glow-accent:hover {
+    filter: brightness(1.1);
+    box-shadow: var(--shadow-accent-lg);
+  }
+
+  /* Smooth gradient animation on hover - shifts gradient position */
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .hover-gradient-animate {
+    background-size: 200% 200%;
+    transition: filter 0.3s ease;
+  }
+
+  .hover-gradient-animate:hover {
+    animation: gradient-shift 3s ease infinite;
+    filter: brightness(1.05);
+  }
+
+  /* Disabled state for gradient elements */
+  .gradient-disabled {
+    filter: grayscale(0.5) opacity(0.6);
+    cursor: not-allowed;
   }
 }

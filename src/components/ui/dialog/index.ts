@@ -18,5 +18,7 @@ export {
 } from "./dialog";
 export {
   dialogContentVariants,
+  dialogHeaderVariants,
   type DialogContentVariants,
+  type DialogHeaderVariants,
 } from "./dialog.variants";

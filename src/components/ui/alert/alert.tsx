@@ -24,6 +24,10 @@ export interface AlertProps
    */
   title?: string;
   /**
+   * Badge/label text to display in top-right corner
+   */
+  badge?: string;
+  /**
    * Whether the alert can be dismissed
    */
   dismissible?: boolean;
@@ -132,7 +136,7 @@ const defaultIcons = {
  * A flexible alert component with multiple variants.
  *
  * Styled with Tailwind CSS using CVA for variants. Supports
- * different alert types with icons and dismissible functionality.
+ * different alert types with icons, badges, and dismissible functionality.
  *
  * @component
  *
@@ -141,9 +145,15 @@ const defaultIcons = {
  * <Alert variant="info">This is an info alert</Alert>
  *
  * @example
- * // With title
- * <Alert variant="success" title="Success">
+ * // With title and badge
+ * <Alert variant="success" title="Success" badge="New">
  *   Your changes have been saved.
+ * </Alert>
+ *
+ * @example
+ * // Gradient variant
+ * <Alert variant="gradient" gradient="primary" title="Public Search Mode" badge="0 left" dismissible>
+ *   You're seeing estimated ride fares. Connect your accounts for personalized pricing.
  * </Alert>
  *
  * @example
@@ -157,8 +167,10 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     {
       className,
       variant = "default",
+      gradient,
       icon,
       title,
+      badge,
       dismissible = false,
       onDismiss,
       children,
@@ -178,7 +190,7 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
     const displayIcon =
       icon !== undefined
         ? icon
-        : variant && variant !== "default"
+        : variant && variant !== "default" && variant !== "gradient"
           ? defaultIcons[variant as keyof typeof defaultIcons]
           : null;
 
@@ -186,19 +198,43 @@ export const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
       <div
         ref={ref}
         role="alert"
-        className={cn(alertVariants({ variant, dismissible }), className)}
+        className={cn(
+          alertVariants({ variant, gradient, dismissible }),
+          className
+        )}
         {...props}
       >
         {displayIcon}
-        <div>
-          {title && <div className={cn(alertTitleVariants())}>{title}</div>}
+        <div className="flex-1">
+          {title && (
+            <div className="flex items-start justify-between gap-2 mb-1">
+              <div className={cn(alertTitleVariants())}>{title}</div>
+              {badge && (
+                <span
+                  className={cn(
+                    "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-semibold",
+                    variant === "gradient"
+                      ? "bg-white/20 text-white backdrop-blur-sm"
+                      : "bg-primary-100 text-primary-800 dark:bg-primary-900 dark:text-primary-200"
+                  )}
+                >
+                  {badge}
+                </span>
+              )}
+            </div>
+          )}
           <div className={cn(alertDescriptionVariants())}>{children}</div>
         </div>
         {dismissible && (
           <button
             type="button"
             onClick={handleDismiss}
-            className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2"
+            className={cn(
+              "absolute right-4 top-4 rounded-sm opacity-70 ring-offset-white transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-offset-2",
+              variant === "gradient"
+                ? "text-white focus:ring-white/50"
+                : "focus:ring-primary-500"
+            )}
             aria-label="Close"
           >
             <CloseIcon />

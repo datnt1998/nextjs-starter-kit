@@ -6,6 +6,8 @@ Component modal (dialog) được xây dựng với Base UI Dialog, hỗ trợ n
 
 - ✅ **Base UI Dialog**: Sử dụng Base UI primitives
 - ✅ **Multiple Sizes**: sm, md, lg, xl, 2xl, full
+- ✅ **Gradient Headers**: Predefined and custom gradient support
+- ✅ **Shadow Elevation**: Configurable shadow depths (md, lg, xl, 2xl)
 - ✅ **Smooth Animations**: Fade và scale transitions
 - ✅ **Backdrop**: Overlay với blur effect
 - ✅ **Keyboard Support**: ESC để đóng
@@ -192,6 +194,56 @@ function Example() {
 </Modal>
 ```
 
+### Gradient Header Modal
+
+```tsx
+<Modal open={open} onOpenChange={setOpen} shadow="xl">
+  <ModalClose />
+  <ModalHeader gradient="primary">
+    <ModalTitle>Premium Feature</ModalTitle>
+    <ModalDescription>
+      Unlock advanced features with our premium plan
+    </ModalDescription>
+  </ModalHeader>
+  <ModalBody>
+    <p>Get access to exclusive features...</p>
+  </ModalBody>
+  <ModalFooter>
+    <Button variant="outline" onClick={() => setOpen(false)}>
+      Maybe Later
+    </Button>
+    <Button onClick={() => setOpen(false)}>Upgrade Now</Button>
+  </ModalFooter>
+</Modal>
+```
+
+### Custom Gradient Header
+
+```tsx
+<Modal open={open} onOpenChange={setOpen} shadow="xl">
+  <ModalClose />
+  <ModalHeader
+    customGradient={{
+      from: "rgb(236, 72, 153)",
+      via: "rgb(168, 85, 247)",
+      to: "rgb(59, 130, 246)",
+      angle: 90,
+    }}
+  >
+    <ModalTitle>Custom Gradient</ModalTitle>
+    <ModalDescription>
+      Using custom colors from the theme system
+    </ModalDescription>
+  </ModalHeader>
+  <ModalBody>
+    <p>This dialog uses custom gradient colors...</p>
+  </ModalBody>
+  <ModalFooter>
+    <Button onClick={() => setOpen(false)}>Close</Button>
+  </ModalFooter>
+</Modal>
+```
+
 ## Props
 
 ### Modal Props
@@ -201,8 +253,18 @@ function Example() {
 | `open`         | `boolean`                             | -       | Trạng thái mở/đóng của modal     |
 | `onOpenChange` | `(open: boolean) => void`             | -       | Callback khi trạng thái thay đổi |
 | `size`         | `sm \| md \| lg \| xl \| 2xl \| full` | `md`    | Kích thước modal                 |
+| `shadow`       | `md \| lg \| xl \| 2xl`               | `2xl`   | Shadow elevation level           |
 | `children`     | `React.ReactNode`                     | -       | Nội dung modal                   |
 | `className`    | `string`                              | -       | Custom className                 |
+
+### ModalHeader Props
+
+| Prop             | Type                                                         | Default | Description                              |
+| ---------------- | ------------------------------------------------------------ | ------- | ---------------------------------------- |
+| `gradient`       | `none \| primary \| secondary \| success \| accent \| hero`  | `none`  | Predefined gradient variant              |
+| `customGradient` | `{ from: string, to: string, via?: string, angle?: number }` | -       | Custom gradient colors from theme system |
+| `children`       | `React.ReactNode`                                            | -       | Header content                           |
+| `className`      | `string`                                                     | -       | Custom className                         |
 
 ### Size Options
 
@@ -212,6 +274,23 @@ function Example() {
 - `xl`: 576px (36rem)
 - `2xl`: 672px (42rem)
 - `full`: Full viewport với padding
+
+### Gradient Options
+
+- `none`: No gradient (default)
+- `primary`: Blue to purple gradient
+- `secondary`: Purple to pink gradient
+- `success`: Green to teal gradient
+- `accent`: Orange to red gradient
+- `hero`: Multi-stop vibrant gradient
+- `customGradient`: Custom colors from theme system
+
+### Shadow Options
+
+- `md`: Medium elevation
+- `lg`: Large elevation
+- `xl`: Extra large elevation
+- `2xl`: Maximum elevation (default)
 
 ## Keyboard Shortcuts
 

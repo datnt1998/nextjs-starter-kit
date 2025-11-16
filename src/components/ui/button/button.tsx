@@ -98,6 +98,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       className,
       variant,
       size,
+      gradient,
       isLoading = false,
       leftIcon,
       rightIcon,
@@ -114,7 +115,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       <button
         ref={ref}
         type={type}
-        className={cn(buttonVariants({ variant, size }), className)}
+        className={cn(buttonVariants({ variant, size, gradient }), className)}
         disabled={isDisabled}
         aria-busy={isLoading}
         {...props}

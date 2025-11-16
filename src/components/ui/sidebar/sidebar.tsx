@@ -46,6 +46,14 @@ export interface SidebarProps {
    * Whether to show close button on mobile
    */
   showCloseButton?: boolean;
+  /**
+   * Whether the sidebar is collapsed (desktop only)
+   */
+  collapsed?: boolean;
+  /**
+   * Callback when sidebar collapse state changes
+   */
+  onCollapsedChange?: (collapsed: boolean) => void;
 }
 
 export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
@@ -59,6 +67,8 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       className,
       width = "w-64",
       showCloseButton = true,
+      collapsed = false,
+      onCollapsedChange,
     },
     ref
   ) => {
@@ -68,8 +78,8 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       <aside
         ref={ref}
         className={cn(
-          "fixed inset-y-0 left-0 z-50 bg-background border-r border-neutral-200 dark:border-neutral-800 transform transition-transform duration-200 ease-in-out lg:translate-x-0",
-          width,
+          "fixed inset-y-0 left-0 z-50 bg-background border-r border-neutral-200 dark:border-neutral-800 transform transition-all duration-300 ease-in-out lg:translate-x-0",
+          collapsed ? "lg:w-20" : width,
           open ? "translate-x-0" : "-translate-x-full",
           className
         )}
@@ -78,7 +88,14 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
           {/* Logo/Header */}
           {logo && (
             <div className="flex items-center justify-between h-16 px-6 border-b border-neutral-200 dark:border-neutral-800">
-              {logo}
+              <div
+                className={cn(
+                  "transition-opacity duration-300",
+                  collapsed && "lg:opacity-0 lg:w-0 lg:overflow-hidden"
+                )}
+              >
+                {logo}
+              </div>
               {showCloseButton && onClose && (
                 <button
                   onClick={onClose}
@@ -96,6 +113,30 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                       strokeLinejoin="round"
                       strokeWidth={2}
                       d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              )}
+              {onCollapsedChange && (
+                <button
+                  onClick={() => onCollapsedChange(!collapsed)}
+                  className="hidden lg:block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
+                  aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
+                >
+                  <svg
+                    className={cn(
+                      "w-5 h-5 transition-transform duration-300",
+                      collapsed && "rotate-180"
+                    )}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M11 19l-7-7 7-7m8 14l-7-7 7-7"
                     />
                   </svg>
                 </button>
@@ -139,20 +180,33 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                   href={item.href}
                   onClick={onClose}
                   className={cn(
-                    "flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-colors",
+                    "flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ease-in-out group relative",
                     isActive
-                      ? "bg-primary-100 dark:bg-primary-900/20 text-primary-900"
-                      : "text-primary hover:bg-neutral-100"
+                      ? "bg-primary-100 dark:bg-primary-900/20 text-primary-900 shadow-sm"
+                      : "text-primary hover:bg-neutral-100 hover:translate-x-1",
+                    collapsed && "lg:justify-center"
                   )}
+                  title={collapsed ? item.name : undefined}
                 >
                   <div className="flex items-center gap-3">
-                    {item.icon && <span className="shrink-0">{item.icon}</span>}
-                    <span>{item.name}</span>
-                  </div>
-                  {item.badge && (
+                    {item.icon && (
+                      <span className="shrink-0 transition-transform duration-200">
+                        {item.icon}
+                      </span>
+                    )}
                     <span
                       className={cn(
-                        "px-2 py-0.5 text-xs font-medium rounded-full",
+                        "transition-all duration-300",
+                        collapsed && "lg:opacity-0 lg:w-0 lg:overflow-hidden"
+                      )}
+                    >
+                      {item.name}
+                    </span>
+                  </div>
+                  {item.badge && !collapsed && (
+                    <span
+                      className={cn(
+                        "px-2 py-0.5 text-xs font-medium rounded-full transition-colors duration-200",
                         isActive
                           ? "bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300"
                           : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
@@ -261,6 +315,7 @@ export interface SidebarContentProps {
   className?: string;
   /**
    * Width offset to match sidebar width (default: lg:pl-64)
+   * Can be dynamically changed based on collapsed state
    */
   offset?: string;
 }
@@ -270,7 +325,17 @@ export const SidebarContent = ({
   className,
   offset = "lg:pl-64",
 }: SidebarContentProps) => {
-  return <div className={cn(offset, className)}>{children}</div>;
+  return (
+    <div
+      className={cn(
+        "transition-all duration-300 ease-in-out",
+        offset,
+        className
+      )}
+    >
+      {children}
+    </div>
+  );
 };
 
 SidebarContent.displayName = "SidebarContent";

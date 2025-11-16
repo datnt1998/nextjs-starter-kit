@@ -96,6 +96,18 @@ export type { AlertProps, AlertVariants } from "./alert";
 export { Badge, badgeVariants } from "./badge";
 export type { BadgeProps, BadgeVariants } from "./badge";
 
+// Achievement Card
+export {
+  AchievementCard,
+  achievementCardVariants,
+  achievementIconVariants,
+} from "./achievement-card";
+export type {
+  AchievementCardProps,
+  AchievementCardVariants,
+  AchievementIconVariants,
+} from "./achievement-card";
+
 // Card
 export {
   Card,
@@ -147,9 +159,6 @@ export {
   useFormWithSchema,
   useFormField,
 } from "./form";
-
-// Form (Base UI)
-export { BaseUIForm, BaseFormField, TextareaField, SubmitButton } from "./form";
 
 // Table
 export {

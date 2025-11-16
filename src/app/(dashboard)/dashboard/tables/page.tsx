@@ -143,8 +143,8 @@ const columns: ColumnDef<User>[] = [
             role === "Admin"
               ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
               : role === "Editor"
-              ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-              : "bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200"
+                ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
+                : "bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200"
           }`}
         >
           {role}
@@ -209,70 +209,75 @@ const columns: ColumnDef<User>[] = [
   },
 ];
 
+import { DashboardLayout } from "@/components/layouts/dashboard-layout";
+import { Container } from "@/components/ui/container";
+
 export default function TableDemoPage() {
   return (
-    <div className="container mx-auto py-10">
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold mb-2">DataTable Demo</h1>
-        <p className="text-neutral-600 dark:text-neutral-400">
-          A demonstration of the DataTable component with sorting, filtering,
-          and pagination.
-        </p>
-      </div>
-
-      <div className="space-y-8">
-        {/* Full-featured table */}
-        <div>
-          <h2 className="text-xl font-semibold mb-4">
-            Full-Featured Table (with URL state)
-          </h2>
-          <DataTable
-            columns={columns}
-            data={mockUsers}
-            searchKey="name"
-            searchPlaceholder="Search by name..."
-            pageSize={5}
-            enableSorting={true}
-            enableFiltering={true}
-            enablePagination={true}
-            enableUrlState={true}
-          />
+    <DashboardLayout>
+      <Container size="2xl">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">DataTable Demo</h1>
+          <p className="text-neutral-600 dark:text-neutral-400">
+            A demonstration of the DataTable component with sorting, filtering,
+            and pagination.
+          </p>
         </div>
 
-        {/* Striped table without URL state */}
-        <div>
-          <h2 className="text-xl font-semibold mb-4">
-            Striped Table (without URL state)
-          </h2>
-          <DataTable
-            columns={columns}
-            data={mockUsers}
-            searchKey="email"
-            searchPlaceholder="Search by email..."
-            pageSize={5}
-            enableSorting={true}
-            enableFiltering={true}
-            enablePagination={true}
-            enableUrlState={false}
-            striped={true}
-          />
-        </div>
+        <div className="space-y-8">
+          {/* Full-featured table */}
+          <div>
+            <h2 className="text-xl font-semibold mb-4">
+              Full-Featured Table (with URL state)
+            </h2>
+            <DataTable
+              columns={columns}
+              data={mockUsers}
+              searchKey="name"
+              searchPlaceholder="Search by name..."
+              pageSize={5}
+              enableSorting={true}
+              enableFiltering={true}
+              enablePagination={true}
+              enableUrlState={true}
+            />
+          </div>
 
-        {/* Simple table without pagination */}
-        <div>
-          <h2 className="text-xl font-semibold mb-4">
-            Simple Table (no pagination)
-          </h2>
-          <DataTable
-            columns={columns}
-            data={mockUsers.slice(0, 5)}
-            enableSorting={true}
-            enableFiltering={false}
-            enablePagination={false}
-            enableUrlState={false}
-          />
+          {/* Striped table without URL state */}
+          <div>
+            <h2 className="text-xl font-semibold mb-4">
+              Striped Table (without URL state)
+            </h2>
+            <DataTable
+              columns={columns}
+              data={mockUsers}
+              searchKey="email"
+              searchPlaceholder="Search by email..."
+              pageSize={5}
+              enableSorting={true}
+              enableFiltering={true}
+              enablePagination={true}
+              enableUrlState={false}
+              striped={true}
+            />
+          </div>
+
+          {/* Simple table without pagination */}
+          <div>
+            <h2 className="text-xl font-semibold mb-4">
+              Simple Table (no pagination)
+            </h2>
+            <DataTable
+              columns={columns}
+              data={mockUsers.slice(0, 5)}
+              enableSorting={true}
+              enableFiltering={false}
+              enablePagination={false}
+              enableUrlState={false}
+            />
+          </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </DashboardLayout>
   );
 }

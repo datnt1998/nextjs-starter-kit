@@ -1,158 +1,330 @@
 # Theme System
 
-A comprehensive theme system for NextJS with support for light, dark, and system themes.
+A comprehensive theme system for Next.js with support for light/dark modes, custom configurations, and runtime theme customization.
 
 ## Features
 
-- ✅ Theme persistence to localStorage
-- ✅ System theme detection and automatic switching
-- ✅ Smooth transitions between themes (0.3s ease)
-- ✅ Support for light, dark, and system modes
-- ✅ No flash of unstyled content (FOUC)
-- ✅ TypeScript support with full type safety
-- ✅ React Context API for theme state management
-- ✅ Custom hook (useTheme) for easy access
+- 🎨 **Light & Dark Modes**: Automatic theme switching with system preference detection
+- 🔧 **Customizable**: Modify colors, gradients, shadows, and border radius
+- 💾 **Persistent**: Theme preferences and customizations saved to localStorage
+- 🎯 **Type-Safe**: Full TypeScript support with validated configurations
+- ⚡ **Runtime Updates**: Apply theme changes without rebuilding
+- 🎭 **CSS Variables**: Uses CSS custom properties for dynamic theming
 
-## Usage
+## Quick Start
 
-### 1. Wrap your app with ThemeProvider
-
-The ThemeProvider is already set up in `src/app/layout.tsx`:
+### Basic Usage
 
 ```tsx
-import { ThemeProvider } from "@/lib/theme/theme-provider";
+import { ThemeProvider } from "@/lib/theme";
 
-export default function RootLayout({ children }) {
-  return (
-    <html lang="en" suppressHydrationWarning>
-      <body>
-        <ThemeProvider defaultTheme="system">{children}</ThemeProvider>
-      </body>
-    </html>
-  );
+export default function App({ children }) {
+  return <ThemeProvider defaultTheme="system">{children}</ThemeProvider>;
 }
 ```
 
-### 2. Use the useTheme hook
-
-Access and update the theme from any component:
+### Using the Theme Hook
 
 ```tsx
 "use client";
 
-import { useTheme } from "@/lib/theme/use-theme";
+import { useTheme } from "@/lib/theme";
 
-export function MyComponent() {
-  const { theme, setTheme, resolvedTheme, systemTheme } = useTheme();
+export function ThemeToggle() {
+  const { theme, setTheme, resolvedTheme } = useTheme();
 
   return (
-    <div>
-      <p>Current theme: {theme}</p>
-      <p>Resolved theme: {resolvedTheme}</p>
-      <button onClick={() => setTheme("dark")}>Dark</button>
-      <button onClick={() => setTheme("light")}>Light</button>
-      <button onClick={() => setTheme("system")}>System</button>
-    </div>
+    <button onClick={() => setTheme(theme === "light" ? "dark" : "light")}>
+      Current theme: {resolvedTheme}
+    </button>
   );
 }
 ```
 
-### 3. Use the ThemeToggle component
+## Theme Configuration
 
-A pre-built component for theme switching:
+### Default Configuration
+
+The theme system comes with a comprehensive default configuration including:
+
+- **Colors**: 8 color scales (primary, secondary, neutral, success, warning, error, info, accent)
+- **Gradients**: 5 gradient presets (primary, secondary, success, accent, hero)
+- **Shadows**: Multi-layered shadows with colored variants
+- **Border Radius**: 8 size options from none to full
+
+### Customizing the Theme
+
+#### Option 1: Provide Custom Config to Provider
 
 ```tsx
-import { ThemeToggle } from "@/components/ui/theme-toggle";
+import { ThemeProvider, defaultThemeConfig } from "@/lib/theme";
 
-export function Header() {
+const customConfig = {
+  ...defaultThemeConfig,
+  gradients: {
+    light: {
+      ...defaultThemeConfig.gradients.light,
+      primary: {
+        type: "linear",
+        angle: 90,
+        stops: [
+          { color: "rgb(255, 0, 0)", position: 0 },
+          { color: "rgb(0, 0, 255)", position: 100 },
+        ],
+      },
+    },
+    dark: {
+      // ... dark mode gradients
+    },
+  },
+};
+
+export default function App({ children }) {
+  return <ThemeProvider customConfig={customConfig}>{children}</ThemeProvider>;
+}
+```
+
+#### Option 2: Runtime Updates
+
+```tsx
+"use client";
+
+import { useTheme } from "@/lib/theme";
+
+export function ThemeCustomizer() {
+  const { config, updateConfig } = useTheme();
+
+  const changePrimaryGradient = () => {
+    updateConfig({
+      gradients: {
+        light: {
+          ...config.gradients.light,
+          primary: {
+            type: "linear",
+            angle: 45,
+            stops: [
+              { color: "rgb(255, 100, 100)", position: 0 },
+              { color: "rgb(100, 100, 255)", position: 100 },
+            ],
+          },
+        },
+      },
+    });
+  };
+
   return (
-    <header>
-      <ThemeToggle />
-    </header>
+    <button onClick={changePrimaryGradient}>Change Primary Gradient</button>
   );
 }
 ```
+
+## Theme Configuration Structure
+
+### Colors
+
+Each color has 11 shades (50-950):
+
+```typescript
+{
+  colors: {
+    light: {
+      primary: {
+        50: "#eff6ff",
+        100: "#dbeafe",
+        // ... through 950
+      },
+      // ... other colors
+    },
+    dark: {
+      // ... dark mode colors
+    }
+  }
+}
+```
+
+### Gradients
+
+Gradients support linear and radial types:
+
+```typescript
+{
+  gradients: {
+    light: {
+      primary: {
+        type: "linear",
+        angle: 135,
+        stops: [
+          { color: "rgb(59, 130, 246)", position: 0 },
+          { color: "rgb(147, 51, 234)", position: 100 }
+        ]
+      }
+    }
+  }
+}
+```
+
+### Shadows
+
+Multi-layered shadows for depth:
+
+```typescript
+{
+  shadows: {
+    light: {
+      md: {
+        layers: [
+          {
+            offsetX: 0,
+            offsetY: 4,
+            blur: 6,
+            spread: -1,
+            color: "rgb(0, 0, 0)",
+            opacity: 0.1,
+          },
+        ];
+      }
+    }
+  }
+}
+```
+
+### Border Radius
+
+Consistent border radius values:
+
+```typescript
+{
+  borderRadius: {
+    none: "0px",
+    sm: "8px",
+    md: "12px",
+    lg: "16px",
+    xl: "20px",
+    "2xl": "24px",
+    "3xl": "32px",
+    full: "9999px"
+  }
+}
+```
+
+## Theme Preview Tool
+
+Visit `/theme-preview` to see a visual preview of all theme colors, gradients, shadows, and components with the current theme configuration.
 
 ## API Reference
 
 ### ThemeProvider Props
 
-| Prop           | Type                            | Default        | Description                      |
-| -------------- | ------------------------------- | -------------- | -------------------------------- |
-| `children`     | `ReactNode`                     | -              | Child components                 |
-| `defaultTheme` | `"light" \| "dark" \| "system"` | `"system"`     | Default theme mode               |
-| `storageKey`   | `string`                        | `"theme-mode"` | localStorage key for persistence |
+| Prop               | Type                            | Default              | Description                     |
+| ------------------ | ------------------------------- | -------------------- | ------------------------------- |
+| `defaultTheme`     | `"light" \| "dark" \| "system"` | `"system"`           | Initial theme mode              |
+| `storageKey`       | `string`                        | `"theme-mode"`       | localStorage key for theme mode |
+| `customConfig`     | `ThemeConfig`                   | `defaultThemeConfig` | Custom theme configuration      |
+| `configStorageKey` | `string`                        | `"theme-config"`     | localStorage key for config     |
 
-### useTheme Return Value
+### useTheme Hook
 
-| Property        | Type                            | Description                                            |
-| --------------- | ------------------------------- | ------------------------------------------------------ |
-| `theme`         | `"light" \| "dark" \| "system"` | Current theme mode                                     |
-| `setTheme`      | `(theme: ThemeMode) => void`    | Function to update theme                               |
-| `resolvedTheme` | `"light" \| "dark"`             | Actual theme applied (resolves "system" to light/dark) |
-| `systemTheme`   | `"light" \| "dark"`             | System's preferred theme                               |
+Returns:
 
-## How It Works
-
-### Theme Persistence
-
-The theme preference is saved to localStorage with the key `theme-mode`. On page load, the theme is restored from localStorage.
-
-### System Theme Detection
-
-The system theme is detected using the `prefers-color-scheme` media query. When the theme is set to "system", the component automatically switches between light and dark based on the system preference.
-
-### FOUC Prevention
-
-A script in the `<head>` tag applies the theme class before the page renders, preventing a flash of unstyled content:
-
-```tsx
-<script
-  dangerouslySetInnerHTML={{
-    __html: `
-      (function() {
-        try {
-          const theme = localStorage.getItem('theme-mode') || 'system';
-          const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-          const resolvedTheme = theme === 'system' ? systemTheme : theme;
-          if (resolvedTheme === 'dark') {
-            document.documentElement.classList.add('dark');
-          }
-        } catch (e) {}
-      })();
-    `,
-  }}
-/>
+```typescript
+{
+  theme: ThemeMode;                    // Current theme mode
+  setTheme: (theme: ThemeMode) => void; // Set theme mode
+  resolvedTheme: "light" | "dark";     // Actual theme (resolves "system")
+  systemTheme: "light" | "dark";       // System preference
+  config: ThemeConfig;                 // Current theme config
+  updateConfig: (updates: Partial<ThemeConfig>) => void; // Update config
+  resetConfig: () => void;             // Reset to default
+}
 ```
 
-### Smooth Transitions
+## Validation
 
-CSS transitions are applied to the `html` and `body` elements for smooth theme switching:
+The theme system includes comprehensive validation:
+
+- Color format validation (hex, rgb, rgba)
+- Gradient angle validation (0-360)
+- Shadow opacity validation (0-1)
+- Border radius format validation
+
+Invalid configurations will throw `ThemeValidationError` with descriptive messages.
+
+## CSS Variables
+
+The theme system generates CSS custom properties that can be used directly:
 
 ```css
-html {
-  transition: background-color 0.3s ease, color 0.3s ease;
+/* Colors */
+var(--color-primary-500)
+var(--color-success-600)
+
+/* Gradients */
+var(--gradient-primary)
+var(--gradient-success)
+
+/* Shadows */
+var(--shadow-md)
+var(--shadow-primary-lg)
+
+/* Border Radius */
+var(--radius-lg)
+var(--radius-2xl)
+```
+
+## Advanced Usage
+
+### Loading Theme Config Manually
+
+```typescript
+import { loadThemeConfig, defaultThemeConfig } from "@/lib/theme";
+
+// Load theme config and apply to document
+loadThemeConfig(defaultThemeConfig, "light");
+```
+
+### Generating CSS Variables
+
+```typescript
+import { generateCssVariables } from "@/lib/theme";
+
+const variables = generateCssVariables(config, "light");
+// Returns: { "--color-primary-500": "#3b82f6", ... }
+```
+
+### Checking if Theme is Loaded
+
+```typescript
+import { areThemeVariablesLoaded } from "@/lib/theme";
+
+if (areThemeVariablesLoaded()) {
+  console.log("Theme is ready!");
 }
-
-body {
-  transition: background-color 0.3s ease, color 0.3s ease;
-}
 ```
 
-## Customization
+## Best Practices
 
-### Custom Storage Key
+1. **Use the Provider**: Always wrap your app with `ThemeProvider`
+2. **Validate Configs**: Use `validateThemeConfig` before applying custom configs
+3. **Persist Carefully**: Be mindful of localStorage size when storing large configs
+4. **Test Both Modes**: Always test your customizations in both light and dark modes
+5. **Use Type Safety**: Leverage TypeScript types for configuration
 
-```tsx
-<ThemeProvider storageKey="my-custom-theme-key">{children}</ThemeProvider>
-```
+## Troubleshooting
 
-### Custom Default Theme
+### Theme not applying
 
-```tsx
-<ThemeProvider defaultTheme="dark">{children}</ThemeProvider>
-```
+- Ensure `ThemeProvider` wraps your app
+- Check browser console for validation errors
+- Verify CSS variables are loaded with `areThemeVariablesLoaded()`
 
-## Demo
+### Custom config not persisting
 
-Visit `/theme-demo` to see a comprehensive demonstration of the theme system with all color palettes, typography, and features.
+- Check localStorage quota
+- Verify `configStorageKey` is unique
+- Ensure config passes validation
+
+### Colors look wrong
+
+- Verify color format (hex, rgb, rgba)
+- Check if dark mode overrides are correct
+- Test with default config first

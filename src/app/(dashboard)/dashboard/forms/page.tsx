@@ -61,6 +61,9 @@ const countryOptions = [
   { value: "other", label: "Other" },
 ];
 
+import { DashboardLayout } from "@/components/layouts/dashboard-layout";
+import { Container } from "@/components/ui/container";
+
 export default function FormDemoPage() {
   const [submittedData, setSubmittedData] =
     React.useState<ExampleFormData | null>(null);
@@ -93,8 +96,8 @@ export default function FormDemoPage() {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-900 py-12 px-4">
-      <div className="max-w-2xl mx-auto">
+    <DashboardLayout>
+      <Container size="lg">
         <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-lg p-8">
           <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
             Form Demo
@@ -316,7 +319,7 @@ export default function FormDemoPage() {
             </div>
           </div>
         </div>
-      </div>
-    </div>
+      </Container>
+    </DashboardLayout>
   );
 }

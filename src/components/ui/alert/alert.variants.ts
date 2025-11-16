@@ -14,12 +14,51 @@ export const alertVariants = cva(
           "bg-warning-50 dark:bg-warning-950 text-warning-900 dark:text-warning-100 border-warning-200 dark:border-warning-800 [&>svg]:text-warning-600 dark:[&>svg]:text-warning-400",
         error:
           "bg-error-50 dark:bg-error-950 text-error-900 dark:text-error-100 border-error-200 dark:border-error-800 [&>svg]:text-error-600 dark:[&>svg]:text-error-400",
+        gradient: "border-0 text-white [&>svg]:text-white shadow-lg",
+      },
+      gradient: {
+        primary: "",
+        secondary: "",
+        success: "",
+        accent: "",
+        hero: "",
       },
       dismissible: {
         true: "pr-12",
         false: "",
       },
     },
+    compoundVariants: [
+      {
+        variant: "gradient",
+        gradient: "primary",
+        className:
+          "bg-gradient-to-r from-primary-600 via-primary-500 to-secondary-500",
+      },
+      {
+        variant: "gradient",
+        gradient: "secondary",
+        className:
+          "bg-gradient-to-r from-secondary-600 via-secondary-500 to-primary-500",
+      },
+      {
+        variant: "gradient",
+        gradient: "success",
+        className:
+          "bg-gradient-to-r from-success-600 via-success-500 to-primary-500",
+      },
+      {
+        variant: "gradient",
+        gradient: "accent",
+        className: "bg-gradient-to-r from-orange-700 via-orange-600 to-red-600",
+      },
+      {
+        variant: "gradient",
+        gradient: "hero",
+        className:
+          "bg-gradient-to-r from-primary-700 via-secondary-600 to-orange-600",
+      },
+    ],
     defaultVariants: {
       variant: "default",
       dismissible: false,
