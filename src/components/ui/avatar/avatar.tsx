@@ -1,11 +1,32 @@
 "use client";
 
 import * as React from "react";
+import { Avatar as BaseAvatar } from "@base-ui-components/react/avatar";
 import { cn } from "@/lib/utils";
-import { avatarVariants, type AvatarVariantProps } from "./avatar.variants";
+import { cva, type VariantProps } from "class-variance-authority";
+
+const avatarVariants = cva(
+  "inline-flex items-center justify-center rounded-full shrink-0",
+  {
+    variants: {
+      size: {
+        xs: "w-6 h-6 text-xs",
+        sm: "w-8 h-8 text-sm",
+        md: "w-10 h-10 text-sm",
+        lg: "w-12 h-12 text-base",
+        xl: "w-16 h-16 text-lg",
+      },
+    },
+    defaultVariants: {
+      size: "md",
+    },
+  }
+);
+
+type AvatarVariantProps = VariantProps<typeof avatarVariants>;
 
 export interface AvatarProps
-  extends React.HTMLAttributes<HTMLDivElement>,
+  extends Omit<React.HTMLAttributes<HTMLSpanElement>, "children">,
     AvatarVariantProps {
   /**
    * Image source URL
@@ -29,7 +50,25 @@ export interface AvatarProps
   showStatus?: boolean;
 }
 
-export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
+/**
+ * Avatar component built with Base UI
+ *
+ * Displays user profile images with fallback to initials.
+ * Supports status indicators and multiple sizes.
+ *
+ * @example
+ * // With image
+ * <Avatar src="https://..." alt="John Doe" fallback="JD" />
+ *
+ * @example
+ * // With status
+ * <Avatar fallback="JD" status="online" showStatus />
+ *
+ * @example
+ * // Different sizes
+ * <Avatar fallback="JD" size="lg" />
+ */
+export const Avatar = React.forwardRef<HTMLSpanElement, AvatarProps>(
   (
     {
       src,
@@ -43,8 +82,6 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     },
     ref
   ) => {
-    const [imageError, setImageError] = React.useState(false);
-
     const statusColors = {
       online: "bg-success-500",
       offline: "bg-neutral-400",
@@ -54,28 +91,32 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
     };
 
     return (
-      <div
+      <BaseAvatar.Root
         ref={ref}
-        className={cn(avatarVariants({ size }), "relative", className)}
+        className={cn(
+          avatarVariants({ size }),
+          "relative bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-medium select-none",
+          className
+        )}
         {...props}
       >
-        {src && !imageError ? (
-          <img
-            src={src}
-            alt={alt}
-            className="w-full h-full object-cover"
-            onError={() => setImageError(true)}
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center bg-primary-100 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400 font-medium">
+        <span className="absolute inset-0 overflow-hidden rounded-full">
+          {src && (
+            <BaseAvatar.Image
+              src={src}
+              alt={alt}
+              className="size-full object-cover"
+            />
+          )}
+          <BaseAvatar.Fallback className="flex size-full items-center justify-center">
             {fallback}
-          </div>
-        )}
+          </BaseAvatar.Fallback>
+        </span>
 
         {showStatus && status !== "none" && (
           <span
             className={cn(
-              "absolute bottom-0 right-0 block rounded-full ring-2 ring-background",
+              "absolute bottom-0 right-0 block rounded-full ring-2 ring-background z-10",
               statusColors[status],
               size === "xs" && "w-2 h-2",
               size === "sm" && "w-2.5 h-2.5",
@@ -86,7 +127,7 @@ export const Avatar = React.forwardRef<HTMLDivElement, AvatarProps>(
             aria-label={`Status: ${status}`}
           />
         )}
-      </div>
+      </BaseAvatar.Root>
     );
   }
 );

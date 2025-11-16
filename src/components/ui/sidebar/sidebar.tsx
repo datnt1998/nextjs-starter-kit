@@ -180,15 +180,22 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                   href={item.href}
                   onClick={onClose}
                   className={cn(
-                    "flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-all duration-200 ease-in-out group relative",
+                    "flex items-center rounded-lg text-sm font-medium transition-all duration-200 ease-in-out group relative",
                     isActive
-                      ? "bg-primary-100 dark:bg-primary-900/20 text-primary-900 shadow-sm"
-                      : "text-primary hover:bg-neutral-100 hover:translate-x-1",
-                    collapsed && "lg:justify-center"
+                      ? "bg-primary-100 dark:bg-primary-900/20 text-primary-900 dark:text-primary-50 shadow-sm"
+                      : "text-primary dark:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:translate-x-1",
+                    collapsed
+                      ? "lg:justify-center lg:px-3 py-2"
+                      : "justify-between px-4 py-2"
                   )}
                   title={collapsed ? item.name : undefined}
                 >
-                  <div className="flex items-center gap-3">
+                  <div
+                    className={cn(
+                      "flex items-center transition-all duration-300",
+                      !collapsed && "gap-3"
+                    )}
+                  >
                     {item.icon && (
                       <span className="shrink-0 transition-transform duration-200">
                         {item.icon}
@@ -196,7 +203,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                     )}
                     <span
                       className={cn(
-                        "transition-all duration-300",
+                        "whitespace-nowrap transition-all duration-300",
                         collapsed && "lg:opacity-0 lg:w-0 lg:overflow-hidden"
                       )}
                     >
@@ -206,7 +213,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                   {item.badge && !collapsed && (
                     <span
                       className={cn(
-                        "px-2 py-0.5 text-xs font-medium rounded-full transition-colors duration-200",
+                        "px-2 py-0.5 text-xs font-medium rounded-full transition-colors duration-200 whitespace-nowrap",
                         isActive
                           ? "bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300"
                           : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"

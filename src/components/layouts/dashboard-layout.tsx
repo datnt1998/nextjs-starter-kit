@@ -24,6 +24,7 @@ import {
   IconSettings,
   IconLogout,
 } from "@tabler/icons-react";
+import { UserNav } from "./user-nav";
 
 interface DashboardLayoutProps {
   children: React.ReactNode;
@@ -69,12 +70,23 @@ const navigation: SidebarNavItem[] = [
 
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [sidebarCollapsed, setSidebarCollapsed] = useState(() => {
+    // Load collapsed state from localStorage
+    if (typeof window !== "undefined") {
+      const saved = localStorage.getItem("sidebar-collapsed");
+      return saved === "true";
+    }
+    return false;
+  });
   const { user, signOut } = useAuth();
 
   // Handle sidebar collapse toggle
   const handleCollapsedChange = (collapsed: boolean) => {
     setSidebarCollapsed(collapsed);
+    // Save to localStorage
+    if (typeof window !== "undefined") {
+      localStorage.setItem("sidebar-collapsed", String(collapsed));
+    }
   };
 
   const handleSignOut = async () => {
@@ -110,8 +122,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
           <div className="space-y-3">
             <div
               className={cn(
-                "flex items-center gap-3 p-2 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900/50 transition-all duration-300",
-                sidebarCollapsed && "lg:justify-center"
+                "flex items-center p-2 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900/50 transition-all duration-300",
+                sidebarCollapsed ? "lg:justify-center" : "gap-3"
               )}
             >
               <Avatar
@@ -124,10 +136,10 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
                   sidebarCollapsed && "lg:opacity-0 lg:w-0 lg:overflow-hidden"
                 )}
               >
-                <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50 truncate">
+                <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50 truncate whitespace-nowrap">
                   {user?.name || "User"}
                 </p>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 truncate">
+                <p className="text-xs text-neutral-600 dark:text-neutral-400 truncate whitespace-nowrap">
                   {user?.email}
                 </p>
               </div>
@@ -138,19 +150,19 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               onClick={handleSignOut}
               className={cn(
                 "w-full transition-all duration-300 hover:bg-error-50 hover:text-error-600 hover:border-error-200 dark:hover:bg-error-950/20 dark:hover:text-error-400 dark:hover:border-error-800",
-                sidebarCollapsed && "lg:px-2"
+                sidebarCollapsed && "lg:px-2 lg:justify-center"
               )}
               title={sidebarCollapsed ? "Sign out" : undefined}
             >
               <IconLogout
                 className={cn(
-                  "w-4 h-4 transition-all duration-300",
+                  "w-4 h-4 transition-all duration-300 shrink-0",
                   !sidebarCollapsed && "mr-2"
                 )}
               />
               <span
                 className={cn(
-                  "transition-all duration-300",
+                  "whitespace-nowrap transition-all duration-300",
                   sidebarCollapsed && "lg:opacity-0 lg:w-0 lg:overflow-hidden"
                 )}
               >
@@ -199,19 +211,8 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
             <div className="flex-1" />
             <div className="flex items-center gap-4">
               <ThemeToggle />
-              <div className="hidden sm:flex items-center gap-3 pl-4 border-l border-neutral-200 dark:border-neutral-800">
-                <Avatar
-                  fallback={user?.email?.[0].toUpperCase() || "U"}
-                  className="w-8 h-8"
-                />
-                <div className="hidden md:block">
-                  <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50">
-                    {user?.name || "User"}
-                  </p>
-                  <p className="text-xs text-neutral-600 dark:text-neutral-400">
-                    {user?.email}
-                  </p>
-                </div>
+              <div className="pl-4 border-l border-neutral-200 dark:border-neutral-800">
+                <UserNav />
               </div>
             </div>
           </div>

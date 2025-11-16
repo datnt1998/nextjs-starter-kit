@@ -77,6 +77,25 @@ export const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const hasError = !!error;
     const finalVariant = hasError ? "error" : variant;
 
+    // If no label and no helperText, render just the input (even if there's an error)
+    // This allows form context to handle error display via FormMessage
+    if (!label && !helperText) {
+      return (
+        <BaseInput
+          ref={ref}
+          id={inputId}
+          className={cn(
+            inputVariants({ variant: finalVariant, size }),
+            className
+          )}
+          disabled={disabled}
+          required={required}
+          aria-invalid={hasError}
+          {...props}
+        />
+      );
+    }
+
     return (
       <div className={cn("flex flex-col gap-1.5", wrapperClassName)}>
         {label && (

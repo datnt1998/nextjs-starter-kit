@@ -107,6 +107,13 @@
   --color-muted-foreground: var(--color-muted-foreground);
   --color-border: var(--color-border);
   --color-ring: var(--color-ring);
+
+  /* Destructive (alias for error) */
+  --color-destructive: var(--color-error-600);
+  --color-destructive-foreground: #ffffff;
+
+  /* Input border color */
+  --color-input: var(--color-border);
 }
 
 @layer base {

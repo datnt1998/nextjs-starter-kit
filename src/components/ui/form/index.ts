@@ -6,6 +6,7 @@ export {
   FormLabel,
   FormDescription,
   FormMessage,
+  FormControl,
   useFormWithSchema,
   useFormField,
 } from "./form";

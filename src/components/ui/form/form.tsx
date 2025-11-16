@@ -221,6 +221,33 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, FormMessageProps>(
 );
 FormMessage.displayName = "FormMessage";
 
+/**
+ * FormControl component - wrapper for form control elements
+ * Automatically passes error state and other props to child input
+ */
+interface FormControlProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactElement;
+}
+
+const FormControl = React.forwardRef<HTMLDivElement, FormControlProps>(
+  ({ children, ...props }, ref) => {
+    const { error, name } = useFormField();
+
+    return (
+      <div ref={ref} {...props}>
+        {React.cloneElement(children, {
+          id: name,
+          "aria-invalid": !!error,
+          "aria-describedby": error ? `${name}-error` : undefined,
+          error: error?.message,
+          ...children.props,
+        })}
+      </div>
+    );
+  }
+);
+FormControl.displayName = "FormControl";
+
 // Export React Hook Form components (for existing code compatibility)
 export {
   Form,
@@ -229,6 +256,7 @@ export {
   FormLabel,
   FormDescription,
   FormMessage,
+  FormControl,
   useFormWithSchema,
   useFormField,
 };
