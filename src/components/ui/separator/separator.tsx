@@ -9,7 +9,7 @@ import {
 } from "./separator.variants";
 
 export interface SeparatorProps
-  extends React.ComponentPropsWithoutRef<typeof BaseSeparator>,
+  extends Omit<React.ComponentPropsWithoutRef<typeof BaseSeparator>, "orientation">,
     SeparatorVariants {}
 
 const Separator = React.forwardRef<HTMLHRElement, SeparatorProps>(
@@ -17,7 +17,7 @@ const Separator = React.forwardRef<HTMLHRElement, SeparatorProps>(
     return (
       <BaseSeparator
         ref={ref}
-        orientation={orientation}
+        orientation={orientation || "horizontal"}
         className={cn(separatorVariants({ orientation, variant }), className)}
         {...props}
       />

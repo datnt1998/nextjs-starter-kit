@@ -54,39 +54,46 @@ export function StatsCard({
     <Card
       variant={isGradient ? "gradient" : featured ? "elevated" : "default"}
       gradient={isGradient ? gradient : undefined}
-      shadow={featured ? "lg" : "md"}
+      shadow={featured ? "lg" : "sm"}
       shadowColor={isGradient ? gradient : "none"}
       className={cn(
-        "transition-all duration-300",
-        "hover:shadow-xl hover:-translate-y-1",
+        "transition-all duration-300 ease-out group",
+        "hover:shadow-xl hover:-translate-y-1.5 hover:scale-[1.02]",
+        "active:translate-y-0 active:scale-100",
         isGradient && gradientClasses[gradient]
       )}
     >
-      <CardContent>
-        <div className="flex items-center justify-between mb-4">
-          <h3
-            className={cn(
-              "text-sm font-medium",
-              isGradient ? "text-white/90" : "text-muted-foreground"
-            )}
-          >
-            {title}
-          </h3>
+      <CardContent className="p-6">
+        <div className="flex items-start justify-between mb-6">
+          <div className="flex-1">
+            <h3
+              className={cn(
+                "text-sm font-medium uppercase tracking-wide",
+                isGradient ? "text-white/80" : "text-muted-foreground"
+              )}
+            >
+              {title}
+            </h3>
+          </div>
           {icon && (
             <div
               className={cn(
-                iconColor ||
-                  (isGradient ? "text-white/90" : "text-muted-foreground")
+                "flex items-center justify-center w-12 h-12 rounded-xl transition-transform duration-300",
+                "group-hover:scale-110",
+                isGradient
+                  ? "bg-white/20 text-white backdrop-blur-sm"
+                  : "bg-muted text-foreground",
+                iconColor
               )}
             >
               {icon}
             </div>
           )}
         </div>
-        <div className="flex items-baseline justify-between">
+        <div className="space-y-2">
           <p
             className={cn(
-              "text-3xl font-bold",
+              "text-3xl font-bold tracking-tight",
               isGradient ? "text-white" : "text-foreground"
             )}
           >
@@ -95,12 +102,12 @@ export function StatsCard({
           {change && (
             <div
               className={cn(
-                "flex items-center text-sm font-medium",
+                "inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold",
                 isGradient
-                  ? "text-white/90"
+                  ? "bg-white/20 text-white backdrop-blur-sm"
                   : change.trend === "up"
-                    ? "text-success"
-                    : "text-error"
+                    ? "bg-success-100 dark:bg-success-900/50 text-success-700 dark:text-success-300"
+                    : "bg-error-100 dark:bg-error-900/50 text-error-700 dark:text-error-300"
               )}
             >
               {change.trend === "up" ? (

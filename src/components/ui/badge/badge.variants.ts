@@ -1,37 +1,39 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const badgeVariants = cva(
-  "inline-flex items-center gap-1.5 rounded-full font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2",
+  /* Modern badge with refined styling and smooth transitions */
+  "inline-flex items-center justify-center gap-1.5 rounded-full font-medium transition-all duration-200 ease-out focus:outline-none focus:ring-2 focus:ring-focus-ring focus:ring-offset-1",
   {
     variants: {
       variant: {
         default:
-          "bg-neutral-100 dark:bg-neutral-800 text-neutral-900 dark:text-neutral-100 hover:bg-neutral-200 dark:hover:bg-neutral-700",
+          "bg-muted text-foreground hover:bg-muted/80",
         primary:
-          "bg-primary-100 dark:bg-primary-900 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-800",
+          "bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-300 hover:bg-primary-200 dark:hover:bg-primary-900/70",
         secondary:
-          "bg-secondary-100 dark:bg-secondary-900 text-secondary-700 dark:text-secondary-300 hover:bg-secondary-200 dark:hover:bg-secondary-800",
+          "bg-secondary-100 dark:bg-secondary-900/50 text-secondary-700 dark:text-secondary-300 hover:bg-secondary-200 dark:hover:bg-secondary-900/70",
         success:
-          "bg-success-100 dark:bg-success-900 text-success-700 dark:text-success-300 hover:bg-success-200 dark:hover:bg-success-800",
+          "bg-success-100 dark:bg-success-900/50 text-success-700 dark:text-success-300 hover:bg-success-200 dark:hover:bg-success-900/70",
         warning:
-          "bg-warning-100 dark:bg-warning-900 text-warning-700 dark:text-warning-300 hover:bg-warning-200 dark:hover:bg-warning-800",
+          "bg-warning-100 dark:bg-warning-900/50 text-warning-700 dark:text-warning-300 hover:bg-warning-200 dark:hover:bg-warning-900/70",
         error:
-          "bg-error-100 dark:bg-error-900 text-error-700 dark:text-error-300 hover:bg-error-200 dark:hover:bg-error-800",
-        info: "bg-blue-100 dark:bg-blue-900 text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-800",
+          "bg-error-100 dark:bg-error-900/50 text-error-700 dark:text-error-300 hover:bg-error-200 dark:hover:bg-error-900/70",
+        info:
+          "bg-blue-100 dark:bg-blue-900/50 text-blue-700 dark:text-blue-300 hover:bg-blue-200 dark:hover:bg-blue-900/70",
         accent:
-          "bg-accent-100 dark:bg-accent-900 text-accent-700 dark:text-accent-300 hover:bg-accent-200 dark:hover:bg-accent-800",
+          "bg-accent-100 dark:bg-accent-900/50 text-accent-700 dark:text-accent-300 hover:bg-accent-200 dark:hover:bg-accent-900/70",
         neutral:
-          "bg-neutral-100 dark:bg-neutral-800 text-neutral-700 dark:text-neutral-300 hover:bg-neutral-200 dark:hover:bg-neutral-700",
+          "bg-neutral-100 dark:bg-neutral-100 text-neutral-700 dark:text-neutral-700 hover:bg-neutral-200 dark:hover:bg-neutral-200",
         gradient:
-          "bg-gradient-to-r !text-white hover:brightness-110 border-transparent shadow-sm",
+          "bg-gradient-to-r !text-white hover:brightness-110 border-transparent shadow-md hover:shadow-lg",
         outlined:
-          "border-2 bg-transparent hover:bg-neutral-50 dark:hover:bg-neutral-900",
+          "border-2 bg-transparent hover:bg-muted",
       },
       size: {
-        xs: "px-2 py-0.5 text-xs",
-        sm: "px-2 py-0.5 text-xs",
-        md: "px-2.5 py-1 text-sm",
-        lg: "px-4 py-2 text-base",
+        xs: "px-2 py-0.5 text-xs leading-tight",
+        sm: "px-2.5 py-1 text-xs leading-tight",
+        md: "px-3 py-1 text-sm leading-tight",
+        lg: "px-4 py-1.5 text-base leading-tight",
       },
       gradient: {
         none: "",
@@ -41,7 +43,7 @@ export const badgeVariants = cva(
       },
       outlineColor: {
         default:
-          "border-neutral-300 dark:border-neutral-700 text-neutral-700 dark:text-neutral-300",
+          "border-neutral-300 dark:border-neutral-300 text-neutral-700 dark:text-neutral-700",
         primary: "border-primary-500 text-primary-700 dark:text-primary-400",
         secondary:
           "border-secondary-500 text-secondary-700 dark:text-secondary-400",

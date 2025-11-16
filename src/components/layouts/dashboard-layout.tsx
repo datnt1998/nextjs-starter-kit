@@ -100,7 +100,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
   };
 
   return (
-    <div className="min-h-screen bg-neutral-50 dark:bg-neutral-950">
+    <div className="min-h-screen bg-background">
       <SidebarBackdrop
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
@@ -112,63 +112,91 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         onClose={() => setSidebarOpen(false)}
         collapsed={sidebarCollapsed}
         onCollapsedChange={handleCollapsedChange}
-        className="bg-linear-to-b from-primary-50/30 to-background dark:from-primary-950/20 dark:to-background"
         logo={
-          <Link href="/dashboard" className="text-xl font-bold text-primary">
+          <Link href="/dashboard" className="text-xl font-bold text-primary-600 dark:text-primary-400 hover:text-primary-700 dark:hover:text-primary-300 transition-colors">
             Starter Kit
           </Link>
         }
         footer={
-          <div className="space-y-3">
-            <div
-              className={cn(
-                "flex items-center p-2 rounded-lg hover:bg-neutral-50 dark:hover:bg-neutral-900/50 transition-all duration-300",
-                sidebarCollapsed ? "lg:justify-center" : "gap-3"
-              )}
-            >
-              <Avatar
-                fallback={user?.email?.[0].toUpperCase() || "U"}
-                className="shrink-0"
-              />
-              <div
-                className={cn(
-                  "flex-1 min-w-0 transition-all duration-300",
-                  sidebarCollapsed && "lg:opacity-0 lg:w-0 lg:overflow-hidden"
-                )}
-              >
-                <p className="text-sm font-medium text-neutral-900 dark:text-neutral-50 truncate whitespace-nowrap">
-                  {user?.name || "User"}
-                </p>
-                <p className="text-xs text-neutral-600 dark:text-neutral-400 truncate whitespace-nowrap">
-                  {user?.email}
+          <div className="space-y-3 p-4">
+            {/* User Navigation */}
+            {!sidebarCollapsed && (
+              <div className="px-1">
+                <UserNav />
+              </div>
+            )}
+
+            {/* Collapsed: Avatar Only */}
+            {sidebarCollapsed && (
+              <div className="flex justify-center">
+                <Avatar
+                  fallback={user?.email?.[0].toUpperCase() || "U"}
+                  className="ring-2 ring-border"
+                  size="sm"
+                />
+              </div>
+            )}
+
+            {/* Pro Upgrade Banner */}
+            {!sidebarCollapsed && (
+              <div className="p-3 rounded-xl bg-linear-to-br from-primary-50 to-secondary-50 dark:from-primary-950/30 dark:to-secondary-950/30 border border-primary-200 dark:border-primary-800">
+                <div className="flex items-start gap-2 mb-2">
+                  <div className="p-1.5 rounded-lg bg-primary-100 dark:bg-primary-900/50">
+                    <svg
+                      className="w-4 h-4 text-primary-600 dark:text-primary-400"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"
+                      />
+                    </svg>
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-xs font-semibold text-primary-900 dark:text-primary-100">
+                      Upgrade to Pro
+                    </p>
+                    <p className="text-xs text-primary-700 dark:text-primary-300 mt-0.5">
+                      Unlock premium features
+                    </p>
+                  </div>
+                </div>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  className="w-full text-xs h-8 bg-primary-600 hover:bg-primary-700 dark:bg-primary-500 dark:hover:bg-primary-600"
+                >
+                  Get Pro
+                </Button>
+              </div>
+            )}
+
+            {/* Storage Usage */}
+            {!sidebarCollapsed && (
+              <div className="p-3 rounded-xl bg-neutral-50 dark:bg-neutral-100 border border-neutral-200 dark:border-neutral-200">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-xs font-medium text-neutral-700 dark:text-neutral-700">
+                    Storage
+                  </p>
+                  <p className="text-xs text-neutral-600 dark:text-neutral-600">
+                    4.2 / 10 GB
+                  </p>
+                </div>
+                <div className="h-1.5 bg-neutral-200 dark:bg-neutral-300 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-primary-500 dark:bg-primary-400 rounded-full transition-all duration-500"
+                    style={{ width: "42%" }}
+                  />
+                </div>
+                <p className="text-xs text-neutral-500 dark:text-neutral-500 mt-1.5">
+                  58% available
                 </p>
               </div>
-            </div>
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={handleSignOut}
-              className={cn(
-                "w-full transition-all duration-300 hover:bg-error-50 hover:text-error-600 hover:border-error-200 dark:hover:bg-error-950/20 dark:hover:text-error-400 dark:hover:border-error-800",
-                sidebarCollapsed && "lg:px-2 lg:justify-center"
-              )}
-              title={sidebarCollapsed ? "Sign out" : undefined}
-            >
-              <IconLogout
-                className={cn(
-                  "w-4 h-4 transition-all duration-300 shrink-0",
-                  !sidebarCollapsed && "mr-2"
-                )}
-              />
-              <span
-                className={cn(
-                  "whitespace-nowrap transition-all duration-300",
-                  sidebarCollapsed && "lg:opacity-0 lg:w-0 lg:overflow-hidden"
-                )}
-              >
-                Sign out
-              </span>
-            </Button>
+            )}
           </div>
         }
       />
@@ -177,14 +205,14 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         offset={sidebarCollapsed ? "lg:pl-20" : "lg:pl-64"}
         className="transition-all duration-300 ease-in-out"
       >
-        {/* Header */}
-        <header className="sticky top-0 z-30 bg-linear-to-r from-background via-primary-50/20 to-background dark:from-background dark:via-primary-950/10 dark:to-background border-b border-neutral-200 dark:border-neutral-800 backdrop-blur-sm">
-          <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
-            <div className="flex items-center gap-4">
+        {/* Modern Sticky Header with backdrop blur */}
+        <header className="sticky top-0 z-30 bg-card/80 backdrop-blur-md border-b border-border-light shadow-sm">
+          <div className="flex items-center justify-between h-16 px-6 lg:px-8">
+            <div className="flex items-center gap-3">
               <SidebarTrigger onClick={() => setSidebarOpen(true)} />
               <button
                 onClick={() => handleCollapsedChange(!sidebarCollapsed)}
-                className="hidden lg:flex items-center justify-center w-8 h-8 rounded-lg text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 hover:bg-neutral-100 dark:hover:bg-neutral-800 transition-all duration-200"
+                className="hidden lg:flex items-center justify-center w-9 h-9 rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all duration-200"
                 aria-label={
                   sidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
                 }
@@ -209,17 +237,16 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
               </button>
             </div>
             <div className="flex-1" />
-            <div className="flex items-center gap-4">
+            <div className="flex items-center gap-3">
               <ThemeToggle />
-              <div className="pl-4 border-l border-neutral-200 dark:border-neutral-800">
-                <UserNav />
-              </div>
+              <div className="h-8 w-px bg-border-light" />
+              <UserNav />
             </div>
           </div>
         </header>
 
-        {/* Page content */}
-        <main className="min-h-screen p-4 sm:p-6 lg:p-8 bg-background transition-all duration-300 ease-in-out">
+        {/* Page content with refined spacing */}
+        <main className="min-h-screen bg-muted/30 transition-all duration-300 ease-in-out">
           <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
             {children}
           </div>

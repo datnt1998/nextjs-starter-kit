@@ -59,7 +59,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
     { value, label, showValue = false, variant, size, className, ...props },
     ref
   ) => {
-    const percentage = value !== undefined ? Math.round(value) : undefined;
+    const percentage = typeof value === "number" ? Math.round(value) : undefined;
 
     return (
       <BaseProgress.Root
@@ -77,7 +77,7 @@ export const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
             )}
             {showValue && percentage !== undefined && (
               <BaseProgress.Value className="text-sm font-medium text-neutral-600">
-                {percentage}%
+                {() => `${percentage}%`}
               </BaseProgress.Value>
             )}
           </div>

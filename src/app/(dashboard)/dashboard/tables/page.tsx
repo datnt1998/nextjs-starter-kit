@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { DataTable } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
@@ -127,7 +128,7 @@ const columns: ColumnDef<User>[] = [
     accessorKey: "email",
     header: "Email",
     cell: ({ row }) => (
-      <div className="text-neutral-600 dark:text-neutral-400">
+      <div className="text-neutral-600 dark:text-neutral-600">
         {row.getValue("email")}
       </div>
     ),
@@ -141,10 +142,10 @@ const columns: ColumnDef<User>[] = [
         <span
           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
             role === "Admin"
-              ? "bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-200"
+              ? "bg-purple-100 text-purple-800 dark:bg-purple-900/50 dark:text-purple-300"
               : role === "Editor"
-                ? "bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200"
-                : "bg-neutral-100 text-neutral-800 dark:bg-neutral-800 dark:text-neutral-200"
+                ? "bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300"
+                : "bg-neutral-100 text-neutral-800 dark:bg-neutral-100 dark:text-neutral-700"
           }`}
         >
           {role}
@@ -161,8 +162,8 @@ const columns: ColumnDef<User>[] = [
         <span
           className={`inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium ${
             status === "active"
-              ? "bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200"
-              : "bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200"
+              ? "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300"
+              : "bg-red-100 text-red-800 dark:bg-red-900/50 dark:text-red-300"
           }`}
         >
           {status}
@@ -176,7 +177,7 @@ const columns: ColumnDef<User>[] = [
     cell: ({ row }) => {
       const date = new Date(row.getValue("createdAt"));
       return (
-        <div className="text-neutral-600 dark:text-neutral-400">
+        <div className="text-neutral-600 dark:text-neutral-600">
           {date.toLocaleDateString()}
         </div>
       );
@@ -212,19 +213,9 @@ const columns: ColumnDef<User>[] = [
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
 import { Container } from "@/components/ui/container";
 
-export default function TableDemoPage() {
+function TablesContent() {
   return (
-    <DashboardLayout>
-      <Container size="2xl">
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold mb-2">DataTable Demo</h1>
-          <p className="text-neutral-600 dark:text-neutral-400">
-            A demonstration of the DataTable component with sorting, filtering,
-            and pagination.
-          </p>
-        </div>
-
-        <div className="space-y-8">
+    <div className="space-y-8">
           {/* Full-featured table */}
           <div>
             <h2 className="text-xl font-semibold mb-4">
@@ -276,7 +267,25 @@ export default function TableDemoPage() {
               enableUrlState={false}
             />
           </div>
+    </div>
+  );
+}
+
+export default function TableDemoPage() {
+  return (
+    <DashboardLayout>
+      <Container size="2xl">
+        <div className="mb-8">
+          <h1 className="text-3xl font-bold mb-2">DataTable Demo</h1>
+          <p className="text-neutral-600 dark:text-neutral-600">
+            A demonstration of the DataTable component with sorting, filtering,
+            and pagination.
+          </p>
         </div>
+
+        <Suspense fallback={<div>Loading...</div>}>
+          <TablesContent />
+        </Suspense>
       </Container>
     </DashboardLayout>
   );

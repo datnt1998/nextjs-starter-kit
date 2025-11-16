@@ -78,7 +78,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       <aside
         ref={ref}
         className={cn(
-          "fixed inset-y-0 left-0 z-50 bg-background border-r border-neutral-200 dark:border-neutral-800 transform transition-all duration-300 ease-in-out lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 bg-card border-r border-neutral-200 dark:border-neutral-200 transform transition-all duration-300 ease-in-out lg:translate-x-0 shadow-lg",
           collapsed ? "lg:w-20" : width,
           open ? "translate-x-0" : "-translate-x-full",
           className
@@ -87,7 +87,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
         <div className="flex flex-col h-full">
           {/* Logo/Header */}
           {logo && (
-            <div className="flex items-center justify-between h-16 px-6 border-b border-neutral-200 dark:border-neutral-800">
+            <div className="flex items-center justify-between h-16 px-6 border-b border-neutral-200 dark:border-neutral-200">
               <div
                 className={cn(
                   "transition-opacity duration-300",
@@ -120,7 +120,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
               {onCollapsedChange && (
                 <button
                   onClick={() => onCollapsedChange(!collapsed)}
-                  className="hidden lg:block text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
+                  className="hidden lg:block text-neutral-600 dark:text-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-900 transition-colors"
                   aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
                 >
                   <svg
@@ -156,7 +156,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                     key={item.name}
                     className={cn(
                       "flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium cursor-not-allowed opacity-50",
-                      "text-neutral-400 dark:text-neutral-600"
+                      "text-neutral-400 dark:text-neutral-500"
                     )}
                   >
                     <div className="flex items-center gap-3">
@@ -166,7 +166,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                       <span>{item.name}</span>
                     </div>
                     {item.badge && (
-                      <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400">
+                      <span className="px-2 py-0.5 text-xs font-medium rounded-full bg-neutral-100 dark:bg-neutral-100 text-neutral-600 dark:text-neutral-700">
                         {item.badge}
                       </span>
                     )}
@@ -182,8 +182,8 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                   className={cn(
                     "flex items-center rounded-lg text-sm font-medium transition-all duration-200 ease-in-out group relative",
                     isActive
-                      ? "bg-primary-100 dark:bg-primary-900/20 text-primary-900 dark:text-primary-50 shadow-sm"
-                      : "text-primary dark:text-primary-400 hover:bg-neutral-100 dark:hover:bg-neutral-800 hover:translate-x-1",
+                      ? "bg-primary-100 dark:bg-primary-900/40 text-primary-900 dark:text-primary-100 shadow-sm"
+                      : "text-neutral-700 dark:text-neutral-700 hover:bg-neutral-100 dark:hover:bg-neutral-100 hover:translate-x-1",
                     collapsed
                       ? "lg:justify-center lg:px-3 py-2"
                       : "justify-between px-4 py-2"
@@ -215,8 +215,8 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                       className={cn(
                         "px-2 py-0.5 text-xs font-medium rounded-full transition-colors duration-200 whitespace-nowrap",
                         isActive
-                          ? "bg-primary-100 dark:bg-primary-900/40 text-primary-700 dark:text-primary-300"
-                          : "bg-neutral-100 dark:bg-neutral-800 text-neutral-600 dark:text-neutral-400"
+                          ? "bg-primary-200 dark:bg-primary-800/50 text-primary-800 dark:text-primary-200"
+                          : "bg-neutral-100 dark:bg-neutral-100 text-neutral-600 dark:text-neutral-700"
                       )}
                     >
                       {item.badge}
@@ -229,7 +229,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
 
           {/* Footer */}
           {footer && (
-            <div className="p-4 border-t border-neutral-200 dark:border-neutral-800">
+            <div className="border-t border-neutral-200 dark:border-neutral-200">
               {footer}
             </div>
           )}
@@ -287,7 +287,7 @@ export const SidebarTrigger = React.forwardRef<
     <button
       ref={ref}
       className={cn(
-        "lg:hidden text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors",
+        "lg:hidden text-neutral-600 dark:text-neutral-600 hover:text-neutral-900 dark:hover:text-neutral-900 transition-colors",
         className
       )}
       aria-label="Open sidebar"

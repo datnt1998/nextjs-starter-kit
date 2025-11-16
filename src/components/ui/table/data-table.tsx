@@ -283,7 +283,7 @@ export function DataTable<TData, TValue>({
       ) : null}
 
       {/* Table */}
-      <div className="rounded-md border border-neutral-200 dark:border-neutral-700">
+      <div className="rounded-md border border-neutral-200 dark:border-neutral-200">
         <Table>
           <TableHeader>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -325,7 +325,7 @@ export function DataTable<TData, TValue>({
               <TableRow hoverable={false}>
                 <TableCell
                   colSpan={columns.length}
-                  className="h-24 text-center text-neutral-500 dark:text-neutral-400"
+                  className="h-24 text-center text-neutral-500 dark:text-neutral-600"
                 >
                   No results found.
                 </TableCell>

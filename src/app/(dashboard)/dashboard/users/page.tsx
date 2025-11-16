@@ -236,13 +236,14 @@ export default function UsersTablePage() {
 
   return (
     <DashboardLayout>
-      <Container size="2xl">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Users</h1>
-          <p className="text-muted-foreground">
-            Manage users with full table functionality including sorting,
-            filtering, and pagination
+      <Container size="2xl" className="py-8">
+        {/* Modern Header */}
+        <div className="mb-10">
+          <h1 className="text-display-md mb-3">
+            Users
+          </h1>
+          <p className="text-body-lg text-muted-foreground">
+            Manage users with full table functionality including sorting, filtering, and pagination
           </p>
         </div>
 

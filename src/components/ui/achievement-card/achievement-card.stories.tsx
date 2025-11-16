@@ -89,99 +89,84 @@ const FireIcon = () => (
 );
 
 export const Locked: Story = {
-  render: () => (
-    <AchievementCard
-      status="locked"
-      title="First Steps"
-      description="Complete your first task to unlock this achievement"
-      icon={<StarIcon />}
-      className="w-[400px]"
-    />
-  ),
+  args: {
+    status: "locked",
+    title: "First Steps",
+    description: "Complete your first task to unlock this achievement",
+    icon: <StarIcon />,
+  },
 };
 
 export const InProgress: Story = {
-  render: () => (
-    <AchievementCard
-      status="in-progress"
-      title="Task Master"
-      description="Complete 10 tasks to earn this achievement"
-      icon={<CheckIcon />}
-      progress={60}
-      className="w-[400px]"
-    />
-  ),
+  args: {
+    status: "in-progress",
+    title: "Task Master",
+    description: "Complete 10 tasks to earn this achievement",
+    icon: <CheckIcon />,
+    progress: 60,
+  },
 };
 
 export const InProgressLow: Story = {
-  render: () => (
-    <AchievementCard
-      status="in-progress"
-      title="Getting Started"
-      description="Complete 5 tasks"
-      icon={<StarIcon />}
-      progress={20}
-      className="w-[400px]"
-    />
-  ),
+  args: {
+    status: "in-progress",
+    title: "Getting Started",
+    description: "Complete 5 tasks",
+    icon: <StarIcon />,
+    progress: 20,
+  },
 };
 
 export const InProgressHigh: Story = {
-  render: () => (
-    <AchievementCard
-      status="in-progress"
-      title="Almost There"
-      description="Complete 20 tasks"
-      icon={<CheckIcon />}
-      progress={85}
-      className="w-[400px]"
-    />
-  ),
+  args: {
+    status: "in-progress",
+    title: "Almost There",
+    description: "Complete 20 tasks",
+    icon: <CheckIcon />,
+    progress: 85,
+  },
 };
 
 export const UnlockedPrimary: Story = {
-  render: () => (
-    <AchievementCard
-      status="unlocked"
-      gradient="primary"
-      title="Champion"
-      description="You've completed all challenges!"
-      icon={<TrophyIcon />}
-      onUnlock={() => console.log("Achievement clicked")}
-      className="w-[400px]"
-    />
-  ),
+  args: {
+    status: "unlocked",
+    gradient: "primary",
+    title: "Champion",
+    description: "You've completed all challenges!",
+    icon: <TrophyIcon />,
+    onUnlock: () => console.log("Achievement clicked"),
+  },
 };
 
 export const UnlockedSuccess: Story = {
-  render: () => (
-    <AchievementCard
-      status="unlocked"
-      gradient="success"
-      title="Perfect Score"
-      description="Achieved 100% completion rate"
-      icon={<StarIcon />}
-      onUnlock={() => console.log("Achievement clicked")}
-      className="w-[400px]"
-    />
-  ),
+  args: {
+    status: "unlocked",
+    gradient: "success",
+    title: "Perfect Score",
+    description: "Achieved 100% completion rate",
+    icon: <StarIcon />,
+    onUnlock: () => console.log("Achievement clicked"),
+  },
 };
 
 export const UnlockedAccent: Story = {
-  render: () => (
-    <AchievementCard
-      status="unlocked"
-      gradient="accent"
-      title="On Fire!"
-      description="Maintained a 7-day streak"
-      icon={<FireIcon />}
-      onUnlock={() => console.log("Achievement clicked")}
-      className="w-[400px]"
-    />
-  ),
+  args: {
+    status: "unlocked",
+    gradient: "accent",
+    title: "On Fire!",
+    description: "Maintained a 7-day streak",
+    icon: <FireIcon />,
+    onUnlock: () => console.log("Achievement clicked"),
+  },
 };
 
 export const AllStates: Story = {
+  args: {
+    status: "locked",
+    title: "All States",
+    description: "Showcase of all achievement states",
+    icon: <StarIcon />,
+  },
   render: () => (
     <div className="flex flex-col gap-6 p-8">
       <AchievementCard
@@ -212,6 +197,12 @@ export const AllStates: Story = {
 };
 
 export const AllGradients: Story = {
+  args: {
+    status: "unlocked",
+    title: "All Gradients",
+    description: "Showcase of all gradient types",
+    icon: <TrophyIcon />,
+  },
   render: () => (
     <div className="flex flex-col gap-6 p-8">
       <AchievementCard
@@ -243,6 +234,13 @@ export const AllGradients: Story = {
 };
 
 export const IconSizes: Story = {
+  args: {
+    status: "unlocked",
+    gradient: "primary",
+    title: "Icon Sizes",
+    description: "Showcase of different icon sizes",
+    icon: <StarIcon />,
+  },
   render: () => (
     <div className="flex flex-col gap-6 p-8">
       <AchievementCard
@@ -277,6 +275,13 @@ export const IconSizes: Story = {
 };
 
 export const UnlockAnimation: Story = {
+  args: {
+    status: "locked",
+    gradient: "primary",
+    title: "Interactive Achievement",
+    description: "Click the button to start progress",
+    icon: <TrophyIcon />,
+  },
   render: function UnlockAnimationStory() {
     const [status, setStatus] = useState<"locked" | "in-progress" | "unlocked">(
       "locked"
@@ -333,6 +338,13 @@ export const UnlockAnimation: Story = {
 };
 
 export const Grid: Story = {
+  args: {
+    status: "unlocked",
+    gradient: "primary",
+    title: "Grid Layout",
+    description: "Showcase of achievements in a grid",
+    icon: <StarIcon />,
+  },
   render: () => (
     <div className="grid grid-cols-2 gap-6 p-8 max-w-4xl">
       <AchievementCard

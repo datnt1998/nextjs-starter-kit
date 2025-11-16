@@ -1,25 +1,32 @@
 import { cva, type VariantProps } from "class-variance-authority";
 
 export const cardVariants = cva(
-  "rounded-xl border transition-all duration-200",
+  /* Base styles - Modern SaaS card with smooth transitions */
+  "rounded-xl border transition-all duration-300 ease-out",
   {
     variants: {
       variant: {
-        default: "bg-background border-border",
-        elevated: "bg-background border-border",
-        outlined: "bg-transparent border-2 border-border",
-        ghost: "bg-muted/50 border-transparent",
-        gradient: "bg-gradient-to-br !text-white border-transparent",
-        glass: "bg-background/80 backdrop-blur-sm border-border/50",
+        default:
+          "bg-card border-border shadow-sm hover:shadow-md",
+        elevated:
+          "bg-card border-border-light shadow-md hover:shadow-lg",
+        outlined:
+          "bg-transparent border-2 border-border hover:border-primary-300 dark:hover:border-primary-700",
+        ghost:
+          "bg-muted/40 border-transparent hover:bg-muted/60",
+        gradient:
+          "bg-gradient-to-br !text-white border-transparent shadow-lg",
+        glass:
+          "bg-card/70 backdrop-blur-md border-border/30 shadow-md",
         interactive:
-          "bg-background border-border cursor-pointer hover:-translate-y-1",
+          "bg-card border-border shadow-sm cursor-pointer hover:shadow-xl hover:-translate-y-1 active:translate-y-0 active:shadow-md",
       },
       padding: {
         none: "p-0",
-        sm: "p-3",
-        md: "p-4",
-        lg: "p-6",
-        xl: "p-8",
+        sm: "p-4",
+        md: "p-6",
+        lg: "p-8",
+        xl: "p-10",
       },
       gradient: {
         none: "",
@@ -39,9 +46,9 @@ export const cardVariants = cva(
       },
       shadowColor: {
         none: "",
-        primary: "shadow-primary",
-        success: "shadow-success",
-        accent: "shadow-accent",
+        primary: "shadow-primary-md",
+        success: "shadow-success-md",
+        accent: "shadow-accent-md",
       },
     },
     defaultVariants: {
@@ -54,14 +61,14 @@ export const cardVariants = cva(
   }
 );
 
-export const cardHeaderVariants = cva("flex flex-col space-y-1.5", {
+export const cardHeaderVariants = cva("flex flex-col space-y-2", {
   variants: {
     padding: {
       none: "p-0",
-      sm: "p-3",
-      md: "p-4",
-      lg: "p-6",
-      xl: "p-8",
+      sm: "p-4",
+      md: "p-6",
+      lg: "p-8",
+      xl: "p-10",
     },
   },
   defaultVariants: {
@@ -70,7 +77,8 @@ export const cardHeaderVariants = cva("flex flex-col space-y-1.5", {
 });
 
 export const cardTitleVariants = cva(
-  "text-2xl font-semibold leading-none tracking-tight",
+  /* Modern typography with strong hierarchy */
+  "text-xl font-semibold leading-tight tracking-tight text-foreground",
   {
     variants: {
       variant: {
@@ -84,26 +92,29 @@ export const cardTitleVariants = cva(
   }
 );
 
-export const cardDescriptionVariants = cva("text-sm", {
-  variants: {
-    variant: {
-      default: "text-muted-foreground",
-      gradient: "!text-white/90",
+export const cardDescriptionVariants = cva(
+  "text-sm leading-relaxed text-muted-foreground",
+  {
+    variants: {
+      variant: {
+        default: "text-muted-foreground",
+        gradient: "!text-white/90",
+      },
     },
-  },
-  defaultVariants: {
-    variant: "default",
-  },
-});
+    defaultVariants: {
+      variant: "default",
+    },
+  }
+);
 
-export const cardContentVariants = cva("", {
+export const cardContentVariants = cva("text-foreground", {
   variants: {
     padding: {
       none: "p-0",
-      sm: "p-3 pt-0",
-      md: "p-4 pt-0",
-      lg: "p-6 pt-0",
-      xl: "p-8 pt-0",
+      sm: "p-4 pt-0",
+      md: "p-6 pt-0",
+      lg: "p-8 pt-0",
+      xl: "p-10 pt-0",
     },
   },
   defaultVariants: {
@@ -111,20 +122,23 @@ export const cardContentVariants = cva("", {
   },
 });
 
-export const cardFooterVariants = cva("flex items-center", {
-  variants: {
-    padding: {
-      none: "p-0",
-      sm: "p-3 pt-0",
-      md: "p-4 pt-0",
-      lg: "p-6 pt-0",
-      xl: "p-8 pt-0",
+export const cardFooterVariants = cva(
+  "flex items-center border-t border-border-light pt-4",
+  {
+    variants: {
+      padding: {
+        none: "p-0 border-none",
+        sm: "px-4 pb-4 pt-4",
+        md: "px-6 pb-6 pt-4",
+        lg: "px-8 pb-8 pt-4",
+        xl: "px-10 pb-10 pt-4",
+      },
     },
-  },
-  defaultVariants: {
-    padding: "md",
-  },
-});
+    defaultVariants: {
+      padding: "md",
+    },
+  }
+);
 
 export type CardVariants = VariantProps<typeof cardVariants>;
 export type CardHeaderVariants = VariantProps<typeof cardHeaderVariants>;

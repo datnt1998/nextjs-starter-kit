@@ -1,71 +1,84 @@
-/* Dark Theme */
+/* Dark Theme - Warm, Low-Glare Palette */
 .dark {
-  /* Colors - Primary (adjusted for dark mode) */
-  --color-primary-50: rgb(8 47 73);
-  --color-primary-100: rgb(12 74 110);
-  --color-primary-200: rgb(7 89 133);
-  --color-primary-300: rgb(3 105 161);
-  --color-primary-400: rgb(2 132 199);
-  --color-primary-500: rgb(14 165 233);
-  --color-primary-600: rgb(56 189 248);
-  --color-primary-700: rgb(125 211 252);
-  --color-primary-800: rgb(186 230 253);
-  --color-primary-900: rgb(224 242 254);
-  --color-primary-950: rgb(240 249 255);
+  /* Colors - Primary (Indigo/Violet - inverted for dark mode) */
+  --color-primary-50: rgb(46 16 101);
+  --color-primary-100: rgb(76 29 149);
+  --color-primary-200: rgb(91 33 182);
+  --color-primary-300: rgb(109 40 217);
+  --color-primary-400: rgb(124 58 237);
+  --color-primary-500: rgb(139 92 246);
+  --color-primary-600: rgb(167 139 250);
+  --color-primary-700: rgb(196 181 253);
+  --color-primary-800: rgb(221 214 254);
+  --color-primary-900: rgb(237 233 254);
+  --color-primary-950: rgb(245 243 255);
 
-  /* Colors - Secondary (adjusted for dark mode) */
-  --color-secondary-50: rgb(59 7 100);
-  --color-secondary-100: rgb(88 28 135);
-  --color-secondary-200: rgb(107 33 168);
-  --color-secondary-300: rgb(126 34 206);
-  --color-secondary-400: rgb(147 51 234);
-  --color-secondary-500: rgb(168 85 247);
-  --color-secondary-600: rgb(192 132 252);
-  --color-secondary-700: rgb(216 180 254);
-  --color-secondary-800: rgb(233 213 255);
-  --color-secondary-900: rgb(243 232 255);
-  --color-secondary-950: rgb(250 245 255);
+  /* Colors - Secondary (Violet/Pink - inverted) */
+  --color-secondary-50: rgb(74 4 78);
+  --color-secondary-100: rgb(112 26 117);
+  --color-secondary-200: rgb(134 25 143);
+  --color-secondary-300: rgb(162 28 175);
+  --color-secondary-400: rgb(192 38 211);
+  --color-secondary-500: rgb(217 70 239);
+  --color-secondary-600: rgb(232 121 249);
+  --color-secondary-700: rgb(240 171 252);
+  --color-secondary-800: rgb(245 208 254);
+  --color-secondary-900: rgb(250 232 255);
+  --color-secondary-950: rgb(253 244 255);
 
-  /* Colors - Neutral (adjusted for dark mode) */
-  --color-neutral-50: rgb(9 9 11);
-  --color-neutral-100: rgb(24 24 27);
-  --color-neutral-200: rgb(39 39 42);
-  --color-neutral-300: rgb(63 63 70);
-  --color-neutral-400: rgb(82 82 91);
-  --color-neutral-500: rgb(113 113 122);
-  --color-neutral-600: rgb(161 161 170);
-  --color-neutral-700: rgb(212 212 216);
-  --color-neutral-800: rgb(228 228 231);
-  --color-neutral-900: rgb(244 244 245);
-  --color-neutral-950: rgb(250 250 250);
+  /* Colors - Accent (Warm Amber - inverted) */
+  --color-accent-50: rgb(69 26 3);
+  --color-accent-100: rgb(120 53 15);
+  --color-accent-200: rgb(146 64 14);
+  --color-accent-300: rgb(180 83 9);
+  --color-accent-400: rgb(217 119 6);
+  --color-accent-500: rgb(245 158 11);
+  --color-accent-600: rgb(251 191 36);
+  --color-accent-700: rgb(252 211 77);
+  --color-accent-800: rgb(253 230 138);
+  --color-accent-900: rgb(254 243 199);
+  --color-accent-950: rgb(255 251 235);
 
-  /* Colors - Success (adjusted for dark mode) */
-  --color-success-50: rgb(5 46 22);
-  --color-success-100: rgb(20 83 45);
-  --color-success-200: rgb(22 101 52);
-  --color-success-300: rgb(21 128 61);
-  --color-success-400: rgb(22 163 74);
-  --color-success-500: rgb(34 197 94);
-  --color-success-600: rgb(74 222 128);
-  --color-success-700: rgb(134 239 172);
-  --color-success-800: rgb(187 247 208);
-  --color-success-900: rgb(220 252 231);
-  --color-success-950: rgb(240 253 244);
+  /* Colors - Neutral (Warm Stone - inverted for dark mode) */
+  --color-neutral-50: rgb(12 10 9);
+  --color-neutral-100: rgb(28 25 23);
+  --color-neutral-200: rgb(41 37 36);
+  --color-neutral-300: rgb(68 64 60);
+  --color-neutral-400: rgb(87 83 78);
+  --color-neutral-500: rgb(120 113 108);
+  --color-neutral-600: rgb(168 162 158);
+  --color-neutral-700: rgb(214 211 209);
+  --color-neutral-800: rgb(231 229 228);
+  --color-neutral-900: rgb(245 245 244);
+  --color-neutral-950: rgb(250 250 249);
 
-  /* Colors - Warning (adjusted for dark mode) */
-  --color-warning-50: rgb(66 32 6);
-  --color-warning-100: rgb(113 63 18);
-  --color-warning-200: rgb(133 77 14);
-  --color-warning-300: rgb(161 98 7);
-  --color-warning-400: rgb(202 138 4);
-  --color-warning-500: rgb(234 179 8);
-  --color-warning-600: rgb(250 204 21);
-  --color-warning-700: rgb(253 224 71);
-  --color-warning-800: rgb(254 240 138);
-  --color-warning-900: rgb(254 249 195);
-  --color-warning-950: rgb(254 252 232);
+  /* Colors - Success (Subdued Emerald - inverted) */
+  --color-success-50: rgb(2 44 34);
+  --color-success-100: rgb(6 78 59);
+  --color-success-200: rgb(6 95 70);
+  --color-success-300: rgb(4 120 87);
+  --color-success-400: rgb(5 150 105);
+  --color-success-500: rgb(16 185 129);
+  --color-success-600: rgb(52 211 153);
+  --color-success-700: rgb(110 231 183);
+  --color-success-800: rgb(167 243 208);
+  --color-success-900: rgb(209 250 229);
+  --color-success-950: rgb(236 253 245);
 
-  /* Colors - Error (adjusted for dark mode) */
+  /* Colors - Warning (Soft Amber - inverted) */
+  --color-warning-50: rgb(69 26 3);
+  --color-warning-100: rgb(120 53 15);
+  --color-warning-200: rgb(146 64 14);
+  --color-warning-300: rgb(180 83 9);
+  --color-warning-400: rgb(217 119 6);
+  --color-warning-500: rgb(245 158 11);
+  --color-warning-600: rgb(251 191 36);
+  --color-warning-700: rgb(252 211 77);
+  --color-warning-800: rgb(253 230 138);
+  --color-warning-900: rgb(254 243 199);
+  --color-warning-950: rgb(255 251 235);
+
+  /* Colors - Error (Refined Red - inverted) */
   --color-error-50: rgb(69 10 10);
   --color-error-100: rgb(127 29 29);
   --color-error-200: rgb(153 27 27);
@@ -78,89 +91,108 @@
   --color-error-900: rgb(254 226 226);
   --color-error-950: rgb(254 242 242);
 
-  /* Background & Foreground */
-  --color-background: rgb(9 9 11);
-  --color-foreground: rgb(250 250 250);
-  --color-muted: rgb(39 39 42);
-  --color-muted-foreground: rgb(161 161 170);
+  /* Colors - Info (Professional Blue - inverted) */
+  --color-info-50: rgb(23 37 84);
+  --color-info-100: rgb(30 58 138);
+  --color-info-200: rgb(30 64 175);
+  --color-info-300: rgb(29 78 216);
+  --color-info-400: rgb(37 99 235);
+  --color-info-500: rgb(59 130 246);
+  --color-info-600: rgb(96 165 250);
+  --color-info-700: rgb(147 197 253);
+  --color-info-800: rgb(191 219 254);
+  --color-info-900: rgb(219 234 254);
+  --color-info-950: rgb(239 246 255);
 
-  /* Border & Ring */
-  --color-border: rgb(39 39 42);
-  --color-ring: rgb(56 189 248);
+  /* Background & Foreground - Deep warm charcoal for reduced eye strain */
+  --color-background: rgb(12 10 9); /* Deep warm black (stone-50 inverted) */
+  --color-foreground: rgb(250 250 249); /* Warm white (stone-950 inverted) */
+  --color-muted: rgb(28 25 23); /* Rich warm surface (stone-100 inverted) */
+  --color-muted-foreground: rgb(168 162 158); /* Mid warm gray (stone-400 inverted) */
 
-  /* Shadows - Increased opacity for dark mode visibility */
-  /* Base shadows with higher opacity for better visibility on dark backgrounds */
-  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.3);
-  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.4), 0 1px 2px -1px rgb(0 0 0 / 0.4);
+  /* Card surface - Elevated warm charcoal for depth */
+  --color-card: rgb(23 21 20); /* Slightly elevated warm surface */
+  --color-card-foreground: rgb(250 250 249); /* Warm white */
+  --color-card-hover: rgb(34 32 30); /* Lighter warm surface on hover */
+
+  /* Border & Ring - Visible warm borders */
+  --color-border: rgb(68 64 60); /* Visible warm border (stone-300 inverted) */
+  --color-border-light: rgb(57 53 49); /* Subtle warm border */
+  --color-ring: rgb(139 92 246); /* Primary-500 */
+  --color-focus-ring: rgb(167 139 250); /* Primary-600 (lighter in dark) */
+
+  /* Shadows - Enhanced depth for dark mode with higher opacity */
+  --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.4);
+  --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.5), 0 1px 2px -1px rgb(0 0 0 / 0.3);
   --shadow-base:
-    0 2px 4px -1px rgb(0 0 0 / 0.4), 0 1px 3px -1px rgb(0 0 0 / 0.4);
-  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.5), 0 2px 4px -2px rgb(0 0 0 / 0.5);
+    0 2px 4px -1px rgb(0 0 0 / 0.5), 0 1px 3px -1px rgb(0 0 0 / 0.3);
+  --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.6), 0 2px 4px -2px rgb(0 0 0 / 0.4);
   --shadow-lg:
-    0 10px 15px -3px rgb(0 0 0 / 0.5), 0 4px 6px -4px rgb(0 0 0 / 0.5);
+    0 10px 15px -3px rgb(0 0 0 / 0.6), 0 4px 6px -4px rgb(0 0 0 / 0.4);
   --shadow-xl:
-    0 20px 25px -5px rgb(0 0 0 / 0.6), 0 8px 10px -6px rgb(0 0 0 / 0.6);
-  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.7);
+    0 20px 25px -5px rgb(0 0 0 / 0.7), 0 8px 10px -6px rgb(0 0 0 / 0.5);
+  --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.75);
 
-  /* Inner shadows for dark mode */
-  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.4);
-  --shadow-inner-lg: inset 0 4px 8px 0 rgb(0 0 0 / 0.5);
+  /* Inner shadows with subtle depth */
+  --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.5);
+  --shadow-inner-lg: inset 0 4px 8px 0 rgb(0 0 0 / 0.6);
 
-  /* Colored shadows - Primary (adjusted for dark backgrounds) */
+  /* Colored shadows - Indigo/violet tint for dark mode */
   --shadow-primary-sm:
-    0 2px 4px -1px rgb(96 165 250 / 0.25), 0 1px 2px -1px rgb(96 165 250 / 0.15);
+    0 2px 4px -1px rgb(167 139 250 / 0.25), 0 1px 2px -1px rgb(167 139 250 / 0.15);
   --shadow-primary-md:
-    0 4px 8px -2px rgb(96 165 250 / 0.3), 0 2px 4px -2px rgb(96 165 250 / 0.2);
+    0 4px 8px -2px rgb(167 139 250 / 0.3), 0 2px 4px -2px rgb(167 139 250 / 0.2);
   --shadow-primary-lg:
-    0 12px 24px -4px rgb(96 165 250 / 0.35),
-    0 4px 8px -4px rgb(96 165 250 / 0.25);
+    0 12px 24px -4px rgb(167 139 250 / 0.35),
+    0 4px 8px -4px rgb(167 139 250 / 0.25);
 
-  /* Colored shadows - Success (adjusted for dark backgrounds) */
+  /* Success shadows for dark mode */
   --shadow-success-sm:
-    0 2px 4px -1px rgb(74 222 128 / 0.25), 0 1px 2px -1px rgb(74 222 128 / 0.15);
+    0 2px 4px -1px rgb(52 211 153 / 0.25), 0 1px 2px -1px rgb(52 211 153 / 0.15);
   --shadow-success-md:
-    0 4px 8px -2px rgb(74 222 128 / 0.3), 0 2px 4px -2px rgb(74 222 128 / 0.2);
+    0 4px 8px -2px rgb(52 211 153 / 0.3), 0 2px 4px -2px rgb(52 211 153 / 0.2);
   --shadow-success-lg:
-    0 12px 24px -4px rgb(74 222 128 / 0.35),
-    0 4px 8px -4px rgb(74 222 128 / 0.25);
+    0 12px 24px -4px rgb(52 211 153 / 0.35),
+    0 4px 8px -4px rgb(52 211 153 / 0.25);
 
-  /* Colored shadows - Accent (adjusted for dark backgrounds) */
+  /* Accent shadows for dark mode */
   --shadow-accent-sm:
-    0 2px 4px -1px rgb(251 146 60 / 0.25), 0 1px 2px -1px rgb(251 146 60 / 0.15);
+    0 2px 4px -1px rgb(251 191 36 / 0.25), 0 1px 2px -1px rgb(251 191 36 / 0.15);
   --shadow-accent-md:
-    0 4px 8px -2px rgb(251 146 60 / 0.3), 0 2px 4px -2px rgb(251 146 60 / 0.2);
+    0 4px 8px -2px rgb(251 191 36 / 0.3), 0 2px 4px -2px rgb(251 191 36 / 0.2);
   --shadow-accent-lg:
-    0 12px 24px -4px rgb(251 146 60 / 0.35),
-    0 4px 8px -4px rgb(251 146 60 / 0.25);
+    0 12px 24px -4px rgb(251 191 36 / 0.35),
+    0 4px 8px -4px rgb(251 191 36 / 0.25);
 
-  /* Gradient System - Adjusted for dark mode with brighter colors */
-  /* Primary Gradient - Brighter Blue to Purple for dark backgrounds */
-  --gradient-primary-from: rgb(96 165 250); /* blue-400 */
-  --gradient-primary-via: rgb(129 140 248); /* indigo-400 */
-  --gradient-primary-to: rgb(168 85 247); /* purple-500 */
+  /* Gradient System - Brighter gradients for dark backgrounds */
+  /* Primary Gradient - Indigo to Violet (brighter) */
+  --gradient-primary-from: rgb(139 92 246); /* violet-500 */
+  --gradient-primary-via: rgb(167 139 250); /* violet-400 */
+  --gradient-primary-to: rgb(192 132 252); /* purple-400 */
   --gradient-primary-angle: 135deg;
 
-  /* Secondary Gradient - Brighter Purple to Pink */
+  /* Secondary Gradient - Violet to Pink (brighter) */
   --gradient-secondary-from: rgb(192 132 252); /* purple-400 */
-  --gradient-secondary-via: rgb(216 180 254); /* purple-300 */
+  --gradient-secondary-via: rgb(217 70 239); /* fuchsia-500 */
   --gradient-secondary-to: rgb(244 114 182); /* pink-400 */
   --gradient-secondary-angle: 135deg;
 
-  /* Success Gradient - Brighter Green to Teal */
-  --gradient-success-from: rgb(74 222 128); /* green-400 */
-  --gradient-success-via: rgb(52 211 153); /* emerald-400 */
-  --gradient-success-to: rgb(45 212 191); /* teal-400 */
+  /* Success Gradient - Emerald to Teal (brighter) */
+  --gradient-success-from: rgb(52 211 153); /* emerald-400 */
+  --gradient-success-via: rgb(45 212 191); /* teal-400 */
+  --gradient-success-to: rgb(34 211 238); /* cyan-400 */
   --gradient-success-angle: 135deg;
 
-  /* Accent Gradient - Brighter Orange to Red */
-  --gradient-accent-from: rgb(251 146 60); /* orange-400 */
-  --gradient-accent-via: rgb(253 186 116); /* orange-300 */
-  --gradient-accent-to: rgb(248 113 113); /* red-400 */
+  /* Accent Gradient - Amber to Orange (brighter) */
+  --gradient-accent-from: rgb(251 191 36); /* amber-400 */
+  --gradient-accent-via: rgb(251 146 60); /* orange-400 */
+  --gradient-accent-to: rgb(251 113 133); /* rose-400 */
   --gradient-accent-angle: 135deg;
 
   /* Hero Gradient - Multi-stop vibrant gradient for dark mode */
-  --gradient-hero-from: rgb(96 165 250); /* blue-400 */
-  --gradient-hero-via-1: rgb(168 85 247); /* purple-500 */
-  --gradient-hero-via-2: rgb(244 114 182); /* pink-400 */
+  --gradient-hero-from: rgb(139 92 246); /* violet-500 */
+  --gradient-hero-via-1: rgb(192 132 252); /* purple-400 */
+  --gradient-hero-via-2: rgb(236 72 153); /* pink-500 */
   --gradient-hero-to: rgb(251 146 60); /* orange-400 */
   --gradient-hero-angle: 135deg;
 }

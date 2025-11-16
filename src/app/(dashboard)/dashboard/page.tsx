@@ -65,25 +65,31 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <Container size="2xl">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-foreground mb-2">Dashboard</h1>
-          <p className="text-muted-foreground">
-            Welcome back, {user.name || user.email}!
+      <Container size="2xl" className="py-8">
+        {/* Modern Header with better spacing */}
+        <div className="mb-10">
+          <h1 className="text-display-md mb-3">
+            Dashboard
+          </h1>
+          <p className="text-body-lg text-muted-foreground">
+            Welcome back, <span className="font-semibold text-foreground">{user.name || user.email}</span>
           </p>
         </div>
 
-        {/* Error State */}
+        {/* Refined Error State */}
         {statsError && (
-          <div className="mb-8 bg-destructive/10 border border-destructive/20 rounded-lg p-4">
-            <div className="flex items-center gap-3">
-              <IconAlertCircle className="w-5 h-5 text-destructive" />
-              <div>
-                <h3 className="text-sm font-medium text-destructive">
+          <div className="mb-8 bg-error-50 dark:bg-error-950/20 border border-error-200 dark:border-error-900/50 rounded-xl p-5 shadow-sm">
+            <div className="flex items-start gap-4">
+              <div className="flex-shrink-0">
+                <div className="w-10 h-10 rounded-lg bg-error-100 dark:bg-error-900/50 flex items-center justify-center">
+                  <IconAlertCircle className="w-5 h-5 text-error-600 dark:text-error-400" />
+                </div>
+              </div>
+              <div className="flex-1">
+                <h3 className="text-sm font-semibold text-error-900 dark:text-error-100 mb-1">
                   Failed to load dashboard data
                 </h3>
-                <p className="text-sm text-destructive/80 mt-1">
+                <p className="text-sm text-error-700 dark:text-error-300">
                   {statsError instanceof Error
                     ? statsError.message
                     : "An error occurred"}
@@ -93,8 +99,8 @@ export default function DashboardPage() {
           </div>
         )}
 
-        {/* Stats Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+        {/* Stats Cards with generous spacing */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
           <StatsCard
             title="Total Users"
             value={stats?.totalUsers || 0}
@@ -132,17 +138,25 @@ export default function DashboardPage() {
           />
         </div>
 
-        {/* Charts and Activity */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <SimpleChart
-            title="Weekly Activity"
-            data={activityData || []}
-            isLoading={activityLoading}
-          />
-          <RecentActivity
-            activities={recentActivity || []}
-            isLoading={recentLoading}
-          />
+        {/* Charts and Activity with section header */}
+        <div className="space-y-6">
+          <div>
+            <h2 className="text-heading-lg mb-1">Analytics & Activity</h2>
+            <p className="text-body-sm text-muted-foreground">
+              Track your performance and recent updates
+            </p>
+          </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <SimpleChart
+              title="Weekly Activity"
+              data={activityData || []}
+              isLoading={activityLoading}
+            />
+            <RecentActivity
+              activities={recentActivity || []}
+              isLoading={recentLoading}
+            />
+          </div>
         </div>
       </Container>
     </DashboardLayout>

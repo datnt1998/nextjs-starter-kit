@@ -98,11 +98,11 @@ export default function FormDemoPage() {
   return (
     <DashboardLayout>
       <Container size="lg">
-        <div className="bg-white dark:bg-neutral-800 rounded-lg shadow-lg p-8">
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-white mb-2">
+        <div className="bg-white dark:bg-card rounded-lg shadow-lg p-8">
+          <h1 className="text-3xl font-bold text-neutral-900 dark:text-foreground mb-2">
             Form Demo
           </h1>
-          <p className="text-neutral-600 dark:text-neutral-400 mb-8">
+          <p className="text-neutral-600 dark:text-neutral-600 mb-8">
             Example form demonstrating React Hook Form integration with Zod
             validation
           </p>
@@ -196,8 +196,8 @@ export default function FormDemoPage() {
                     className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 ${
                       form.formState.errors.bio
                         ? "border-error-600 focus:ring-error-600"
-                        : "border-neutral-300 dark:border-neutral-600 focus:ring-primary-600"
-                    } bg-white dark:bg-neutral-700 text-neutral-900 dark:text-white`}
+                        : "border-neutral-300 dark:border-neutral-300 focus:ring-primary-600"
+                    } bg-white dark:bg-card text-neutral-900 dark:text-foreground placeholder:text-neutral-400 dark:placeholder:text-neutral-500`}
                   />
                   <FormDescription>Maximum 500 characters</FormDescription>
                   <FormMessage />
@@ -259,21 +259,21 @@ export default function FormDemoPage() {
 
           {/* Display Submitted Data */}
           {submittedData && (
-            <div className="mt-8 p-6 bg-success-50 dark:bg-success-900/20 border border-success-200 dark:border-success-800 rounded-lg">
-              <h2 className="text-xl font-semibold text-success-900 dark:text-success-100 mb-4">
+            <div className="mt-8 p-6 bg-success-50 dark:bg-success-950/50 border border-success-200 dark:border-success-700 rounded-lg">
+              <h2 className="text-xl font-semibold text-success-900 dark:text-success-400 mb-4">
                 Form Submitted Successfully! ✓
               </h2>
               <div className="space-y-2 text-sm">
-                <p className="text-neutral-700 dark:text-neutral-300">
+                <p className="text-neutral-700 dark:text-neutral-700">
                   <strong>Username:</strong> {submittedData.username}
                 </p>
-                <p className="text-neutral-700 dark:text-neutral-300">
+                <p className="text-neutral-700 dark:text-neutral-700">
                   <strong>Email:</strong> {submittedData.email}
                 </p>
-                <p className="text-neutral-700 dark:text-neutral-300">
+                <p className="text-neutral-700 dark:text-neutral-700">
                   <strong>Age:</strong> {submittedData.age}
                 </p>
-                <p className="text-neutral-700 dark:text-neutral-300">
+                <p className="text-neutral-700 dark:text-neutral-700">
                   <strong>Country:</strong>{" "}
                   {
                     countryOptions.find(
@@ -282,11 +282,11 @@ export default function FormDemoPage() {
                   }
                 </p>
                 {submittedData.bio && (
-                  <p className="text-neutral-700 dark:text-neutral-300">
+                  <p className="text-neutral-700 dark:text-neutral-700">
                     <strong>Bio:</strong> {submittedData.bio}
                   </p>
                 )}
-                <p className="text-neutral-700 dark:text-neutral-300">
+                <p className="text-neutral-700 dark:text-neutral-700">
                   <strong>Terms Accepted:</strong>{" "}
                   {submittedData.terms ? "Yes" : "No"}
                 </p>
@@ -295,11 +295,11 @@ export default function FormDemoPage() {
           )}
 
           {/* Form State Debug Info */}
-          <div className="mt-8 p-4 bg-neutral-100 dark:bg-neutral-700 rounded-lg">
-            <h3 className="text-sm font-semibold text-neutral-900 dark:text-white mb-2">
+          <div className="mt-8 p-4 bg-neutral-100 dark:bg-neutral-100 rounded-lg border border-neutral-200 dark:border-neutral-200">
+            <h3 className="text-sm font-semibold text-neutral-900 dark:text-neutral-900 mb-2">
               Form State (Debug)
             </h3>
-            <div className="text-xs space-y-1 text-neutral-600 dark:text-neutral-400">
+            <div className="text-xs space-y-1 text-neutral-600 dark:text-neutral-600">
               <p>
                 <strong>Is Valid:</strong>{" "}
                 {form.formState.isValid ? "Yes" : "No"}

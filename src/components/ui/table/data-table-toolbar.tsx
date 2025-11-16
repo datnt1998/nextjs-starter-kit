@@ -30,7 +30,7 @@ export function DataTableToolbar({
         {onSearchChange && (
           <div className="relative max-w-sm flex-1">
             <IconSearch
-              className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400"
+              className="absolute left-3 top-1/2 -translate-y-1/2 text-neutral-400 dark:text-neutral-500"
               size={18}
             />
             <Input

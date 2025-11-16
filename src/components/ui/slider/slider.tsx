@@ -77,7 +77,7 @@ export const Slider = React.forwardRef<HTMLDivElement, SliderProps>(
 
     return (
       <BaseSlider.Root
-        ref={ref}
+        ref={ref as React.RefObject<HTMLDivElement> | undefined}
         value={value}
         defaultValue={defaultValue}
         className={cn(sliderRootVariants(), className)}

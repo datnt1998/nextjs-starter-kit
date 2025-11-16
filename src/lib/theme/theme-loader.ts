@@ -6,6 +6,7 @@
 import type {
   ThemeConfig,
   GradientDefinition,
+  GradientStop,
   ShadowDefinition,
   ColorScale,
 } from "./theme-config";
@@ -66,7 +67,7 @@ export function generateCssVariables(
   const gradients = config.gradients[mode];
   Object.entries(gradients).forEach(([name, gradient]) => {
     // Store gradient stops
-    gradient.stops.forEach((stop, index) => {
+    gradient.stops.forEach((stop: GradientStop, index: number) => {
       variables[`--gradient-${name}-stop-${index}-color`] = stop.color;
       variables[`--gradient-${name}-stop-${index}-position`] =
         `${stop.position}%`;

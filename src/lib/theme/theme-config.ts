@@ -184,56 +184,56 @@ export const defaultThemeConfig: ThemeConfig = {
   colors: {
     light: {
       primary: {
-        50: "#eff6ff",
-        100: "#dbeafe",
-        200: "#bfdbfe",
-        300: "#93c5fd",
-        400: "#60a5fa",
-        500: "#3b82f6",
-        600: "#2563eb",
-        700: "#1d4ed8",
-        800: "#1e40af",
-        900: "#1e3a8a",
-        950: "#172554",
+        50: "#f5f3ff",
+        100: "#ede9fe",
+        200: "#ddd6fe",
+        300: "#c4b5fd",
+        400: "#a78bfa",
+        500: "#8b5cf6",
+        600: "#7c3aed",
+        700: "#6d28d9",
+        800: "#5b21b6",
+        900: "#4c1d95",
+        950: "#2e1065",
       },
       secondary: {
-        50: "#faf5ff",
-        100: "#f3e8ff",
-        200: "#e9d5ff",
-        300: "#d8b4fe",
-        400: "#c084fc",
-        500: "#a855f7",
-        600: "#9333ea",
-        700: "#7e22ce",
-        800: "#6b21a8",
-        900: "#581c87",
-        950: "#3b0764",
+        50: "#fdf4ff",
+        100: "#fae8ff",
+        200: "#f5d0fe",
+        300: "#f0abfc",
+        400: "#e879f9",
+        500: "#d946ef",
+        600: "#c026d3",
+        700: "#a21caf",
+        800: "#86198f",
+        900: "#701a75",
+        950: "#4a044e",
       },
       neutral: {
-        50: "#fafafa",
-        100: "#f5f5f5",
-        200: "#e5e5e5",
-        300: "#d4d4d4",
-        400: "#a3a3a3",
-        500: "#737373",
-        600: "#525252",
-        700: "#404040",
-        800: "#262626",
-        900: "#171717",
-        950: "#0a0a0a",
+        50: "#fafaf9",
+        100: "#f5f5f4",
+        200: "#e7e5e4",
+        300: "#d6d3d1",
+        400: "#a8a29e",
+        500: "#78716c",
+        600: "#57534e",
+        700: "#44403c",
+        800: "#292524",
+        900: "#1c1917",
+        950: "#0c0a09",
       },
       success: {
-        50: "#f0fdf4",
-        100: "#dcfce7",
-        200: "#bbf7d0",
-        300: "#86efac",
-        400: "#4ade80",
-        500: "#22c55e",
-        600: "#16a34a",
-        700: "#15803d",
-        800: "#166534",
-        900: "#14532d",
-        950: "#052e16",
+        50: "#ecfdf5",
+        100: "#d1fae5",
+        200: "#a7f3d0",
+        300: "#6ee7b7",
+        400: "#34d399",
+        500: "#10b981",
+        600: "#059669",
+        700: "#047857",
+        800: "#065f46",
+        900: "#064e3b",
+        950: "#022c22",
       },
       warning: {
         50: "#fffbeb",
@@ -262,17 +262,17 @@ export const defaultThemeConfig: ThemeConfig = {
         950: "#450a0a",
       },
       info: {
-        50: "#f0f9ff",
-        100: "#e0f2fe",
-        200: "#bae6fd",
-        300: "#7dd3fc",
-        400: "#38bdf8",
-        500: "#0ea5e9",
-        600: "#0284c7",
-        700: "#0369a1",
-        800: "#075985",
-        900: "#0c4a6e",
-        950: "#082f49",
+        50: "#eff6ff",
+        100: "#dbeafe",
+        200: "#bfdbfe",
+        300: "#93c5fd",
+        400: "#60a5fa",
+        500: "#3b82f6",
+        600: "#2563eb",
+        700: "#1d4ed8",
+        800: "#1e40af",
+        900: "#1e3a8a",
+        950: "#172554",
       },
       accent: {
         50: "#fff7ed",
@@ -290,56 +290,56 @@ export const defaultThemeConfig: ThemeConfig = {
     },
     dark: {
       primary: {
-        50: "#172554",
-        100: "#1e3a8a",
-        200: "#1e40af",
-        300: "#1d4ed8",
-        400: "#2563eb",
-        500: "#3b82f6",
-        600: "#60a5fa",
-        700: "#93c5fd",
-        800: "#bfdbfe",
-        900: "#dbeafe",
-        950: "#eff6ff",
+        50: "#2e1065",
+        100: "#4c1d95",
+        200: "#5b21b6",
+        300: "#6d28d9",
+        400: "#7c3aed",
+        500: "#8b5cf6",
+        600: "#a78bfa",
+        700: "#c4b5fd",
+        800: "#ddd6fe",
+        900: "#ede9fe",
+        950: "#f5f3ff",
       },
       secondary: {
-        50: "#3b0764",
-        100: "#581c87",
-        200: "#6b21a8",
-        300: "#7e22ce",
-        400: "#9333ea",
-        500: "#a855f7",
-        600: "#c084fc",
-        700: "#d8b4fe",
-        800: "#e9d5ff",
-        900: "#f3e8ff",
-        950: "#faf5ff",
+        50: "#4a044e",
+        100: "#701a75",
+        200: "#86198f",
+        300: "#a21caf",
+        400: "#c026d3",
+        500: "#d946ef",
+        600: "#e879f9",
+        700: "#f0abfc",
+        800: "#f5d0fe",
+        900: "#fae8ff",
+        950: "#fdf4ff",
       },
       neutral: {
-        50: "#0a0a0a",
-        100: "#171717",
-        200: "#262626",
-        300: "#404040",
-        400: "#525252",
-        500: "#737373",
-        600: "#a3a3a3",
-        700: "#d4d4d4",
-        800: "#e5e5e5",
-        900: "#f5f5f5",
-        950: "#fafafa",
+        50: "#0c0a09",
+        100: "#1c1917",
+        200: "#292524",
+        300: "#44403c",
+        400: "#57534e",
+        500: "#78716c",
+        600: "#a8a29e",
+        700: "#d6d3d1",
+        800: "#e7e5e4",
+        900: "#f5f5f4",
+        950: "#fafaf9",
       },
       success: {
-        50: "#052e16",
-        100: "#14532d",
-        200: "#166534",
-        300: "#15803d",
-        400: "#16a34a",
-        500: "#22c55e",
-        600: "#4ade80",
-        700: "#86efac",
-        800: "#bbf7d0",
-        900: "#dcfce7",
-        950: "#f0fdf4",
+        50: "#022c22",
+        100: "#064e3b",
+        200: "#065f46",
+        300: "#047857",
+        400: "#059669",
+        500: "#10b981",
+        600: "#34d399",
+        700: "#6ee7b7",
+        800: "#a7f3d0",
+        900: "#d1fae5",
+        950: "#ecfdf5",
       },
       warning: {
         50: "#451a03",
@@ -368,17 +368,17 @@ export const defaultThemeConfig: ThemeConfig = {
         950: "#fef2f2",
       },
       info: {
-        50: "#082f49",
-        100: "#0c4a6e",
-        200: "#075985",
-        300: "#0369a1",
-        400: "#0284c7",
-        500: "#0ea5e9",
-        600: "#38bdf8",
-        700: "#7dd3fc",
-        800: "#bae6fd",
-        900: "#e0f2fe",
-        950: "#f0f9ff",
+        50: "#172554",
+        100: "#1e3a8a",
+        200: "#1e40af",
+        300: "#1d4ed8",
+        400: "#2563eb",
+        500: "#3b82f6",
+        600: "#60a5fa",
+        700: "#93c5fd",
+        800: "#bfdbfe",
+        900: "#dbeafe",
+        950: "#eff6ff",
       },
       accent: {
         50: "#431407",
@@ -401,8 +401,9 @@ export const defaultThemeConfig: ThemeConfig = {
         type: "linear",
         angle: 135,
         stops: [
-          { color: "rgb(59, 130, 246)", position: 0 }, // blue-500
-          { color: "rgb(147, 51, 234)", position: 100 }, // purple-600
+          { color: "rgb(99, 102, 241)", position: 0 }, // indigo-500
+          { color: "rgb(139, 92, 246)", position: 50 }, // violet-500
+          { color: "rgb(168, 85, 247)", position: 100 }, // purple-500
         ],
       },
       secondary: {
@@ -417,24 +418,27 @@ export const defaultThemeConfig: ThemeConfig = {
         type: "linear",
         angle: 135,
         stops: [
-          { color: "rgb(34, 197, 94)", position: 0 }, // green-500
-          { color: "rgb(20, 184, 166)", position: 100 }, // teal-600
+          { color: "rgb(16, 185, 129)", position: 0 }, // emerald-500
+          { color: "rgb(20, 184, 166)", position: 50 }, // teal-500
+          { color: "rgb(6, 182, 212)", position: 100 }, // cyan-500
         ],
       },
       accent: {
         type: "linear",
         angle: 135,
         stops: [
-          { color: "rgb(249, 115, 22)", position: 0 }, // orange-500
-          { color: "rgb(239, 68, 68)", position: 100 }, // red-500
+          { color: "rgb(251, 191, 36)", position: 0 }, // amber-400
+          { color: "rgb(245, 158, 11)", position: 50 }, // amber-500
+          { color: "rgb(249, 115, 22)", position: 100 }, // orange-500
         ],
       },
       hero: {
         type: "linear",
         angle: 135,
         stops: [
-          { color: "rgb(59, 130, 246)", position: 0 }, // blue-500
-          { color: "rgb(147, 51, 234)", position: 50 }, // purple-600
+          { color: "rgb(99, 102, 241)", position: 0 }, // indigo-500
+          { color: "rgb(139, 92, 246)", position: 33 }, // violet-500
+          { color: "rgb(217, 70, 239)", position: 66 }, // fuchsia-500
           { color: "rgb(236, 72, 153)", position: 100 }, // pink-500
         ],
       },
@@ -444,8 +448,9 @@ export const defaultThemeConfig: ThemeConfig = {
         type: "linear",
         angle: 135,
         stops: [
-          { color: "rgb(96, 165, 250)", position: 0 }, // blue-400
-          { color: "rgb(168, 85, 247)", position: 100 }, // purple-500
+          { color: "rgb(139, 92, 246)", position: 0 }, // violet-500
+          { color: "rgb(167, 139, 250)", position: 50 }, // violet-400
+          { color: "rgb(192, 132, 252)", position: 100 }, // purple-400
         ],
       },
       secondary: {
@@ -460,25 +465,28 @@ export const defaultThemeConfig: ThemeConfig = {
         type: "linear",
         angle: 135,
         stops: [
-          { color: "rgb(74, 222, 128)", position: 0 }, // green-400
-          { color: "rgb(45, 212, 191)", position: 100 }, // teal-400
+          { color: "rgb(52, 211, 153)", position: 0 }, // emerald-400
+          { color: "rgb(45, 212, 191)", position: 50 }, // teal-400
+          { color: "rgb(34, 211, 238)", position: 100 }, // cyan-400
         ],
       },
       accent: {
         type: "linear",
         angle: 135,
         stops: [
-          { color: "rgb(251, 146, 60)", position: 0 }, // orange-400
-          { color: "rgb(248, 113, 113)", position: 100 }, // red-400
+          { color: "rgb(251, 191, 36)", position: 0 }, // amber-400
+          { color: "rgb(251, 146, 60)", position: 50 }, // orange-400
+          { color: "rgb(251, 113, 133)", position: 100 }, // rose-400
         ],
       },
       hero: {
         type: "linear",
         angle: 135,
         stops: [
-          { color: "rgb(96, 165, 250)", position: 0 }, // blue-400
-          { color: "rgb(168, 85, 247)", position: 50 }, // purple-500
-          { color: "rgb(244, 114, 182)", position: 100 }, // pink-400
+          { color: "rgb(139, 92, 246)", position: 0 }, // violet-500
+          { color: "rgb(192, 132, 252)", position: 33 }, // purple-400
+          { color: "rgb(236, 72, 153)", position: 66 }, // pink-500
+          { color: "rgb(251, 146, 60)", position: 100 }, // orange-400
         ],
       },
     },
