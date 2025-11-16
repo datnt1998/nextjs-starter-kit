@@ -232,6 +232,7 @@ export const Select = ({
                       disabled={option.disabled}
                       className={cn(
                         "relative flex items-center w-full px-3 py-2 text-sm rounded-sm cursor-pointer select-none",
+                        "text-neutral-900 dark:text-neutral-100",
                         "hover:bg-neutral-100 dark:hover:bg-neutral-800 focus:bg-neutral-100 dark:focus:bg-neutral-800 focus:outline-none",
                         "data-disabled:pointer-events-none data-disabled:opacity-50",
                         isSelected &&
