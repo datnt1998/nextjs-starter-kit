@@ -96,6 +96,38 @@ export type { AlertProps, AlertVariants } from "./alert";
 export { Badge, badgeVariants } from "./badge";
 export type { BadgeProps, BadgeVariants } from "./badge";
 
+// Card
+export {
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  cardVariants,
+  cardHeaderVariants,
+  cardTitleVariants,
+  cardDescriptionVariants,
+  cardContentVariants,
+  cardFooterVariants,
+} from "./card";
+export type {
+  CardProps,
+  CardHeaderProps,
+  CardTitleProps,
+  CardDescriptionProps,
+  CardContentProps,
+  CardFooterProps,
+  CardVariants,
+  CardHeaderVariants,
+  CardContentVariants,
+  CardFooterVariants,
+} from "./card";
+
+// Container
+export { Container, containerVariants } from "./container";
+export type { ContainerProps, ContainerVariants } from "./container";
+
 // Progress
 export { Progress, progressTrackVariants } from "./progress";
 export type { ProgressProps, ProgressVariants } from "./progress";
@@ -104,7 +136,7 @@ export type { ProgressProps, ProgressVariants } from "./progress";
 export { Slider, sliderTrackVariants } from "./slider";
 export type { SliderProps, SliderVariants } from "./slider";
 
-// Form
+// Form (React Hook Form)
 export {
   Form,
   FormField,
@@ -115,6 +147,9 @@ export {
   useFormWithSchema,
   useFormField,
 } from "./form";
+
+// Form (Base UI)
+export { BaseUIForm, BaseFormField, TextareaField, SubmitButton } from "./form";
 
 // Table
 export {

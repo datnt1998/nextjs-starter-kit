@@ -70,7 +70,7 @@ function useFormWithSchema<TFormValues extends FieldValues = FieldValues>({
  */
 interface FormFieldContextValue<
   TFormValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFormValues> = FieldPath<TFormValues>
+  TName extends FieldPath<TFormValues> = FieldPath<TFormValues>,
 > {
   name: TName;
 }
@@ -81,7 +81,7 @@ const FormFieldContext = React.createContext<FormFieldContextValue>(
 
 interface FormFieldProps<
   TFormValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFormValues> = FieldPath<TFormValues>
+  TName extends FieldPath<TFormValues> = FieldPath<TFormValues>,
 > extends Omit<ControllerProps<TFormValues, TName>, "render"> {
   children: (field: {
     value: any;
@@ -94,7 +94,7 @@ interface FormFieldProps<
 
 function FormField<
   TFormValues extends FieldValues = FieldValues,
-  TName extends FieldPath<TFormValues> = FieldPath<TFormValues>
+  TName extends FieldPath<TFormValues> = FieldPath<TFormValues>,
 >({ name, children, ...props }: FormFieldProps<TFormValues, TName>) {
   return (
     <FormFieldContext.Provider value={{ name }}>
@@ -162,12 +162,12 @@ const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
         ref={ref}
         htmlFor={name}
         className={`block text-sm font-medium ${
-          error ? "text-error-600" : "text-neutral-700 dark:text-neutral-300"
+          error ? "text-destructive" : "text-foreground"
         } ${className}`}
         {...props}
       >
         {children}
-        {required && <span className="text-error-600 ml-1">*</span>}
+        {required && <span className="text-destructive ml-1">*</span>}
       </label>
     );
   }
@@ -187,7 +187,7 @@ const FormDescription = React.forwardRef<
   return (
     <p
       ref={ref}
-      className={`text-sm text-neutral-500 dark:text-neutral-400 ${className}`}
+      className={`text-sm text-muted-foreground ${className}`}
       {...props}
     />
   );
@@ -211,7 +211,7 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, FormMessageProps>(
     return (
       <p
         ref={ref}
-        className={`text-sm font-medium text-error-600 ${className}`}
+        className={`text-sm font-medium text-destructive ${className}`}
         {...props}
       >
         {body}
@@ -221,6 +221,7 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, FormMessageProps>(
 );
 FormMessage.displayName = "FormMessage";
 
+// Export React Hook Form components (for existing code compatibility)
 export {
   Form,
   FormField,

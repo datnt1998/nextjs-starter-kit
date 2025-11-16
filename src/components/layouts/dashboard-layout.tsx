@@ -109,10 +109,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         open={sidebarOpen}
         onClose={() => setSidebarOpen(false)}
         logo={
-          <Link
-            href="/dashboard"
-            className="text-xl font-bold text-neutral-900 dark:text-neutral-50"
-          >
+          <Link href="/dashboard" className="text-xl font-bold text-primary">
             Starter Kit
           </Link>
         }
@@ -147,7 +144,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
 
       <SidebarContent>
         {/* Header */}
-        <header className="sticky top-0 z-30 bg-white dark:bg-neutral-900 border-b border-neutral-200 dark:border-neutral-800">
+        <header className="sticky top-0 z-30 bg-background border-b border-neutral-200 dark:border-neutral-800">
           <div className="flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
             <SidebarTrigger onClick={() => setSidebarOpen(true)} />
             <div className="flex-1" />
@@ -156,7 +153,7 @@ export function DashboardLayout({ children }: DashboardLayoutProps) {
         </header>
 
         {/* Page content */}
-        <main className="min-h-screen p-4 sm:p-6 lg:p-8 bg-neutral-50 dark:bg-neutral-950">
+        <main className="min-h-screen p-4 sm:p-6 lg:p-8 bg-background">
           {children}
         </main>
       </SidebarContent>

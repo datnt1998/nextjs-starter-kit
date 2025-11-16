@@ -11,6 +11,8 @@
 import { useState, useMemo } from "react";
 import { type ColumnDef } from "@tanstack/react-table";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
+import { Container } from "@/components/ui/container";
+import { Card, CardContent } from "@/components/ui/card";
 import { DataTableColumnHeader } from "@/components/ui/table";
 import { DataTableWithFilters } from "@/components/ui/table/data-table-with-filters";
 import { DataTableFacetedFilter } from "@/components/ui/table/data-table-faceted-filter";
@@ -66,7 +68,7 @@ export default function UsersTablePage() {
           <DataTableColumnHeader column={column} title="Name" />
         ),
         cell: ({ getValue }) => (
-          <div className="font-medium text-neutral-900 dark:text-neutral-50">
+          <div className="font-medium text-foreground">
             {getValue() as string}
           </div>
         ),
@@ -77,9 +79,7 @@ export default function UsersTablePage() {
           <DataTableColumnHeader column={column} title="Email" />
         ),
         cell: ({ getValue }) => (
-          <div className="text-neutral-600 dark:text-neutral-400">
-            {getValue() as string}
-          </div>
+          <div className="text-muted-foreground">{getValue() as string}</div>
         ),
       },
       {
@@ -137,7 +137,7 @@ export default function UsersTablePage() {
           <DataTableColumnHeader column={column} title="Created" />
         ),
         cell: ({ getValue }) => (
-          <div className="text-sm text-neutral-600 dark:text-neutral-400">
+          <div className="text-sm text-muted-foreground">
             {new Date(getValue() as string).toLocaleDateString()}
           </div>
         ),
@@ -227,9 +227,7 @@ export default function UsersTablePage() {
         <div className="flex items-center justify-center min-h-[400px]">
           <div className="text-center">
             <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary-600 border-r-transparent"></div>
-            <p className="mt-4 text-neutral-600 dark:text-neutral-400">
-              Loading users...
-            </p>
+            <p className="mt-4 text-muted-foreground">Loading users...</p>
           </div>
         </div>
       </DashboardLayout>
@@ -238,13 +236,11 @@ export default function UsersTablePage() {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto">
+      <Container size="2xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-50 mb-2">
-            Users
-          </h1>
-          <p className="text-neutral-600 dark:text-neutral-400">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Users</h1>
+          <p className="text-muted-foreground">
             Manage users with full table functionality including sorting,
             filtering, and pagination
           </p>
@@ -252,10 +248,10 @@ export default function UsersTablePage() {
 
         {/* Error State */}
         {error && (
-          <div className="mb-6 bg-error-50 dark:bg-error-900/20 border border-error-200 dark:border-error-800 rounded-lg p-4">
+          <div className="mb-6 bg-destructive/10 border border-destructive/20 rounded-lg p-4">
             <div className="flex items-center gap-3">
               <svg
-                className="w-5 h-5 text-error-600 dark:text-error-400"
+                className="w-5 h-5 text-destructive"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -268,10 +264,10 @@ export default function UsersTablePage() {
                 />
               </svg>
               <div>
-                <h3 className="text-sm font-medium text-error-900 dark:text-error-200">
+                <h3 className="text-sm font-medium text-destructive">
                   Failed to load users
                 </h3>
-                <p className="text-sm text-error-700 dark:text-error-300 mt-1">
+                <p className="text-sm text-destructive/80 mt-1">
                   {error instanceof Error ? error.message : "An error occurred"}
                 </p>
               </div>
@@ -280,9 +276,9 @@ export default function UsersTablePage() {
         )}
 
         {/* Toolbar */}
-        <div className="bg-white dark:bg-neutral-900 rounded-lg shadow-sm border border-neutral-200 dark:border-neutral-800 p-6 mb-6">
-          <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
-            <div className="text-sm text-neutral-600 dark:text-neutral-400">
+        <Card className="mb-6">
+          <CardContent className="flex flex-col sm:flex-row gap-4 items-start sm:items-center justify-between">
+            <div className="text-sm text-muted-foreground">
               {users.length} total users
             </div>
             <Button onClick={handleCreate}>
@@ -301,8 +297,8 @@ export default function UsersTablePage() {
               </svg>
               Add User
             </Button>
-          </div>
-        </div>
+          </CardContent>
+        </Card>
 
         {/* Table with built-in search, sorting, filtering, and pagination */}
         <DataTableWithFilters
@@ -323,7 +319,7 @@ export default function UsersTablePage() {
             />
           )}
         />
-      </div>
+      </Container>
 
       {/* Create Dialog */}
       <Dialog
@@ -332,12 +328,12 @@ export default function UsersTablePage() {
         size="md"
       >
         <div className="p-6">
-          <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-6">
+          <h2 className="text-xl font-semibold text-foreground mb-6">
             Create User
           </h2>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Name
               </label>
               <Input
@@ -349,7 +345,7 @@ export default function UsersTablePage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Email
               </label>
               <Input
@@ -362,7 +358,7 @@ export default function UsersTablePage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Role
               </label>
               <Input
@@ -399,12 +395,12 @@ export default function UsersTablePage() {
         size="md"
       >
         <div className="p-6">
-          <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-6">
+          <h2 className="text-xl font-semibold text-foreground mb-6">
             Edit User
           </h2>
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Name
               </label>
               <Input
@@ -416,7 +412,7 @@ export default function UsersTablePage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Email
               </label>
               <Input
@@ -429,7 +425,7 @@ export default function UsersTablePage() {
               />
             </div>
             <div>
-              <label className="block text-sm font-medium text-neutral-700 dark:text-neutral-300 mb-2">
+              <label className="block text-sm font-medium text-foreground mb-2">
                 Role
               </label>
               <Input
@@ -463,10 +459,10 @@ export default function UsersTablePage() {
         size="sm"
       >
         <div className="p-6">
-          <h2 className="text-xl font-semibold text-neutral-900 dark:text-neutral-50 mb-4">
+          <h2 className="text-xl font-semibold text-foreground mb-4">
             Delete User
           </h2>
-          <p className="text-neutral-600 dark:text-neutral-400 mb-6">
+          <p className="text-muted-foreground mb-6">
             Are you sure you want to delete {selectedUser?.name}? This action
             cannot be undone.
           </p>

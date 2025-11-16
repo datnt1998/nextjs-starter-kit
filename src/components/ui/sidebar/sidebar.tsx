@@ -68,7 +68,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
       <aside
         ref={ref}
         className={cn(
-          "fixed inset-y-0 left-0 z-50 bg-white dark:bg-neutral-900 border-r border-neutral-200 dark:border-neutral-800 transform transition-transform duration-200 ease-in-out lg:translate-x-0",
+          "fixed inset-y-0 left-0 z-50 bg-background border-r border-neutral-200 dark:border-neutral-800 transform transition-transform duration-200 ease-in-out lg:translate-x-0",
           width,
           open ? "translate-x-0" : "-translate-x-full",
           className
@@ -82,7 +82,7 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
               {showCloseButton && onClose && (
                 <button
                   onClick={onClose}
-                  className="lg:hidden text-neutral-600 dark:text-neutral-400 hover:text-neutral-900 dark:hover:text-neutral-50 transition-colors"
+                  className="lg:hidden text-primary transition-colors"
                   aria-label="Close sidebar"
                 >
                   <svg
@@ -141,8 +141,8 @@ export const Sidebar = React.forwardRef<HTMLElement, SidebarProps>(
                   className={cn(
                     "flex items-center justify-between px-4 py-2 rounded-lg text-sm font-medium transition-colors",
                     isActive
-                      ? "bg-primary-50 dark:bg-primary-900/20 text-primary-600 dark:text-primary-400"
-                      : "text-neutral-700 dark:text-neutral-300 hover:bg-neutral-100 dark:hover:bg-neutral-800"
+                      ? "bg-primary-100 dark:bg-primary-900/20 text-primary-900"
+                      : "text-primary hover:bg-neutral-100"
                   )}
                 >
                   <div className="flex items-center gap-3">

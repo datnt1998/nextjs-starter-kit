@@ -10,6 +10,7 @@ import { useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/use-auth";
 import { useEffect } from "react";
 import { DashboardLayout } from "@/components/layouts/dashboard-layout";
+import { Container } from "@/components/ui/container";
 import { StatsCard } from "@/components/dashboard/stats-card";
 import { SimpleChart } from "@/components/dashboard/simple-chart";
 import { RecentActivity } from "@/components/dashboard/recent-activity";
@@ -45,9 +46,7 @@ export default function DashboardPage() {
       <div className="flex items-center justify-center min-h-screen">
         <div className="text-center">
           <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary-600 border-r-transparent"></div>
-          <p className="mt-4 text-neutral-600 dark:text-neutral-400">
-            Loading...
-          </p>
+          <p className="mt-4 text-muted-foreground">Loading...</p>
         </div>
       </div>
     );
@@ -59,23 +58,21 @@ export default function DashboardPage() {
 
   return (
     <DashboardLayout>
-      <div className="max-w-7xl mx-auto">
+      <Container size="2xl">
         {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold text-neutral-900 dark:text-neutral-50 mb-2">
-            Dashboard
-          </h1>
-          <p className="text-neutral-600 dark:text-neutral-400">
+          <h1 className="text-3xl font-bold text-foreground mb-2">Dashboard</h1>
+          <p className="text-muted-foreground">
             Welcome back, {user.name || user.email}!
           </p>
         </div>
 
         {/* Error State */}
         {statsError && (
-          <div className="mb-8 bg-error-50 dark:bg-error-900/20 border border-error-200 dark:border-error-800 rounded-lg p-4">
+          <div className="mb-8 bg-destructive/10 border border-destructive/20 rounded-lg p-4">
             <div className="flex items-center gap-3">
               <svg
-                className="w-5 h-5 text-error-600 dark:text-error-400"
+                className="w-5 h-5 text-destructive"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -88,10 +85,10 @@ export default function DashboardPage() {
                 />
               </svg>
               <div>
-                <h3 className="text-sm font-medium text-error-900 dark:text-error-200">
+                <h3 className="text-sm font-medium text-destructive">
                   Failed to load dashboard data
                 </h3>
-                <p className="text-sm text-error-700 dark:text-error-300 mt-1">
+                <p className="text-sm text-destructive/80 mt-1">
                   {statsError instanceof Error
                     ? statsError.message
                     : "An error occurred"}
@@ -201,7 +198,7 @@ export default function DashboardPage() {
             isLoading={recentLoading}
           />
         </div>
-      </div>
+      </Container>
     </DashboardLayout>
   );
 }
